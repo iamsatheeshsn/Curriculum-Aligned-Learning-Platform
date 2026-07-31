@@ -1,0 +1,17 @@
+export { SchoolProfilePage } from './SchoolProfilePage';
+export { SchoolCampusesPage } from './SchoolCampusesPage';
+export { AcademicYearsPage } from './AcademicYearsPage';
+export { SchoolTermsPage } from './SchoolTermsPage';
+export { SchoolSubjectsPage } from './SchoolSubjectsPage';
+export { SchoolGradesPage } from './SchoolGradesPage';
+export { SchoolClassesPage } from './SchoolClassesPage';
+export { SchoolSectionsPage } from './SchoolSectionsPage';
+export { StudentsPage } from './StudentsPage';
+export { AdmissionsPage } from './AdmissionsPage';
+export { TransfersPage } from './TransfersPage';
+export { AlumniPage } from './AlumniPage';
+export { ParentsPage } from './ParentsPage';
+export { GuardiansPage } from './GuardiansPage';
+export { TeachersPage } from './TeachersPage';
+export { TutorsPage } from './TutorsPage';
+export { TeachingAssignmentsPage } from './TeachingAssignmentsPage';

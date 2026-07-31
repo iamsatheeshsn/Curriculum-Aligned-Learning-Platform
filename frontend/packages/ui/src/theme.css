@@ -1,0 +1,260 @@
+/* Stemora — Learning / Tutoring platform design system
+   Atmosphere: calm teal classrooms, soft mint light, apricot achievement accents
+   Typography: Fraunces (display) + Sora (UI)
+   Type scale: neat 12–26px steps for professional density */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Sora:wght@400;500;600;700&display=swap');
+
+:root {
+  --stem-ink: #0a1f2b;
+  --stem-ink-soft: #4a6574;
+  --stem-teal: #0c7c80;
+  --stem-teal-deep: #055456;
+  --stem-teal-bright: #12a0ab;
+  --stem-mint: #c7ebe5;
+  --stem-mint-soft: #eef8f6;
+  --stem-sky: #3b93bc;
+  --stem-sky-soft: #e8f4fa;
+  --stem-apricot: #e98945;
+  --stem-apricot-deep: #c96a2e;
+  --stem-surface: #eef7f5;
+  --stem-surface-2: #e0f0ed;
+  --stem-white: #ffffff;
+  --stem-line: rgba(10, 31, 43, 0.1);
+  --stem-danger: #b42318;
+  --stem-success: #0f7a45;
+  --stem-warning: #b54708;
+  --stem-radius: 16px;
+  --stem-radius-sm: 10px;
+  --stem-shadow: 0 16px 40px rgba(5, 84, 86, 0.08);
+  --stem-shadow-lg: 0 28px 60px rgba(5, 84, 86, 0.12);
+  --stem-font-display: 'Fraunces', Georgia, serif;
+  --stem-font-body: 'Sora', sans-serif;
+  --stem-focus: 0 0 0 3px rgba(18, 160, 171, 0.22);
+
+  /* Type scale — use across portals for consistent hierarchy */
+  --stem-text-xs: 0.75rem; /* 12px — eyebrows, pills, captions */
+  --stem-text-sm: 0.8125rem; /* 13px — meta, hints, secondary */
+  --stem-text-md: 0.875rem; /* 14px — labels, table, nav */
+  --stem-text-base: 0.9375rem; /* 15px — body, inputs */
+  --stem-text-lg: 1rem; /* 16px — emphasis */
+  --stem-text-xl: 1.125rem; /* 18px — panel / card titles */
+  --stem-text-2xl: 1.375rem; /* 22px — section heroes */
+  --stem-text-3xl: 1.625rem; /* 26px — page titles */
+  --stem-leading-tight: 1.25;
+  --stem-leading: 1.5;
+  --stem-leading-relaxed: 1.6;
+
+  color-scheme: light;
+}
+
+[data-portal='control'] {
+  --portal-accent: var(--stem-teal-deep);
+  --portal-accent-soft: #d5eceb;
+  --portal-sidebar: #043739;
+  --portal-sidebar-text: #e4f6f4;
+  --portal-rail: #12a0ab;
+}
+
+[data-portal='institution'] {
+  --portal-accent: #0c7c80;
+  --portal-accent-soft: #dff1ef;
+  --portal-sidebar: #0a3644;
+  --portal-sidebar-text: #e8f5fa;
+  --portal-rail: #3b93bc;
+}
+
+[data-portal='learner'] {
+  --portal-accent: #12a0ab;
+  --portal-accent-soft: #eaf7f5;
+  --portal-sidebar: #0e4a52;
+  --portal-sidebar-text: #eaf8f6;
+  --portal-rail: #e98945;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--stem-font-body);
+  font-size: var(--stem-text-base);
+  font-weight: 400;
+  color: var(--stem-ink);
+  background:
+    radial-gradient(ellipse 70% 50% at 0% -10%, rgba(18, 160, 171, 0.12), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 100% 0%, rgba(59, 147, 188, 0.1), transparent 45%),
+    var(--stem-surface);
+  line-height: var(--stem-leading);
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgba(18, 160, 171, 0.22);
+  color: var(--stem-ink);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--stem-focus);
+}
+
+h1,
+h2,
+h3,
+h4,
+.stem-display {
+  font-family: var(--stem-font-display);
+  letter-spacing: -0.025em;
+  line-height: var(--stem-leading-tight);
+  font-weight: 700;
+  color: var(--stem-ink);
+}
+
+h1 {
+  font-size: var(--stem-text-3xl);
+  margin: 0 0 0.35rem;
+}
+
+h2 {
+  font-size: var(--stem-text-xl);
+  margin: 0 0 0.3rem;
+}
+
+h3 {
+  font-size: var(--stem-text-lg);
+  margin: 0 0 0.25rem;
+}
+
+h4 {
+  font-size: var(--stem-text-base);
+  margin: 0 0 0.2rem;
+}
+
+p {
+  margin: 0 0 0.75rem;
+}
+
+small {
+  font-size: var(--stem-text-sm);
+  line-height: var(--stem-leading);
+}
+
+.stem-mesh {
+  background:
+    radial-gradient(ellipse 80% 60% at 8% 18%, rgba(18, 160, 171, 0.26), transparent 55%),
+    radial-gradient(ellipse 70% 50% at 92% 8%, rgba(59, 147, 188, 0.2), transparent 50%),
+    radial-gradient(ellipse 55% 40% at 72% 92%, rgba(233, 137, 69, 0.14), transparent 45%),
+    linear-gradient(165deg, #eef8f6 0%, #e2f1ee 48%, #d8eaf2 100%);
+}
+
+.stem-grid-overlay {
+  background-image:
+    linear-gradient(rgba(12, 124, 128, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(12, 124, 128, 0.055) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+.stem-card {
+  background: var(--stem-white);
+  border: 1px solid var(--stem-line);
+  border-radius: var(--stem-radius);
+  box-shadow: var(--stem-shadow);
+}
+
+.stem-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  background: var(--stem-mint-soft);
+  color: var(--stem-teal-deep);
+  font-size: var(--stem-text-xs);
+  font-weight: 600;
+  border: 1px solid var(--stem-line);
+}
+
+@keyframes stem-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes stem-drift {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes stem-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.stem-animate-rise {
+  animation: stem-rise 0.65s ease-out both;
+}
+
+.stem-animate-rise-delay {
+  animation: stem-rise 0.75s ease-out 0.12s both;
+}
+
+.stem-animate-fade {
+  animation: stem-fade 0.85s ease-out both;
+}
+
+.stem-animate-drift {
+  animation: stem-drift 7s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stem-animate-rise,
+  .stem-animate-rise-delay,
+  .stem-animate-fade,
+  .stem-animate-drift {
+    animation: none;
+  }
+}

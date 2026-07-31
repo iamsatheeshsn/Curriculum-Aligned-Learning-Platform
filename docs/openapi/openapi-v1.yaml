@@ -1,0 +1,254 @@
+openapi: 3.0.3
+info:
+  title: Stemora / K-12 STEM & Tutoring Platform API
+  version: 1.0.0
+  description: |
+    Shared REST API for Control, Institution, and Learner web portals.
+    Designed for future Android and iOS clients (Phase 19). Native apps are **not** in V1 scope.
+  contact:
+    name: Stemora Platform
+servers:
+  - url: http://127.0.0.1:8000/api/v1
+    description: Local XAMPP / artisan serve
+tags:
+  - name: Meta
+  - name: Auth
+  - name: Control
+  - name: Institution
+  - name: Learner
+  - name: MobileFuture
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: Sanctum
+  parameters:
+    TenantSlug:
+      name: X-Tenant-Slug
+      in: header
+      required: false
+      schema: { type: string, example: al-noor }
+    SchoolId:
+      name: X-School-ID
+      in: header
+      required: false
+      schema: { type: string, example: "1" }
+    AcceptLanguage:
+      name: Accept-Language
+      in: header
+      required: false
+      schema: { type: string, enum: [en, ar], example: en }
+    Client:
+      name: X-Client
+      in: header
+      required: false
+      schema: { type: string, enum: [android, ios, web] }
+  schemas:
+    Error:
+      type: object
+      properties:
+        message: { type: string }
+        code: { type: string }
+        errors: { type: object, additionalProperties: true }
+    Health:
+      type: object
+      properties:
+        status: { type: string, enum: [ok, degraded] }
+        app: { type: string }
+        api_version: { type: string }
+        database: { type: string }
+        timestamp: { type: string, format: date-time }
+    LoginRequest:
+      type: object
+      required: [email, password]
+      properties:
+        email: { type: string, format: email }
+        password: { type: string }
+        tenant_slug: { type: string, description: Required for teacher/student/parent login }
+    AuthSession:
+      type: object
+      properties:
+        message: { type: string }
+        data:
+          type: object
+          properties:
+            token: { type: string }
+            token_type: { type: string, example: Bearer }
+            roles: { type: array, items: { type: string } }
+            user: { type: object }
+            tenant: { type: object, nullable: true }
+paths:
+  /health:
+    get:
+      tags: [Meta]
+      summary: Liveness / readiness
+      responses:
+        '200':
+          description: Healthy
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Health' }
+        '503':
+          description: Degraded (DB down)
+  /meta:
+    get:
+      tags: [Meta]
+      summary: API bootstrap metadata for web and future mobile
+      parameters:
+        - $ref: '#/components/parameters/Client'
+        - $ref: '#/components/parameters/AcceptLanguage'
+      responses:
+        '200':
+          description: Capability flags, portals, headers, future endpoints
+  /tenants/by-slug/{slug}:
+    get:
+      tags: [Meta]
+      summary: Resolve tenant for portal/mobile bootstrap
+      parameters:
+        - name: slug
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Tenant summary }
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+  /auth/admin/login:
+    post:
+      tags: [Auth]
+      summary: Control portal login (Super Admin / Tenant Owner)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/LoginRequest' }
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/AuthSession' }
+  /auth/teacher/login:
+    post:
+      tags: [Auth]
+      summary: Institution portal login
+      parameters:
+        - $ref: '#/components/parameters/TenantSlug'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/LoginRequest' }
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/AuthSession' }
+  /auth/student/login:
+    post:
+      tags: [Auth]
+      summary: Learner student login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/LoginRequest' }
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/AuthSession' }
+  /auth/parent/login:
+    post:
+      tags: [Auth]
+      summary: Learner parent login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/LoginRequest' }
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/AuthSession' }
+  /auth/me:
+    get:
+      tags: [Auth]
+      security: [{ bearerAuth: [] }]
+      summary: Current user
+      responses:
+        '200': { description: Profile }
+        '401': { description: Unauthenticated }
+  /auth/logout:
+    post:
+      tags: [Auth]
+      security: [{ bearerAuth: [] }]
+      summary: Revoke current token
+      responses:
+        '200': { description: Logged out }
+  /org/reports/school:
+    get:
+      tags: [Institution]
+      security: [{ bearerAuth: [] }]
+      summary: School analytics report
+      parameters:
+        - $ref: '#/components/parameters/TenantSlug'
+        - $ref: '#/components/parameters/SchoolId'
+        - name: school_id
+          in: query
+          schema: { type: integer }
+      responses:
+        '200': { description: Aggregates }
+        '401': { description: Unauthenticated }
+        '403': { description: Forbidden }
+  /learner/student/dashboard:
+    get:
+      tags: [Learner]
+      security: [{ bearerAuth: [] }]
+      summary: Student dashboard
+      parameters:
+        - $ref: '#/components/parameters/TenantSlug'
+      responses:
+        '200': { description: Dashboard payload }
+  /learner/parent/dashboard:
+    get:
+      tags: [Learner]
+      security: [{ bearerAuth: [] }]
+      summary: Parent dashboard
+      parameters:
+        - $ref: '#/components/parameters/TenantSlug'
+      responses:
+        '200': { description: Dashboard payload }
+  /mobile/devices:
+    post:
+      tags: [MobileFuture]
+      security: [{ bearerAuth: [] }]
+      summary: Register push device (planned — returns 501)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [platform, push_token]
+              properties:
+                platform: { type: string, enum: [android, ios] }
+                push_token: { type: string }
+                device_id: { type: string }
+      responses:
+        '501':
+          description: Planned feature
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+  /mobile/sync:
+    get:
+      tags: [MobileFuture]
+      security: [{ bearerAuth: [] }]
+      summary: Delta sync cursor (planned — returns 501)
+      responses:
+        '501': { description: Planned feature }

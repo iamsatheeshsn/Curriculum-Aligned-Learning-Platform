@@ -1,0 +1,10 @@
+@import '@stemora/ui/theme.css';
+@import 'tailwindcss';
+
+@theme {
+  --font-display: var(--stem-font-display);
+  --font-sans: var(--stem-font-body);
+  --color-ink: var(--stem-ink);
+  --color-teal: var(--stem-teal);
+  --color-apricot: var(--stem-apricot);
+}

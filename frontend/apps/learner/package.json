@@ -1,0 +1,27 @@
+{
+  "name": "@stemora/learner",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 5178",
+    "build": "vite build",
+    "preview": "vite preview --port 5178"
+  },
+  "dependencies": {
+    "@stemora/api-client": "1.0.0",
+    "@stemora/auth": "1.0.0",
+    "@stemora/nav": "1.0.0",
+    "@stemora/ui": "1.0.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-router-dom": "^7.7.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.11",
+    "@vitejs/plugin-react": "^4.7.0",
+    "tailwindcss": "^4.1.11",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5"
+  }
+}

@@ -1,0 +1,55 @@
+# Dependencies
+**/node_modules/
+**/vendor/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+!**/.env.example
+
+# Build / caches
+**/dist/
+**/build/
+**/.vite/
+**/.turbo/
+**/.cache/
+**/coverage/
+**/.phpunit.result.cache
+**/phpunit.xml.bak
+
+# Laravel
+backend/storage/app/*
+!backend/storage/app/.gitignore
+backend/storage/framework/cache/*
+!backend/storage/framework/cache/.gitignore
+backend/storage/framework/sessions/*
+!backend/storage/framework/sessions/.gitignore
+backend/storage/framework/views/*
+!backend/storage/framework/views/.gitignore
+backend/storage/logs/*
+!backend/storage/logs/.gitignore
+backend/bootstrap/cache/*
+!backend/bootstrap/cache/.gitignore
+backend/public/hot
+backend/public/storage
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+*.log
+
+# Cursor / local agent
+.cursor/
+agent-transcripts/
+
+# Temp scripts
+backend/tmp_*.php
+**/tmp_*.php
+
+# Local credential dumps
+demo-credentials.docx
+*.credentials.docx

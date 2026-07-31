@@ -1,0 +1,34 @@
+{
+  "name": "stemora-frontend",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:website": "npm run dev -w @stemora/website",
+    "dev:control": "npm run dev -w @stemora/control",
+    "dev:institution": "npm run dev -w @stemora/institution",
+    "dev:learner": "npm run dev -w @stemora/learner",
+    "build": "npm run build -w @stemora/website -w @stemora/control -w @stemora/institution -w @stemora/learner",
+    "build:website": "npm run build -w @stemora/website",
+    "build:control": "npm run build -w @stemora/control",
+    "build:institution": "npm run build -w @stemora/institution",
+    "build:learner": "npm run build -w @stemora/learner"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.11",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@vitejs/plugin-react": "^4.7.0",
+    "tailwindcss": "^4.1.11",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5"
+  },
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-router-dom": "^7.7.0"
+  }
+}
