@@ -3,6 +3,8 @@ import { Link, Navigate } from 'react-router-dom';
 import { useAuth } from '@stemora/auth';
 import {
   Button,
+  PaginationBar,
+  useClientPagination,
   ConfirmButton,
   FormActions,
   Panel,
@@ -131,6 +133,8 @@ function CouponsWorkspace() {
   const { api } = useAuth();
   const feedback = useFeedback();
   const [rows, setRows] = useState<CouponRow[]>([]);
+  const listPage = useClientPagination(rows);
+
   const [stats, setStats] = useState<CouponStats | null>(null);
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [detail, setDetail] = useState<CouponRow | null>(null);
@@ -465,7 +469,7 @@ function CouponsWorkspace() {
                     </td>
                   </tr>
                 ) : (
-                  rows.map((row) => (
+                  listPage.pageItems.map((row) => (
                     <tr
                       key={row.id}
                       className={
@@ -507,6 +511,13 @@ function CouponsWorkspace() {
               </tbody>
             </table>
           </div>
+          <PaginationBar
+            page={listPage.page}
+            lastPage={listPage.lastPage}
+            total={listPage.total}
+            onPageChange={listPage.setPage}
+            disabled={loading}
+          />
         </Panel>
 
         <aside className="bc-side" aria-live="polite">

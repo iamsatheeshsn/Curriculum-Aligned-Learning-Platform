@@ -248,7 +248,7 @@ class TeacherWorkspaceController extends Controller
             'subject_id' => $data['subject_id'] ?? null,
             'class_section_id' => $data['class_section_id'] ?? null,
             'title_en' => $data['title_en'],
-            'title_ar' => $data['title_ar'] ?: $data['title_en'],
+            'title_ar' => ($data['title_ar'] ?? null) ?: $data['title_en'],
             'instructions_en' => $data['instructions_en'] ?? null,
             'due_at' => $data['due_at'] ?? null,
             'allow_late' => true,

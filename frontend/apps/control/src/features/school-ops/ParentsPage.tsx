@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '@stemora/auth';
 import {
   Button,
+  PaginationBar,
+  useClientPagination,
   FormActions,
   Panel,
   SelectField,
@@ -65,6 +67,8 @@ function ParentsWorkspace() {
   const { api } = useAuth();
   const feedback = useFeedback();
   const [rows, setRows] = useState<ParentRow[]>([]);
+  const listPage = useClientPagination(rows);
+
   const [stats, setStats] = useState<ParentStats | null>(null);
   const [students, setStudents] = useState<StudentRow[]>([]);
   const [selectedId, setSelectedId] = useState<number | null>(null);
@@ -235,7 +239,7 @@ function ParentsWorkspace() {
                 {rows.length === 0 ? (
                   <tr><td colSpan={3} className={`${P}empty`}>No parents found.</td></tr>
                 ) : (
-                  rows.map((row) => (
+                  listPage.pageItems.map((row) => (
                     <tr
                       key={row.user_id}
                       className={selectedId === row.user_id && mode === 'view' ? 'is-selected' : undefined}
@@ -253,6 +257,13 @@ function ParentsWorkspace() {
               </tbody>
             </table>
           </div>
+          <PaginationBar
+            page={listPage.page}
+            lastPage={listPage.lastPage}
+            total={listPage.total}
+            onPageChange={listPage.setPage}
+            disabled={loading}
+          />
         </Panel>
 
         <aside className={`${P}side`}>

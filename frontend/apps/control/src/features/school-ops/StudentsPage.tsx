@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '@stemora/auth';
 import {
   Button,
+  PaginationBar,
+  useClientPagination,
   ConfirmButton,
   FormActions,
   Panel,
@@ -73,6 +75,8 @@ function StudentsWorkspace() {
   const feedback = useFeedback();
   const { grades, sections, years } = useEnrollmentLookups();
   const [rows, setRows] = useState<StudentRow[]>([]);
+  const listPage = useClientPagination(rows);
+
   const [stats, setStats] = useState<StudentStats | null>(null);
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [detail, setDetail] = useState<StudentRow | null>(null);
@@ -338,7 +342,7 @@ function StudentsWorkspace() {
                 {rows.length === 0 ? (
                   <tr><td colSpan={5} className={`${P}empty`}>No active students found.</td></tr>
                 ) : (
-                  rows.map((row) => (
+                  listPage.pageItems.map((row) => (
                     <tr
                       key={row.user_id}
                       className={selectedId === row.user_id && mode !== 'create' ? 'is-selected' : undefined}
@@ -358,6 +362,13 @@ function StudentsWorkspace() {
               </tbody>
             </table>
           </div>
+          <PaginationBar
+            page={listPage.page}
+            lastPage={listPage.lastPage}
+            total={listPage.total}
+            onPageChange={listPage.setPage}
+            disabled={loading}
+          />
         </Panel>
 
         <aside className={`${P}side`} aria-live="polite">

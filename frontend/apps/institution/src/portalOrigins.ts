@@ -1,15 +1,11 @@
 /** Sibling Stemora apps — override via VITE_* when Vite remaps ports. */
-export const WEBSITE_ORIGIN =
-  (import.meta.env.VITE_WEBSITE_ORIGIN as string | undefined)?.replace(/\/$/, '') ||
-  'http://localhost:5173';
+const env = import.meta.env as Record<string, string | undefined> | undefined;
 
-export const LEARNER_ORIGIN =
-  (import.meta.env.VITE_LEARNER_ORIGIN as string | undefined)?.replace(/\/$/, '') ||
-  'http://localhost:5176';
+export const WEBSITE_ORIGIN = env?.VITE_WEBSITE_ORIGIN?.replace(/\/$/, '') || 'http://localhost:5173';
 
-export const CONTROL_ORIGIN =
-  (import.meta.env.VITE_CONTROL_ORIGIN as string | undefined)?.replace(/\/$/, '') ||
-  'http://localhost:5174';
+export const LEARNER_ORIGIN = env?.VITE_LEARNER_ORIGIN?.replace(/\/$/, '') || 'http://localhost:5178';
+
+export const CONTROL_ORIGIN = env?.VITE_CONTROL_ORIGIN?.replace(/\/$/, '') || 'http://localhost:5174';
 
 export function publicSchoolSiteUrl(tenantSlug: string) {
   return `${WEBSITE_ORIGIN}/${tenantSlug}`;

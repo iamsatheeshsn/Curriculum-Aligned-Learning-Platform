@@ -122,7 +122,7 @@ export function ContactPage() {
             }}
           />
           <FormActions>
-            <Button type="submit" variant="apricot" disabled={submitting}>
+            <Button type="submit" variant="apricot" size="sm" disabled={submitting}>
               {submitting ? 'Sending…' : 'Send message'}
             </Button>
           </FormActions>

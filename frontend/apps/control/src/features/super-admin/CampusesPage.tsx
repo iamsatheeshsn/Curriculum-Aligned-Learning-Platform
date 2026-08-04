@@ -3,6 +3,8 @@ import { Link, Navigate } from 'react-router-dom';
 import { useAuth } from '@stemora/auth';
 import {
   Button,
+  PaginationBar,
+  useClientPagination,
   ConfirmButton,
   FormActions,
   Panel,
@@ -115,6 +117,8 @@ function CampusesWorkspace() {
   const { api } = useAuth();
   const feedback = useFeedback();
   const [campuses, setCampuses] = useState<CampusRow[]>([]);
+  const listPage = useClientPagination(campuses);
+
   const [stats, setStats] = useState<CampusStats | null>(null);
   const [tenants, setTenants] = useState<TenantSchoolOption[]>([]);
   const [selectedId, setSelectedId] = useState<number | null>(null);
@@ -436,7 +440,7 @@ function CampusesWorkspace() {
                     </td>
                   </tr>
                 ) : (
-                  campuses.map((row) => (
+                  listPage.pageItems.map((row) => (
                     <tr
                       key={row.id}
                       className={
@@ -471,6 +475,13 @@ function CampusesWorkspace() {
               </tbody>
             </table>
           </div>
+          <PaginationBar
+            page={listPage.page}
+            lastPage={listPage.lastPage}
+            total={listPage.total}
+            onPageChange={listPage.setPage}
+            disabled={loading}
+          />
         </Panel>
 
         <aside className="cp-side" aria-live="polite">

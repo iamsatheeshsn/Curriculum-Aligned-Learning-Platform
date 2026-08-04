@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState, type FormEvent } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { useAuth } from '@stemora/auth';
-import { Button, Panel, StatStrip, Toolbar } from '@stemora/ui';
+import { Button, PaginationBar, Panel, StatStrip, Toolbar, useClientPagination } from '@stemora/ui';
 import { ControlLayout } from '../../layout/ControlLayout';
 import { statusLabel } from '../../types';
 
@@ -105,6 +105,8 @@ export function PaymentsPage() {
 function PaymentsWorkspace() {
   const { api } = useAuth();
   const [rows, setRows] = useState<PaymentRow[]>([]);
+  const listPage = useClientPagination(rows);
+
   const [stats, setStats] = useState<PaymentStats | null>(null);
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [detail, setDetail] = useState<PaymentRow | null>(null);
@@ -333,7 +335,7 @@ function PaymentsWorkspace() {
                     </td>
                   </tr>
                 ) : (
-                  rows.map((row) => (
+                  listPage.pageItems.map((row) => (
                     <tr
                       key={row.id}
                       className={selectedId === row.id ? 'is-selected' : undefined}
@@ -375,6 +377,13 @@ function PaymentsWorkspace() {
               </tbody>
             </table>
           </div>
+          <PaginationBar
+            page={listPage.page}
+            lastPage={listPage.lastPage}
+            total={listPage.total}
+            onPageChange={listPage.setPage}
+            disabled={loading}
+          />
         </Panel>
 
         <aside className="bpay-side" aria-live="polite">

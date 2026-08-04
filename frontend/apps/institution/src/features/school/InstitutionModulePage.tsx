@@ -12,7 +12,7 @@ export function InstitutionModulePage() {
   const navigate = useNavigate();
   const isTutor = roles.includes('tutor') && !roles.includes('teacher');
   const brandCaption = isTutor ? 'Tutor portal' : 'Institution portal';
-  const brandName = isTutor ? tenant?.name || tenantSlug : undefined;
+  const brandName = tenant?.name || tenantSlug;
   const homeTo = isTutor ? `/${tenantSlug}/teacher` : `/${tenantSlug}`;
 
   return (

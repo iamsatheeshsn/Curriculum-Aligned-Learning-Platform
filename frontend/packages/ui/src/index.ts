@@ -10,6 +10,7 @@ export { ModuleWorkspace, ModuleLinkGrid } from './ModuleWorkspace';
 export {
   ConfirmButton,
   ConfirmDialog,
+  ErrorModal,
   FeedbackProvider,
   FormActions,
   Toolbar,
@@ -42,3 +43,9 @@ export {
   tableHtml,
 } from './PrintDocument';
 export type { PrintDocumentOptions } from './PrintDocument';
+export {
+  DEFAULT_LIST_PAGE_SIZE,
+  PaginationBar,
+  useClientPagination,
+} from './Pagination';
+export type { ListPageMeta } from './Pagination';

@@ -58,8 +58,14 @@ export function statusTone(status: string) {
   return 'warn';
 }
 
+/** Sentence case, not title case — "in progress" reads better than "In Progress". */
+export function pillLabel(value: string) {
+  const text = value.replace(/_/g, ' ');
+  return text.charAt(0).toUpperCase() + text.slice(1);
+}
+
 export function StatusPill({ status }: { status: string }) {
-  return <span className={`lp-pill is-${statusTone(status)}`}>{status.replace(/_/g, ' ')}</span>;
+  return <span className={`lp-pill is-${statusTone(status)}`}>{pillLabel(status)}</span>;
 }
 
 export function LearnerShell({
@@ -213,7 +219,7 @@ export const learnerStyles = `
   background: rgba(12, 124, 128, 0.1);
   border: 1px solid rgba(12, 124, 128, 0.18);
   color: var(--stem-teal-deep);
-  font-size: 0.8rem; font-weight: 600;
+  font-size: var(--stem-text-sm); font-weight: 600;
 }
 .lp-layout {
   display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.7fr);
@@ -226,13 +232,15 @@ export const learnerStyles = `
 }
 .lp-profile-aside .lp-actions { flex-direction: column; align-items: stretch; margin-top: 0.15rem; }
 .lp-profile-aside .lp-actions > * { width: 100%; justify-content: center; }
-.lp-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0.85rem; }
+.lp-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr)); gap: 0.85rem; }
 .lp-card {
   display: grid; gap: 0.45rem; padding: 1rem 1.05rem; border-radius: 14px;
-  border: 1px solid var(--stem-line); background: #fff; min-width: 0;
+  border: 1px solid var(--stem-line); background: #fff; min-width: 0; max-width: 100%;
+  overflow-wrap: anywhere; word-break: break-word;
 }
-.lp-card h3 { margin: 0; font-size: 1.02rem; overflow-wrap: anywhere; }
-.lp-card p { margin: 0; color: var(--stem-ink-soft); font-size: 0.9rem; }
+.lp-card h3 { margin: 0; font-size: 1.02rem; overflow-wrap: anywhere; word-break: break-word; }
+.lp-card p { margin: 0; color: var(--stem-ink-soft); font-size: 0.9rem; overflow-wrap: anywhere; word-break: break-word; }
+.lp-card .lp-actions { min-width: 0; max-width: 100%; }
 .lp-child-list { display: grid; gap: 0.85rem; min-width: 0; max-width: 48rem; }
 .lp-child-card {
   display: grid; gap: 0.85rem; padding: 1.15rem 1.25rem; border-radius: 16px;
@@ -292,16 +300,20 @@ export const learnerStyles = `
 }
 .lp-meta dt { color: var(--stem-ink-soft); font-size: 0.82rem; font-weight: 600; }
 .lp-meta dd { margin: 0; font-weight: 600; overflow-wrap: anywhere; font-size: 0.92rem; }
-.lp-pill {
-  display: inline-flex; align-items: center; padding: 0.18rem 0.55rem; border-radius: 999px;
-  font-size: 0.75rem; font-weight: 600; text-transform: capitalize;
-  background: rgba(12,124,128,0.12); color: var(--stem-teal-deep);
-}
+.lp-pill { background: rgba(12,124,128,0.12); color: var(--stem-teal-deep); }
 .lp-pill.is-ok { background: rgba(46,125,98,0.14); color: #1f6b4a; }
 .lp-pill.is-info { background: rgba(37,99,235,0.12); color: #1d4ed8; }
 .lp-pill.is-warn { background: rgba(180,83,9,0.14); color: #9a3412; }
 .lp-pill.is-muted { background: rgba(100,116,139,0.14); color: #475569; }
-.lp-actions { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 0.85rem; }
+.lp-actions {
+  display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 0.85rem;
+  align-items: center;
+}
+.lp-actions > .stem-btn,
+.lp-actions > a.stem-btn {
+  flex: 0 0 auto;
+  vertical-align: middle;
+}
 .lp-side {
   display: grid; gap: 1rem; position: sticky; top: 0.75rem; min-width: 0; align-self: start;
 }
@@ -326,11 +338,11 @@ export const learnerStyles = `
 }
 .lp-list strong { display: block; overflow-wrap: anywhere; }
 .lp-list span { color: var(--stem-ink-soft); font-size: 0.85rem; }
-.lp-toolbar { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: end; margin-bottom: 0.75rem; }
+.lp-toolbar { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin-bottom: 0.75rem; }
 .lp-toolbar label { display: grid; gap: 0.25rem; font-size: 0.8rem; color: var(--stem-ink-soft); }
 .lp-toolbar input, .lp-toolbar select {
-  min-height: 38px; border-radius: 10px; border: 1px solid rgba(12,124,128,0.25);
-  padding: 0.4rem 0.65rem; background: #fff;
+  min-height: 40px; border-radius: 10px; border: 1px solid rgba(12,124,128,0.25);
+  padding: 0.55rem 0.9rem; background: #fff; box-sizing: border-box; font: inherit; font-size: var(--stem-text-md); line-height: 1.25;
 }
 .lp-check {
   display: inline-flex; align-items: center; gap: 0.5rem;
@@ -357,9 +369,9 @@ export const learnerStyles = `
 .lp-room-controls { display: flex; flex-wrap: wrap; gap: 0.45rem; justify-content: center; margin-top: 0.35rem; }
 .lp-star-row { display: flex; flex-wrap: wrap; gap: 0.35rem; }
 .lp-star-row button {
-  min-width: 2.4rem; min-height: 2.4rem; border-radius: 10px;
+  min-width: 40px; min-height: 40px; border-radius: 10px;
   border: 1px solid rgba(12,124,128,0.22); background: #fff; cursor: pointer; font-weight: 700;
-  color: var(--stem-ink-soft);
+  color: var(--stem-ink-soft); box-sizing: border-box;
 }
 .lp-star-row button.is-on {
   background: rgba(232,137,74,0.16); border-color: rgba(232,137,74,0.45); color: #c96a2e;

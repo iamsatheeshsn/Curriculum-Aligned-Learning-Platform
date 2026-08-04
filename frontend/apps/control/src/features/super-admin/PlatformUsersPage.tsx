@@ -3,6 +3,8 @@ import { Link, Navigate } from 'react-router-dom';
 import { useAuth } from '@stemora/auth';
 import {
   Button,
+  PaginationBar,
+  useClientPagination,
   ConfirmButton,
   FormActions,
   Panel,
@@ -157,6 +159,8 @@ function PlatformUsersWorkspace() {
   const { api, session } = useAuth();
   const feedback = useFeedback();
   const [rows, setRows] = useState<PlatformUserRow[]>([]);
+  const listPage = useClientPagination(rows);
+
   const [stats, setStats] = useState<PlatformUserStats | null>(null);
   const [roles, setRoles] = useState<RoleOption[]>([]);
   const [selectedId, setSelectedId] = useState<number | null>(null);
@@ -491,7 +495,7 @@ function PlatformUsersWorkspace() {
                     </td>
                   </tr>
                 ) : (
-                  rows.map((row) => (
+                  listPage.pageItems.map((row) => (
                     <tr
                       key={row.id}
                       className={
@@ -521,6 +525,13 @@ function PlatformUsersWorkspace() {
               </tbody>
             </table>
           </div>
+          <PaginationBar
+            page={listPage.page}
+            lastPage={listPage.lastPage}
+            total={listPage.total}
+            onPageChange={listPage.setPage}
+            disabled={loading}
+          />
         </Panel>
 
         <aside className="pu-side" aria-live="polite">

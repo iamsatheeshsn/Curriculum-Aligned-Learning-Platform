@@ -3,6 +3,11 @@ import { Navigate } from 'react-router-dom';
 import { LoginScreen, type LoginFieldValues } from '@stemora/ui';
 import { useAuth } from '@stemora/auth';
 import { createApiClient } from '@stemora/api-client';
+import {
+  institutionPortalLoginUrl,
+  learnerPortalLoginUrl,
+  publicSchoolSiteUrl,
+} from '../portalOrigins';
 
 export function LoginPage() {
   const { session, login } = useAuth();
@@ -66,11 +71,11 @@ export function LoginPage() {
         <>
           <span>Need school access? Use the Institution or Learner portals.</span>
           <span>
-            <a href="http://localhost:5173/al-noor">Public website</a>
+            <a href={publicSchoolSiteUrl('al-noor')}>Public website</a>
             {' · '}
-            <a href="http://localhost:5175/al-noor/login">Institution</a>
+            <a href={institutionPortalLoginUrl('al-noor')}>Institution</a>
             {' · '}
-            <a href="http://localhost:5176/al-noor/login">Learner</a>
+            <a href={learnerPortalLoginUrl('al-noor')}>Learner</a>
           </span>
         </>
       }

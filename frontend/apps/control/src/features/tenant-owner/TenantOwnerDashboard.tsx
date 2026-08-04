@@ -4,6 +4,8 @@ import { Button, ConfirmButton, FormActions, Panel, SelectField, StatStrip, Text
 import type { Branding, BillingContact, OwnerDashboardData } from '../../types';
 import { statusLabel } from '../../types';
 
+const RECENT_LIMIT = 5;
+
 export function TenantOwnerDashboard() {
   const { api, session } = useAuth();
   const feedback = useFeedback();
@@ -265,7 +267,14 @@ export function TenantOwnerDashboard() {
         </Panel>
       </div>
 
-      <Panel title="Schools">
+      <Panel
+        title="Schools"
+        action={
+          <Button size="sm" to="/tenants" variant="secondary">
+            View more
+          </Button>
+        }
+      >
         {data.schools.length === 0 ? (
           <p style={{ margin: 0, color: 'var(--stem-ink-soft)' }}>No schools yet.</p>
         ) : (
@@ -280,7 +289,7 @@ export function TenantOwnerDashboard() {
                 </tr>
               </thead>
               <tbody>
-                {data.schools.map((school) => (
+                {data.schools.slice(0, RECENT_LIMIT).map((school) => (
                   <tr key={school.id}>
                     <td style={td}>
                       <code style={codeStyle}>{school.code}</code>
@@ -410,16 +419,21 @@ export function TenantOwnerDashboard() {
       <Panel
         title="Recent invoices"
         action={
-          <ConfirmButton size="sm"
-            title="Generate invoice?"
-            message="Create a draft invoice from your current subscription plan."
-            confirmLabel="Generate"
-            tone="primary"
-            variant="primary"
-            onConfirm={generateInvoice}
-          >
-            {saving === 'invoice' ? 'Working…' : 'Generate invoice'}
-          </ConfirmButton>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+            <Button size="sm" to="/billing/invoices" variant="secondary">
+              View more
+            </Button>
+            <ConfirmButton size="sm"
+              title="Generate invoice?"
+              message="Create a draft invoice from your current subscription plan."
+              confirmLabel="Generate"
+              tone="primary"
+              variant="primary"
+              onConfirm={generateInvoice}
+            >
+              {saving === 'invoice' ? 'Working…' : 'Generate invoice'}
+            </ConfirmButton>
+          </div>
         }
       >
         {data.invoices.length === 0 ? (
@@ -436,7 +450,7 @@ export function TenantOwnerDashboard() {
                 </tr>
               </thead>
               <tbody>
-                {data.invoices.map((inv) => (
+                {data.invoices.slice(0, RECENT_LIMIT).map((inv) => (
                   <tr key={inv.id}>
                     <td style={td}>
                       <code style={codeStyle}>{inv.number}</code>

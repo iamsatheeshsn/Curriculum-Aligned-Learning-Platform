@@ -6,6 +6,7 @@ import {
   ConfirmButton,
   FormActions,
   Panel,
+  PaginationBar,
   SelectField,
   StatStrip,
   TextAreaField,
@@ -16,6 +17,7 @@ import {
   kpiHtml,
   printHtmlDocument,
   tableHtml,
+  useClientPagination,
   useFeedback,
   validateFormFields,
 } from '@stemora/ui';
@@ -217,6 +219,8 @@ function ResourceWorkspace({ config }: { config: ResourceConfig }) {
     void load();
   }, [api]);
 
+  const listPage = useClientPagination(rows);
+
   const selected = useMemo(
     () => rows.find((r) => r[idKey] === selectedId) ?? null,
     [rows, selectedId, idKey],
@@ -262,7 +266,9 @@ function ResourceWorkspace({ config }: { config: ResourceConfig }) {
         if (f.formHidden) continue;
         if (f.editOnly && mode === 'create') continue;
         if (f.createOnly && mode === 'edit') continue;
-        let v = form[f.key];
+        // Widened past the form state's value type so a blank field can be
+        // sent as an explicit null rather than an empty string.
+        let v: unknown = form[f.key];
         if (f.type === 'number' && v !== '') v = Number(v);
         if (f.type === 'checkbox') v = Boolean(v);
         if (v === '') v = null;
@@ -465,7 +471,7 @@ function ResourceWorkspace({ config }: { config: ResourceConfig }) {
                     </td>
                   </tr>
                 ) : (
-                  rows.map((row) => (
+                  listPage.pageItems.map((row) => (
                     <tr
                       key={String(row[idKey])}
                       className={selectedId === row[idKey] && mode === 'view' ? 'is-selected' : undefined}
@@ -491,6 +497,13 @@ function ResourceWorkspace({ config }: { config: ResourceConfig }) {
               </tbody>
             </table>
           </div>
+          <PaginationBar
+            page={listPage.page}
+            lastPage={listPage.lastPage}
+            total={listPage.total}
+            onPageChange={listPage.setPage}
+            disabled={loading}
+          />
         </Panel>
 
         <aside className={`${P}side`}>

@@ -52,10 +52,10 @@ export function FeaturesPage() {
         ))}
       </div>
       <div className="sw-section" style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
-        <Button to={`/${tenantSlug}/contact`} variant="apricot">
+        <Button to={`/${tenantSlug}/contact`} variant="apricot" size="sm">
           Book a school demo
         </Button>
-        <Button to={`/${tenantSlug}/pricing`} variant="secondary">
+        <Button to={`/${tenantSlug}/pricing`} variant="secondary" size="sm">
           View plans
         </Button>
       </div>

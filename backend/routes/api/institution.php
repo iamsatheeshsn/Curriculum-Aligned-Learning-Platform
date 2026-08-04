@@ -18,6 +18,8 @@ use App\Http\Controllers\Api\V1\Institution\ReportsController;
 use App\Http\Controllers\Api\V1\Institution\ResourceLibraryController;
 use App\Http\Controllers\Api\V1\Institution\SchoolController;
 use App\Http\Controllers\Api\V1\Institution\SubjectController;
+use App\Http\Controllers\Api\V1\Institution\TeacherAcademicsController;
+use App\Http\Controllers\Api\V1\Institution\TeacherPortalController;
 use App\Http\Controllers\Api\V1\Institution\TeacherWorkspaceController;
 use App\Http\Controllers\Api\V1\Institution\TimetableController;
 use App\Http\Controllers\Api\V1\Institution\TutorAvailabilityController;
@@ -42,6 +44,54 @@ Route::middleware(['auth:sanctum', 'tenant.isolation', 'subscription.active'])->
     Route::get('/teacher/profile', [TutorPortalController::class, 'profile']);
     Route::put('/teacher/profile', [TutorPortalController::class, 'updateProfile']);
     Route::get('/teacher/student-progress', [TutorPortalController::class, 'studentProgress']);
+
+    // Teacher portal — shared context
+    Route::get('/teacher/context', [TeacherPortalController::class, 'context']);
+
+    // Teacher portal — lesson plans
+    Route::get('/teacher/lesson-plans', [TeacherPortalController::class, 'lessonPlans']);
+    Route::post('/teacher/lesson-plans', [TeacherPortalController::class, 'storeLessonPlan']);
+    Route::put('/teacher/lesson-plans/{plan}', [TeacherPortalController::class, 'updateLessonPlan']);
+    Route::delete('/teacher/lesson-plans/{plan}', [TeacherPortalController::class, 'destroyLessonPlan']);
+    Route::post('/teacher/lesson-plans/{plan}/duplicate', [TeacherPortalController::class, 'duplicateLessonPlan']);
+
+    // Teacher portal — course content
+    Route::get('/teacher/course-content', [TeacherPortalController::class, 'courseContent']);
+
+    // Teacher portal — resources
+    Route::get('/teacher/resources', [TeacherPortalController::class, 'resources']);
+    Route::post('/teacher/resources', [TeacherPortalController::class, 'storeResource']);
+    Route::put('/teacher/resources/{asset}', [TeacherPortalController::class, 'updateResource']);
+    Route::delete('/teacher/resources/{asset}', [TeacherPortalController::class, 'destroyResource']);
+
+    // Teacher portal — messages
+    Route::get('/teacher/messages', [TeacherPortalController::class, 'messages']);
+    Route::get('/teacher/messages/recipients', [TeacherPortalController::class, 'messageRecipients']);
+    Route::post('/teacher/messages', [TeacherPortalController::class, 'storeMessage']);
+    Route::post('/teacher/messages/read-all', [TeacherPortalController::class, 'markAllMessagesRead']);
+    Route::post('/teacher/messages/{message}/read', [TeacherPortalController::class, 'markMessageRead']);
+    Route::delete('/teacher/messages/{message}', [TeacherPortalController::class, 'destroyMessage']);
+
+    // Teacher portal — homework & assignments
+    Route::get('/teacher/assignments', [TeacherAcademicsController::class, 'assignments']);
+    Route::post('/teacher/assignments', [TeacherAcademicsController::class, 'storeAssignment']);
+    Route::put('/teacher/assignments/{assignment}', [TeacherAcademicsController::class, 'updateAssignment']);
+    Route::delete('/teacher/assignments/{assignment}', [TeacherAcademicsController::class, 'destroyAssignment']);
+    Route::get('/teacher/assignments/{assignment}/submissions', [TeacherAcademicsController::class, 'assignmentSubmissions']);
+    Route::post('/teacher/assignments/{assignment}/submissions/{submission}/grade', [TeacherAcademicsController::class, 'gradeSubmission']);
+
+    // Teacher portal — quizzes & exams
+    Route::get('/teacher/assessments', [TeacherAcademicsController::class, 'assessments']);
+    Route::post('/teacher/assessments', [TeacherAcademicsController::class, 'storeAssessment']);
+    Route::put('/teacher/assessments/{assessment}', [TeacherAcademicsController::class, 'updateAssessment']);
+    Route::delete('/teacher/assessments/{assessment}', [TeacherAcademicsController::class, 'destroyAssessment']);
+    Route::post('/teacher/assessments/{assessment}/publish', [TeacherAcademicsController::class, 'publishAssessment']);
+
+    // Teacher portal — attendance, grade book, progress
+    Route::get('/teacher/attendance', [TeacherAcademicsController::class, 'attendance']);
+    Route::post('/teacher/attendance', [TeacherAcademicsController::class, 'storeAttendance']);
+    Route::get('/teacher/grade-book', [TeacherAcademicsController::class, 'gradeBook']);
+    Route::get('/teacher/class-progress', [TeacherAcademicsController::class, 'classProgress']);
 
     // Schools
     Route::get('/schools', [SchoolController::class, 'index']);

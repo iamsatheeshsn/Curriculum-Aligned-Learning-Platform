@@ -931,6 +931,9 @@ const tenantsStyles = `
   font: inherit;
   cursor: pointer;
   transition: border-color 0.15s ease, background 0.15s ease;
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }
 .tn-plan-card:hover, .tn-plan-card.is-selected {
   border-color: rgba(12, 124, 128, 0.4);
@@ -940,6 +943,12 @@ const tenantsStyles = `
   margin: 0;
   font-size: var(--stem-text-md);
   color: var(--stem-ink-soft);
+  overflow-wrap: anywhere;
+}
+.tn-plan-card strong,
+.tn-plan-card span {
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 .tn-list {
   list-style: none;

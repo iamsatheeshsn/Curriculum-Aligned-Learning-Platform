@@ -4,10 +4,12 @@ import { useAuth } from '@stemora/auth';
 import {
   Button,
   FormActions,
+  PaginationBar,
   Panel,
   SelectField,
   StatStrip,
   TextField,
+  useClientPagination,
   useFeedback,
   validateFormFields,
 } from '@stemora/ui';
@@ -274,6 +276,7 @@ export function StudentSubjectsPage() {
 
   const selected = courses.find((c) => c.id === selectedId) ?? null;
   const withLessons = courses.filter((c) => (c.lessons_total ?? 0) > 0).length;
+  const listPage = useClientPagination(courses);
 
   return (
     <LearnerShell
@@ -327,7 +330,7 @@ export function StudentSubjectsPage() {
                       </td>
                     </tr>
                   ) : (
-                    courses.map((c) => (
+                    listPage.pageItems.map((c) => (
                       <tr
                         key={c.id}
                         className={selectedId === c.id ? 'is-selected' : undefined}
@@ -345,6 +348,13 @@ export function StudentSubjectsPage() {
                 </tbody>
               </table>
             </div>
+            <PaginationBar
+              page={listPage.page}
+              lastPage={listPage.lastPage}
+              total={listPage.total}
+              onPageChange={listPage.setPage}
+              disabled={loading}
+            />
           </Panel>
           <aside className="lp-side">
             <Panel title="Subject detail">
@@ -440,6 +450,7 @@ export function StudentLessonsPage() {
 
   const completed = rows.filter((r) => (r.progress?.status || '').toLowerCase() === 'completed').length;
   const inProgress = rows.filter((r) => (r.progress?.status || '').toLowerCase() === 'in_progress').length;
+  const listPage = useClientPagination(rows);
 
   async function saveProgress(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -511,7 +522,7 @@ export function StudentLessonsPage() {
                       </td>
                     </tr>
                   ) : (
-                    rows.map((row) => {
+                    listPage.pageItems.map((row) => {
                       const lesson = lessonOf(row);
                       return (
                         <tr
@@ -536,6 +547,13 @@ export function StudentLessonsPage() {
                 </tbody>
               </table>
             </div>
+            <PaginationBar
+              page={listPage.page}
+              lastPage={listPage.lastPage}
+              total={listPage.total}
+              onPageChange={listPage.setPage}
+              disabled={loading}
+            />
           </Panel>
           <aside className="lp-side">
             <Panel title="Update progress">
@@ -704,6 +722,7 @@ export function StudentLabsPage() {
   }, [load]);
 
   const selected = rows.find((r) => lessonOf(r).id === selectedId) ?? null;
+  const listPage = useClientPagination(rows);
   const blockTypes = useMemo(() => {
     if (!selected) return [];
     return [
@@ -782,7 +801,7 @@ export function StudentLabsPage() {
                       </td>
                     </tr>
                   ) : (
-                    rows.map((row) => {
+                    listPage.pageItems.map((row) => {
                       const lesson = lessonOf(row);
                       const types = lessonBlocks(row)
                         .map((b) => b.block_type || b.type)
@@ -807,6 +826,13 @@ export function StudentLabsPage() {
                 </tbody>
               </table>
             </div>
+            <PaginationBar
+              page={listPage.page}
+              lastPage={listPage.lastPage}
+              total={listPage.total}
+              onPageChange={listPage.setPage}
+              disabled={loading}
+            />
           </Panel>
           <aside className="lp-side">
             <Panel title="Lab detail">

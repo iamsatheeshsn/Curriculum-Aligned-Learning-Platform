@@ -4,10 +4,12 @@ import { useAuth } from '@stemora/auth';
 import {
   Button,
   FormActions,
+  PaginationBar,
   Panel,
   SelectField,
   StatStrip,
   TextField,
+  useClientPagination,
   useFeedback,
   validateFormFields,
 } from '@stemora/ui';
@@ -101,6 +103,7 @@ export function TutorStudentsPage() {
   }, [rows, search]);
 
   const selected = filtered.find((r) => r.user_id === selectedId) ?? null;
+  const listPage = useClientPagination(filtered);
 
   return (
     <TutorShell title="My Students" subtitle="Learners linked to your tutoring sessions">
@@ -136,7 +139,7 @@ export function TutorStudentsPage() {
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search name or email"
                 aria-label="Search students"
-                style={{ minHeight: 38, borderRadius: 10, border: '1px solid rgba(12,124,128,0.25)', padding: '0.4rem 0.65rem' }}
+                style={{ minHeight: 40, borderRadius: 10, border: '1px solid rgba(12,124,128,0.25)', padding: '0.55rem 0.9rem', boxSizing: 'border-box', fontSize: 'var(--stem-text-md)', lineHeight: 1.25 }}
               />
             }
           >
@@ -158,7 +161,7 @@ export function TutorStudentsPage() {
                       </td>
                     </tr>
                   ) : (
-                    filtered.map((row) => (
+                    listPage.pageItems.map((row) => (
                       <tr
                         key={row.user_id}
                         className={selectedId === row.user_id ? 'is-selected' : undefined}
@@ -177,6 +180,13 @@ export function TutorStudentsPage() {
                 </tbody>
               </table>
             </div>
+            <PaginationBar
+              page={listPage.page}
+              lastPage={listPage.lastPage}
+              total={listPage.total}
+              onPageChange={listPage.setPage}
+              disabled={loading}
+            />
           </Panel>
           <aside>
             {selected ? (
@@ -234,7 +244,7 @@ export function TutorSchedulePage() {
     setError(null);
     try {
       const profileId = await loadTutorProfileId(api);
-      const params = new URLSearchParams({ per_page: '50' });
+      const params = new URLSearchParams({ per_page: '10' });
       if (profileId) params.set('tutor_profile_id', String(profileId));
       if (status) params.set('status', status);
       const res = await api.get<{ data: SessionRow[] } | SessionRow[]>(`/org/tutoring-sessions?${params}`);
@@ -257,6 +267,7 @@ export function TutorSchedulePage() {
   }, [load]);
 
   const selected = rows.find((r) => r.id === selectedId) ?? null;
+  const listPage = useClientPagination(rows);
 
   return (
     <TutorShell title="Session Schedule" subtitle="Plan and review your tutoring timetable">
@@ -310,7 +321,7 @@ export function TutorSchedulePage() {
                       </td>
                     </tr>
                   ) : (
-                    rows.map((row) => (
+                    listPage.pageItems.map((row) => (
                       <tr
                         key={row.id}
                         className={selectedId === row.id ? 'is-selected' : undefined}
@@ -328,6 +339,13 @@ export function TutorSchedulePage() {
                 </tbody>
               </table>
             </div>
+            <PaginationBar
+              page={listPage.page}
+              lastPage={listPage.lastPage}
+              total={listPage.total}
+              onPageChange={listPage.setPage}
+              disabled={loading}
+            />
           </Panel>
           <aside>
             <Panel title="Session detail">
@@ -408,6 +426,8 @@ export function TutorAvailabilityPage() {
     void load();
   }, [load]);
 
+  const listPage = useClientPagination(weekly);
+
   async function onSave(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!validateFormFields(e.currentTarget)) return;
@@ -466,7 +486,7 @@ export function TutorAvailabilityPage() {
                       </td>
                     </tr>
                   ) : (
-                    weekly.map((row) => (
+                    listPage.pageItems.map((row) => (
                       <tr key={row.id}>
                         <td>{WEEKDAYS[row.weekday] ?? row.weekday}</td>
                         <td>{row.start_time}</td>
@@ -481,6 +501,13 @@ export function TutorAvailabilityPage() {
                 </tbody>
               </table>
             </div>
+            <PaginationBar
+              page={listPage.page}
+              lastPage={listPage.lastPage}
+              total={listPage.total}
+              onPageChange={listPage.setPage}
+              disabled={loading}
+            />
           </Panel>
           <aside>
             <Panel title="Add weekly slot">

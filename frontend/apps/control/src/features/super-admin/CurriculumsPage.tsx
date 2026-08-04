@@ -3,6 +3,8 @@ import { Link, Navigate } from 'react-router-dom';
 import { useAuth } from '@stemora/auth';
 import {
   Button,
+  PaginationBar,
+  useClientPagination,
   ConfirmButton,
   FormActions,
   Panel,
@@ -134,6 +136,8 @@ function CurriculumsWorkspace() {
   const { api } = useAuth();
   const feedback = useFeedback();
   const [rows, setRows] = useState<CurriculumRow[]>([]);
+  const listPage = useClientPagination(rows);
+
   const [stats, setStats] = useState<CurriculumStats | null>(null);
   const [countries, setCountries] = useState<CountryOption[]>([]);
   const [selectedId, setSelectedId] = useState<number | null>(null);
@@ -557,7 +561,7 @@ function CurriculumsWorkspace() {
                     </td>
                   </tr>
                 ) : (
-                  rows.map((row) => (
+                  listPage.pageItems.map((row) => (
                     <tr
                       key={row.id}
                       className={
@@ -587,6 +591,13 @@ function CurriculumsWorkspace() {
               </tbody>
             </table>
           </div>
+          <PaginationBar
+            page={listPage.page}
+            lastPage={listPage.lastPage}
+            total={listPage.total}
+            onPageChange={listPage.setPage}
+            disabled={loading}
+          />
         </Panel>
 
         <aside className="cu-side" aria-live="polite">

@@ -121,7 +121,7 @@ export function TeacherWorkspace() {
   const tenant = useResolvedTenant();
   const isTutor = roles.includes('tutor') && !roles.includes('teacher');
   const brandCaption = isTutor ? 'Tutor portal' : 'Institution portal';
-  const brandName = isTutor ? tenant?.name || tenantSlug : undefined;
+  const brandName = tenant?.name || tenantSlug;
   const pageTitle = isTutor ? 'Tutor workspace' : 'Teacher workspace';
   const pageSubtitle = isTutor
     ? 'Students, sessions, availability, and earnings'
@@ -744,7 +744,7 @@ const teacherStyles = `
 .tw-stack { display: grid; gap: 1rem; }
 .tw-class-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
   gap: 0.75rem;
 }
 .tw-class-card {
@@ -754,19 +754,32 @@ const teacherStyles = `
   padding: 0.95rem;
   display: grid;
   gap: 0.7rem;
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }
 .tw-class-card header {
   display: flex;
   justify-content: space-between;
   gap: 0.6rem;
   align-items: start;
+  min-width: 0;
 }
-.tw-class-card strong { display: block; font-size: 1rem; }
+.tw-class-card header > *:first-child {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+.tw-class-card strong {
+  display: block;
+  font-size: 1rem;
+  overflow-wrap: anywhere;
+}
 .tw-class-card span, .tw-list span {
   display: block;
   margin-top: 0.2rem;
   font-size: var(--stem-text-md);
   color: var(--stem-ink-soft);
+  overflow-wrap: anywhere;
 }
 .tw-class-card ul {
   list-style: none;
@@ -774,6 +787,7 @@ const teacherStyles = `
   padding: 0;
   display: grid;
   gap: 0.4rem;
+  min-width: 0;
 }
 .tw-class-card li {
   display: flex;
@@ -782,20 +796,18 @@ const teacherStyles = `
   align-items: center;
   padding: 0.45rem 0.55rem;
   border-radius: 10px;
+  min-width: 0;
   background: var(--stem-mint-soft);
   font-size: var(--stem-text-md);
 }
+.tw-class-card li > *:first-child {
+  min-width: 0;
+  flex: 1 1 auto;
+  overflow-wrap: anywhere;
+}
 .tw-badge {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.2rem 0.5rem;
-  border-radius: 999px;
-  font-size: var(--stem-text-xs);
   font-style: normal;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  white-space: nowrap;
+  text-transform: capitalize;
 }
 .tw-badge.is-ok { background: rgba(15,122,69,0.12); color: #0f7a45; }
 .tw-badge.is-info { background: rgba(12,124,128,0.12); color: var(--stem-teal-deep); }

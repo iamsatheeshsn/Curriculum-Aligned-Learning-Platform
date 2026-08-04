@@ -3,6 +3,8 @@ import { Link, Navigate } from 'react-router-dom';
 import { useAuth } from '@stemora/auth';
 import {
   Button,
+  PaginationBar,
+  useClientPagination,
   ConfirmButton,
   FormActions,
   Panel,
@@ -108,6 +110,8 @@ function ActiveSubscriptionsWorkspace() {
   const { api, isSuperAdmin } = useAuth();
   const feedback = useFeedback();
   const [rows, setRows] = useState<SubscriptionRow[]>([]);
+  const listPage = useClientPagination(rows);
+
   const [stats, setStats] = useState<SubStats | null>(null);
   const [plans, setPlans] = useState<PlanOption[]>([]);
   const [selectedId, setSelectedId] = useState<number | null>(null);
@@ -380,7 +384,7 @@ function ActiveSubscriptionsWorkspace() {
                     </td>
                   </tr>
                 ) : (
-                  rows.map((row) => (
+                  listPage.pageItems.map((row) => (
                     <tr
                       key={row.id}
                       className={selectedId === row.id ? 'is-selected' : undefined}
@@ -410,6 +414,13 @@ function ActiveSubscriptionsWorkspace() {
               </tbody>
             </table>
           </div>
+          <PaginationBar
+            page={listPage.page}
+            lastPage={listPage.lastPage}
+            total={listPage.total}
+            onPageChange={listPage.setPage}
+            disabled={loading}
+          />
         </Panel>
 
         <aside className="as-side" aria-live="polite">

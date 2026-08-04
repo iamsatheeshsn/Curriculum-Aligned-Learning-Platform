@@ -127,14 +127,22 @@ export function ParentDashboard() {
         />
 
         <div className="lp-layout">
-          <Panel title="Children" description="Quick snapshot for each linked student">
+          <Panel
+            title="Children"
+            description="Quick snapshot for each linked student"
+            action={
+              <Button size="sm" to={`${base}/children`} variant="secondary">
+                View more
+              </Button>
+            }
+          >
             {loading && !data ? (
               <p className="lp-empty">Loading family summary…</p>
             ) : children.length === 0 ? (
               <p className="lp-empty">No children are linked to this parent account yet.</p>
             ) : (
               <div className="lp-cards">
-                {children.map((row) => {
+                {children.slice(0, 5).map((row) => {
                   const name = personName(row.student.first_name, row.student.last_name, row.student.email);
                   const pct = Number(row.stats?.avg_progress_percent ?? 0);
                   const q = `?child=${row.student.id}`;

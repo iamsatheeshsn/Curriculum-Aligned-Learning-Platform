@@ -132,12 +132,18 @@ export function TutorDashboardPage() {
         />
 
         <div className="tp-layout">
-          <Panel title="Upcoming sessions" description="Next tutoring sessions assigned to you.">
+          <Panel
+            title="Upcoming sessions"
+            description="Next tutoring sessions assigned to you."
+            action={
+              <Link to={`/${tenantSlug}/live-sessions`}>View more</Link>
+            }
+          >
             {loading && !data ? <p className="tp-muted">Loading…</p> : null}
             {!loading && upcoming.length === 0 ? <p className="tp-empty">No upcoming sessions yet.</p> : null}
             {upcoming.length ? (
               <ul className="tp-list">
-                {upcoming.slice(0, 6).map((s) => (
+                {upcoming.slice(0, 5).map((s) => (
                   <li key={s.id}>
                     <div>
                       <strong>{s.subject || 'Tutoring session'}</strong>
@@ -161,19 +167,19 @@ export function TutorDashboardPage() {
                 ))}
               </ul>
             ) : null}
-            <div className="tp-actions">
-              <Link to={`/${tenantSlug}/live-sessions`}>Live sessions</Link>
-              <Link to={`/${tenantSlug}/session-schedule`}>Full schedule</Link>
-            </div>
           </Panel>
 
           <div style={{ display: 'grid', gap: '1rem' }}>
-            <Panel title="Homework pulse" description="Recent homework activity.">
+            <Panel
+              title="Homework pulse"
+              description="Recent homework activity."
+              action={<Link to={`/${tenantSlug}/homework`}>View more</Link>}
+            >
               {(data?.homework ?? []).length === 0 ? (
                 <p className="tp-muted">No homework items yet.</p>
               ) : (
                 <ul className="tp-list">
-                  {data!.homework.slice(0, 4).map((hw) => (
+                  {data!.homework.slice(0, 5).map((hw) => (
                     <li key={hw.id}>
                       <div>
                         <strong>{hw.title_en}</strong>
@@ -186,17 +192,18 @@ export function TutorDashboardPage() {
                   ))}
                 </ul>
               )}
-              <div className="tp-actions">
-                <Link to={`/${tenantSlug}/homework`}>Open homework</Link>
-              </div>
             </Panel>
 
-            <Panel title="Assessments" description="Quizzes and exams in your school.">
+            <Panel
+              title="Assessments"
+              description="Quizzes and exams in your school."
+              action={<Link to={`/${tenantSlug}/assessments`}>View more</Link>}
+            >
               {(data?.assessments ?? []).length === 0 ? (
                 <p className="tp-muted">No assessments listed.</p>
               ) : (
                 <ul className="tp-list">
-                  {data!.assessments.slice(0, 4).map((a) => (
+                  {data!.assessments.slice(0, 5).map((a) => (
                     <li key={a.id}>
                       <div>
                         <strong>{a.title_en}</strong>
@@ -209,9 +216,6 @@ export function TutorDashboardPage() {
                   ))}
                 </ul>
               )}
-              <div className="tp-actions">
-                <Link to={`/${tenantSlug}/assessments`}>Open assessments</Link>
-              </div>
             </Panel>
           </div>
         </div>

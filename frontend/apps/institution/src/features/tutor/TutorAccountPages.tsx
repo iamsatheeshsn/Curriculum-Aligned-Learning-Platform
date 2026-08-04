@@ -4,11 +4,13 @@ import { useAuth } from '@stemora/auth';
 import {
   Button,
   FormActions,
+  PaginationBar,
   Panel,
   SelectField,
   StatStrip,
   TextAreaField,
   TextField,
+  useClientPagination,
   useFeedback,
   validateFormFields,
 } from '@stemora/ui';
@@ -17,6 +19,7 @@ import {
   TUTOR_API,
   TutorShell,
   formatMoney,
+  formatWhen,
   personName,
 } from './shared';
 
@@ -75,6 +78,8 @@ export function TutorProgressPage() {
     void load();
   }, [load]);
 
+  const listPage = useClientPagination(data?.sessions ?? []);
+
   return (
     <TutorShell title="Student Progress" subtitle="Attendance and session history by learner">
       <div className="tp-page">
@@ -127,7 +132,7 @@ export function TutorProgressPage() {
                       </tr>
                     </thead>
                     <tbody>
-                      {data.sessions.map((s) => (
+                      {listPage.pageItems.map((s) => (
                         <tr key={s.id}>
                           <td>{formatWhen(s.starts_at)}</td>
                           <td>{s.subject || '—'}</td>
@@ -140,6 +145,13 @@ export function TutorProgressPage() {
                     </tbody>
                   </table>
                 </div>
+                <PaginationBar
+                  page={listPage.page}
+                  lastPage={listPage.lastPage}
+                  total={listPage.total}
+                  onPageChange={listPage.setPage}
+                  disabled={loading}
+                />
               </Panel>
               <aside>
                 <Panel title="Attendance summary">
@@ -206,6 +218,7 @@ export function TutorEarningsPage() {
   }, [load]);
 
   const currency = stats?.currency ?? 'SAR';
+  const listPage = useClientPagination(rows);
 
   return (
     <TutorShell title="Earnings" subtitle="Payments linked to your tutor profile">
@@ -250,7 +263,7 @@ export function TutorEarningsPage() {
                     </td>
                   </tr>
                 ) : (
-                  rows.map((row) => (
+                  listPage.pageItems.map((row) => (
                     <tr key={row.id}>
                       <td>
                         {row.period_start || '—'} → {row.period_end || '—'}
@@ -267,6 +280,13 @@ export function TutorEarningsPage() {
               </tbody>
             </table>
           </div>
+          <PaginationBar
+            page={listPage.page}
+            lastPage={listPage.lastPage}
+            total={listPage.total}
+            onPageChange={listPage.setPage}
+            disabled={loading}
+          />
         </Panel>
       </div>
     </TutorShell>

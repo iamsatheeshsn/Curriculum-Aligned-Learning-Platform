@@ -380,7 +380,7 @@ export function SystemHealthPage() {
                       </tr>
                     </thead>
                     <tbody>
-                      {data.failed_jobs.map((job) => (
+                      {data.failed_jobs.slice(0, 5).map((job) => (
                         <tr key={String(job.id)}>
                           <td>
                             <strong>{job.job}</strong>
@@ -548,12 +548,15 @@ const hlthStyles = `
 .hlth-platform-card {
   display: grid; gap: 0.2rem; padding: 0.75rem 0.8rem; border-radius: 12px;
   border: 1px solid var(--stem-line); background: #fff;
+  min-width: 0; max-width: 100%; overflow-wrap: anywhere;
 }
 .hlth-platform-card span {
   font-size: var(--stem-text-xs); text-transform: uppercase; letter-spacing: 0.04em; color: var(--stem-ink-soft);
+  overflow-wrap: anywhere;
 }
 .hlth-platform-card strong {
   font-family: var(--stem-font-display); font-size: var(--stem-text-2xl);
+  overflow-wrap: anywhere; word-break: break-word; min-width: 0;
 }
 .hlth-queue-strip {
   display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.65rem;

@@ -407,7 +407,7 @@ export function RevenueDashboardPage() {
                 description={`Highest paid invoice totals in the last ${data.period.months} months`}
                 action={
                   <Link to="/tenants" className="rev-inline-link">
-                    Manage tenants
+                    View more
                   </Link>
                 }
               >
@@ -424,7 +424,7 @@ export function RevenueDashboardPage() {
                         </tr>
                       </thead>
                       <tbody>
-                        {data.top_paying_tenants.map((row) => (
+                        {data.top_paying_tenants.slice(0, 5).map((row) => (
                           <tr key={row.tenant_id}>
                             <td>
                               <strong>{row.name}</strong>
@@ -442,7 +442,15 @@ export function RevenueDashboardPage() {
                 )}
               </Panel>
 
-              <Panel title="Outstanding invoices" description="Draft, sent, and overdue receivables">
+              <Panel
+                title="Outstanding invoices"
+                description="Draft, sent, and overdue receivables"
+                action={
+                  <Link to="/billing/invoices" className="rev-inline-link">
+                    View more
+                  </Link>
+                }
+              >
                 {data.outstanding_invoices.length === 0 ? (
                   <p className="rev-muted">No open invoices. Receivables are clear.</p>
                 ) : (
@@ -457,7 +465,7 @@ export function RevenueDashboardPage() {
                         </tr>
                       </thead>
                       <tbody>
-                        {data.outstanding_invoices.map((row) => (
+                        {data.outstanding_invoices.slice(0, 5).map((row) => (
                           <tr key={row.id}>
                             <td>
                               <strong>{row.number}</strong>
@@ -484,7 +492,15 @@ export function RevenueDashboardPage() {
               </Panel>
             </div>
 
-            <Panel title="Recent payments" description="Latest payment records across the platform">
+            <Panel
+              title="Recent payments"
+              description="Latest payment records across the platform"
+              action={
+                <Link to="/billing/payments" className="rev-inline-link">
+                  View more
+                </Link>
+              }
+            >
               {data.recent_payments.length === 0 ? (
                 <p className="rev-muted">No payments recorded in this period.</p>
               ) : (
@@ -500,7 +516,7 @@ export function RevenueDashboardPage() {
                       </tr>
                     </thead>
                     <tbody>
-                      {data.recent_payments.map((row) => (
+                      {data.recent_payments.slice(0, 5).map((row) => (
                         <tr key={row.id}>
                           <td>
                             {row.paid_at ? new Date(row.paid_at).toLocaleString() : '—'}

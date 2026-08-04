@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '@stemora/auth';
-import { Button, ConfirmButton, Panel, StatStrip, useFeedback } from '@stemora/ui';
+import { Button, ConfirmButton, PaginationBar, Panel, StatStrip, useClientPagination, useFeedback } from '@stemora/ui';
 import { ControlLayout } from '../../layout/ControlLayout';
 import { schoolOpsPageStyles } from './schoolOpsStyles';
 import {
@@ -36,6 +36,8 @@ function AdmissionsWorkspace() {
   const { api } = useAuth();
   const feedback = useFeedback();
   const [rows, setRows] = useState<StudentRow[]>([]);
+  const listPage = useClientPagination(rows);
+
   const [stats, setStats] = useState<StudentStats | null>(null);
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
@@ -165,7 +167,7 @@ function AdmissionsWorkspace() {
                 {rows.length === 0 ? (
                   <tr><td colSpan={5} className={`${P}empty`}>No pending admissions.</td></tr>
                 ) : (
-                  rows.map((row) => (
+                  listPage.pageItems.map((row) => (
                     <tr
                       key={row.enrollment_id ?? row.user_id}
                       className={selectedId === row.enrollment_id ? 'is-selected' : undefined}
@@ -185,6 +187,13 @@ function AdmissionsWorkspace() {
               </tbody>
             </table>
           </div>
+          <PaginationBar
+            page={listPage.page}
+            lastPage={listPage.lastPage}
+            total={listPage.total}
+            onPageChange={listPage.setPage}
+            disabled={loading}
+          />
         </Panel>
 
         <aside className={`${P}side`}>

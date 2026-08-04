@@ -24,7 +24,7 @@ class TenantController extends Controller
     {
         $user = $request->user();
 
-        if ($user->hasRole('super_admin')) {
+        if ($this->isPlatformOperator($user)) {
             $this->authorize('viewAny', Tenant::class);
 
             return response()->json([
@@ -85,7 +85,7 @@ class TenantController extends Controller
         $this->authorize('viewAny', Tenant::class);
         $user = $request->user();
 
-        if (! $user->hasRole('super_admin')) {
+        if (! $this->isPlatformOperator($user)) {
             $tenant = $this->resolveOwnedTenant($request);
             $this->authorize('view', $tenant);
 
@@ -414,6 +414,16 @@ class TenantController extends Controller
         }
 
         return $payload;
+    }
+
+    /**
+     * Support and audit staff sit above any single tenant, same as super admins.
+     * Callers must still pass the Tenant authorisation check; this only decides
+     * whether to serve the platform-wide view or a single owned tenant.
+     */
+    private function isPlatformOperator(?\App\Models\User $user): bool
+    {
+        return $user !== null && ($user->hasRole('super_admin') || $user->tenant_id === null);
     }
 
     private function resolveOwnedTenant(Request $request): Tenant

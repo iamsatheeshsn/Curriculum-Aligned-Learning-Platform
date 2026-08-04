@@ -11,6 +11,7 @@
   "dependencies": {
     "@stemora/api-client": "1.0.0",
     "@stemora/auth": "1.0.0",
+    "@stemora/nav": "1.0.0",
     "@stemora/ui": "1.0.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",

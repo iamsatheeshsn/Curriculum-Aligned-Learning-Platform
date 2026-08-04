@@ -110,9 +110,14 @@ const styles = `
 .stem-module-meta code { font-size: var(--stem-text-md); }
 .stem-module-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
   gap: 0.75rem;
   margin-top: 0.75rem;
+}
+@media (min-width: 520px) {
+  .stem-module-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
 }
 .stem-module-card {
   display: grid; gap: 0.3rem;
@@ -122,7 +127,18 @@ const styles = `
   text-decoration: none;
   color: inherit;
   background: #fff;
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 .stem-module-card:hover { border-color: rgba(46,125,98,0.35); }
+.stem-module-card strong,
+.stem-module-card span {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
 .stem-module-card span { font-size: var(--stem-text-md); color: var(--stem-ink-soft); }
 `;

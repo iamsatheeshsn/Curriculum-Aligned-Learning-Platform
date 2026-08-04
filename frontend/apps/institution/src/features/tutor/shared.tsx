@@ -79,8 +79,14 @@ export function TutorShell({
   );
 }
 
+/** Sentence case, not title case — "in progress" reads better than "In Progress". */
+export function pillLabel(value: string) {
+  const text = value.replace(/_/g, ' ');
+  return text.charAt(0).toUpperCase() + text.slice(1);
+}
+
 export function StatusPill({ status }: { status: string }) {
-  return <span className={`tp-pill is-${statusTone(status)}`}>{status.replace(/_/g, ' ')}</span>;
+  return <span className={`tp-pill is-${statusTone(status)}`}>{pillLabel(status)}</span>;
 }
 
 export const tutorStyles = `
@@ -104,15 +110,32 @@ export const tutorStyles = `
 }
 .tp-hero-lead { margin: 0.45rem 0 0; max-width: 46rem; color: var(--stem-ink-soft); line-height: 1.5; }
 .tp-hero-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: flex-start; }
-.tp-layout { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.85fr); gap: 1rem; }
-@media (max-width: 980px) { .tp-layout { grid-template-columns: 1fr; } }
-.tp-table-wrap { overflow: auto; border-radius: 12px; border: 1px solid rgba(12,124,128,0.12); }
-.tp-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
-.tp-table th, .tp-table td { padding: 0.7rem 0.85rem; text-align: left; border-bottom: 1px solid rgba(12,124,128,0.1); vertical-align: top; }
-.tp-table th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--stem-ink-soft); background: rgba(12,124,128,0.04); }
+.tp-layout { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(272px, 0.72fr); gap: 1rem; }
+/* Below this the list and the detail pane are both too cramped side by side. */
+@media (max-width: 1100px) { .tp-layout { grid-template-columns: 1fr; } }
+.tp-table-wrap { overflow-x: auto; overflow-y: hidden; border-radius: 12px; border: 1px solid rgba(12,124,128,0.12); }
+/*
+ * The panel sets overflow-wrap:anywhere, which drops every column's min-content
+ * width to a single character — auto table layout then starves the primary
+ * column. Reserve a readable width and let the wrapper scroll instead.
+ */
+.tp-table { width: 100%; min-width: 38rem; border-collapse: collapse; font-size: 0.92rem; }
+.tp-table th, .tp-table td {
+  padding: 0.7rem; text-align: left; border-bottom: 1px solid rgba(12,124,128,0.1);
+  vertical-align: top; overflow-wrap: normal; word-break: normal;
+}
+.tp-table th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--stem-ink-soft); background: rgba(12,124,128,0.04); white-space: nowrap; }
+/* The first column carries the record's name, so give it the slack. */
+.tp-table th:first-child, .tp-table td:first-child { width: 34%; min-width: 13rem; }
+/* Secondary columns hold short, self-contained values that should never wrap. */
+.tp-table td:not(:first-child) { white-space: nowrap; }
 .tp-table tr { cursor: pointer; }
 .tp-table tr:hover td { background: rgba(12,124,128,0.04); }
 .tp-table tr.is-selected td { background: rgba(12,124,128,0.08); }
+.tp-cell-sub {
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  margin-top: 0.15rem; color: var(--stem-ink-soft); font-size: 0.82rem; line-height: 1.35;
+}
 .tp-muted { color: var(--stem-ink-soft); margin: 0; }
 .tp-empty { padding: 1.25rem; color: var(--stem-ink-soft); }
 .tp-alert {
@@ -124,16 +147,14 @@ export const tutorStyles = `
 .tp-meta > div { display: grid; grid-template-columns: 7.5rem 1fr; gap: 0.5rem; }
 .tp-meta dt { color: var(--stem-ink-soft); font-size: 0.85rem; }
 .tp-meta dd { margin: 0; font-weight: 600; }
-.tp-pill {
-  display: inline-flex; align-items: center; padding: 0.18rem 0.55rem; border-radius: 999px;
-  font-size: 0.75rem; font-weight: 600; text-transform: capitalize;
-  background: rgba(12,124,128,0.12); color: var(--stem-teal-deep);
-}
+.tp-pill { background: rgba(12,124,128,0.12); color: var(--stem-teal-deep); }
 .tp-pill.is-ok { background: rgba(46,125,98,0.14); color: #1f6b4a; }
 .tp-pill.is-info { background: rgba(37,99,235,0.12); color: #1d4ed8; }
 .tp-pill.is-warn { background: rgba(180,83,9,0.14); color: #9a3412; }
 .tp-pill.is-muted { background: rgba(100,116,139,0.14); color: #475569; }
-.tp-actions { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 0.85rem; }
+.tp-actions { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 0.85rem; align-items: center; }
+.tp-actions > .stem-btn,
+.tp-actions > a.stem-btn { flex: 0 0 auto; }
 .tp-detail-head { display: flex; gap: 0.85rem; align-items: center; margin-bottom: 0.85rem; }
 .tp-detail-mark {
   width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center;
@@ -147,7 +168,7 @@ export const tutorStyles = `
   background: rgba(12, 124, 128, 0.1);
   border: 1px solid rgba(12, 124, 128, 0.18);
   color: var(--stem-teal-deep);
-  font-size: 0.8rem; font-weight: 600;
+  font-size: var(--stem-text-sm); font-weight: 600;
 }
 .tp-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.55rem; }
 .tp-list li {
@@ -156,18 +177,21 @@ export const tutorStyles = `
 }
 .tp-list strong { display: block; }
 .tp-list span { color: var(--stem-ink-soft); font-size: 0.85rem; }
-.tp-toolbar { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: end; margin-bottom: 0.75rem; }
+.tp-toolbar { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin-bottom: 0.75rem; }
 .tp-toolbar label { display: grid; gap: 0.25rem; font-size: 0.8rem; color: var(--stem-ink-soft); }
 .tp-toolbar input, .tp-toolbar select {
-  min-height: 38px; border-radius: 10px; border: 1px solid rgba(12,124,128,0.25);
-  padding: 0.4rem 0.65rem; background: #fff;
+  min-height: 40px; border-radius: 10px; border: 1px solid rgba(12,124,128,0.25);
+  padding: 0.55rem 0.9rem; background: #fff; box-sizing: border-box; font: inherit; font-size: var(--stem-text-md); line-height: 1.25;
 }
 .tp-hero-copy { flex: 1 1 16rem; min-width: 0; }
 .tp-form-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.85rem;
+  /* Keep inputs on a shared baseline when only one column carries a hint. */
+  align-items: start;
 }
+.tp-form-grid > * { align-content: start; }
 @media (max-width: 720px) { .tp-form-grid { grid-template-columns: 1fr; } }
 .tp-side { display: grid; gap: 1rem; position: sticky; top: 0.75rem; min-width: 0; }
 .tp-detail {

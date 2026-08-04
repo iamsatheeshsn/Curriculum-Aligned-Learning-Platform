@@ -4,6 +4,8 @@ import { Button, ConfirmButton, FormActions, Panel, SelectField, StatStrip, Text
 import type { PlanSummary, SuperAdminDashboardData, TenantRow } from '../../types';
 import { statusLabel } from '../../types';
 
+const RECENT_LIMIT = 5;
+
 const emptyProvision = {
   organization_name: '',
   slug: '',
@@ -178,12 +180,19 @@ export function SuperAdminDashboard() {
           gap: '1rem',
         }}
       >
-        <Panel title="Subscription health">
+        <Panel
+          title="Subscription health"
+          action={
+            <Button size="sm" to="/tenants/subscriptions" variant="secondary">
+              View more
+            </Button>
+          }
+        >
           {(data?.plan_health?.length ?? 0) === 0 ? (
             <p style={{ margin: 0, color: 'var(--stem-ink-soft)' }}>No active subscriptions yet.</p>
           ) : (
             <ul style={{ margin: 0, paddingLeft: '1.1rem', color: 'var(--stem-ink-soft)', lineHeight: 1.85 }}>
-              {data!.plan_health.map((row) => (
+              {data!.plan_health.slice(0, RECENT_LIMIT).map((row) => (
                 <li key={row.plan_code}>
                   <strong style={{ color: 'var(--stem-ink)' }}>{row.plan_name}</strong> · {row.active_subscriptions}{' '}
                   active
@@ -193,20 +202,34 @@ export function SuperAdminDashboard() {
           )}
         </Panel>
 
-        <Panel title="Catalogue plans">
+        <Panel
+          title="Catalogue plans"
+          action={
+            <Button size="sm" to="/subscription" variant="secondary">
+              View more
+            </Button>
+          }
+        >
           <div style={{ display: 'grid', gap: '0.65rem' }}>
-            {(data?.plans ?? []).map((plan) => (
+            {(data?.plans ?? []).slice(0, RECENT_LIMIT).map((plan) => (
               <PlanCard key={plan.code} plan={plan} />
             ))}
           </div>
         </Panel>
 
-        <Panel title="Trials ending soon">
+        <Panel
+          title="Trials ending soon"
+          action={
+            <Button size="sm" to="/tenants/trials" variant="secondary">
+              View more
+            </Button>
+          }
+        >
           {(data?.trials_ending_soon?.length ?? 0) === 0 ? (
             <p style={{ margin: 0, color: 'var(--stem-ink-soft)' }}>No trials ending in the next 7 days.</p>
           ) : (
             <ul style={{ margin: 0, paddingLeft: '1.1rem', color: 'var(--stem-ink-soft)', lineHeight: 1.85 }}>
-              {data!.trials_ending_soon.map((t) => (
+              {data!.trials_ending_soon.slice(0, RECENT_LIMIT).map((t) => (
                 <li key={t.id}>
                   {t.name} · <code style={codeStyle}>{t.slug}</code> ·{' '}
                   {new Date(t.trial_ends_at).toLocaleDateString()}
@@ -252,7 +275,7 @@ export function SuperAdminDashboard() {
               </option>
             ))}
           </SelectField>
-          <FormActions>
+          <FormActions fieldRow>
             <Button size="sm" type="submit" variant="primary" disabled={changingPlan}>
               {changingPlan ? 'Updating…' : 'Apply plan'}
             </Button>
@@ -378,6 +401,9 @@ export function SuperAdminDashboard() {
             <Button size="sm" type="submit" variant="secondary">
               Filter
             </Button>
+            <Button size="sm" to="/tenants" variant="secondary">
+              View more
+            </Button>
           </Toolbar>
         }
       >
@@ -401,7 +427,7 @@ export function SuperAdminDashboard() {
                   </td>
                 </tr>
               ) : (
-                tenants.map((row) => (
+                tenants.slice(0, RECENT_LIMIT).map((row) => (
                   <tr key={row.id}>
                     <td style={td}>
                       <strong>{row.name}</strong>
@@ -494,16 +520,8 @@ function StatusPill({ status }: { status: string }) {
 
   return (
     <span
-      style={{
-        display: 'inline-flex',
-        padding: '0.2rem 0.55rem',
-        borderRadius: 999,
-        fontSize: '0.78rem',
-        fontWeight: 700,
-        background: colors.bg,
-        color: colors.fg,
-        border: `1px solid ${colors.border}`,
-      }}
+      className="sa-pill"
+      style={{ background: colors.bg, color: colors.fg, border: `1px solid ${colors.border}` }}
     >
       {statusLabel(status)}
     </span>

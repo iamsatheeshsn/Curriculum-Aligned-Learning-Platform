@@ -33,9 +33,11 @@ export const siteStyles = `
 }
 .sw-nav-actions { display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0; }
 .sw-lang {
+  display: inline-flex; align-items: center; justify-content: center;
+  box-sizing: border-box; min-height: 40px; padding: 0.55rem 0.9rem;
   border: 1px solid rgba(12,124,128,0.22); background: #fff; border-radius: 10px;
-  padding: 0.42rem 0.7rem; font-size: 0.8rem; cursor: pointer; font-weight: 600;
-  color: var(--stem-ink-soft);
+  font: inherit; font-size: var(--stem-text-md); line-height: 1.25;
+  cursor: pointer; font-weight: 600; color: var(--stem-ink-soft); white-space: nowrap;
 }
 .sw-footer {
   --sw-footer-ink: #e8f4f0;
@@ -125,55 +127,59 @@ export const siteStyles = `
   min-width: 0; padding: 0 0 0.25rem;
   border-top: 2px solid rgba(12,124,128,0.28); padding-top: 1rem;
 }
-.sw-feature h3 { margin: 0 0 0.45rem; font-size: 1.12rem; }
-.sw-feature p { margin: 0; color: var(--stem-ink-soft); font-size: 0.95rem; line-height: 1.5; }
+.sw-feature h3 { margin: 0 0 0.45rem; font-size: 1.12rem; overflow-wrap: anywhere; word-break: break-word; }
+.sw-feature p { margin: 0; color: var(--stem-ink-soft); font-size: 0.95rem; line-height: 1.5; overflow-wrap: anywhere; word-break: break-word; }
 .sw-plan-grid {
   display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.15rem; align-items: stretch;
 }
 .sw-plan {
-  min-width: 0; padding: 1.5rem 1.35rem; border-radius: 18px;
+  min-width: 0; max-width: 100%; padding: 1.5rem 1.35rem; border-radius: 18px;
   border: 1px solid rgba(12,124,128,0.14);
   background: rgba(255,255,255,0.72);
   display: grid; gap: 0.65rem; align-content: start;
+  overflow-wrap: anywhere; word-break: break-word;
 }
 .sw-plan.is-featured {
   background: linear-gradient(160deg, var(--stem-teal-deep) 0%, #0a3644 100%);
   color: #e8f6f3; border: none;
   box-shadow: 0 18px 40px rgba(5,84,86,0.22);
 }
-.sw-plan h3 { margin: 0; font-size: 1.25rem; }
+.sw-plan h3 { margin: 0; font-size: 1.25rem; overflow-wrap: anywhere; word-break: break-word; }
 .sw-plan-price {
   margin: 0; font-family: var(--stem-font-display); font-size: 1.55rem; font-weight: 700;
+  overflow-wrap: anywhere;
 }
-.sw-plan p { margin: 0; font-size: 0.95rem; opacity: 0.92; line-height: 1.45; }
+.sw-plan p { margin: 0; font-size: 0.95rem; opacity: 0.92; line-height: 1.45; overflow-wrap: anywhere; }
 .sw-plan.is-featured p { opacity: 0.9; }
 .sw-row-list { display: grid; gap: 0.85rem; }
 .sw-row {
   display: grid; grid-template-columns: 8.5rem 1fr; gap: 1rem; align-items: baseline;
   padding: 1.05rem 0; border-bottom: 1px solid rgba(12,124,128,0.12); min-width: 0;
 }
-.sw-row strong { color: var(--stem-teal-deep); }
+.sw-row strong { color: var(--stem-teal-deep); overflow-wrap: anywhere; }
 .sw-row span { color: var(--stem-ink-soft); line-height: 1.5; overflow-wrap: anywhere; }
 .sw-tutor-grid {
   display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.35rem;
 }
 .sw-tutor {
-  min-width: 0; padding: 1.25rem 0 0; border-top: 2px solid rgba(12,124,128,0.22);
+  min-width: 0; max-width: 100%; padding: 1.25rem 0 0; border-top: 2px solid rgba(12,124,128,0.22);
+  overflow-wrap: anywhere; word-break: break-word;
 }
 .sw-tutor-mark {
   width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center;
   margin-bottom: 0.85rem; color: #fff; font-weight: 700;
   background: linear-gradient(145deg, var(--stem-teal-bright), var(--stem-teal-deep));
 }
-.sw-tutor h3 { margin: 0 0 0.3rem; font-size: 1.15rem; }
-.sw-tutor .focus { margin: 0 0 0.25rem; color: var(--stem-teal-deep); font-weight: 600; font-size: 0.95rem; }
-.sw-tutor .langs { margin: 0; color: var(--stem-ink-soft); font-size: 0.9rem; }
+.sw-tutor h3 { margin: 0 0 0.3rem; font-size: 1.15rem; overflow-wrap: anywhere; }
+.sw-tutor .focus { margin: 0 0 0.25rem; color: var(--stem-teal-deep); font-weight: 600; font-size: 0.95rem; overflow-wrap: anywhere; }
+.sw-tutor .langs { margin: 0; color: var(--stem-ink-soft); font-size: 0.9rem; overflow-wrap: anywhere; }
 .sw-contact-grid {
   display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 2rem; align-items: start;
 }
 .sw-contact-form {
   display: grid; gap: 0.85rem; padding: 1.4rem 1.35rem; border-radius: 18px;
   border: 1px solid rgba(12,124,128,0.14); background: rgba(255,255,255,0.78);
+  min-width: 0; max-width: 100%; overflow-wrap: anywhere;
 }
 .sw-aside { min-width: 0; }
 .sw-aside h2 { margin: 0 0 0.75rem; font-size: 1.25rem; }

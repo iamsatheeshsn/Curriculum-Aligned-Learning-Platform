@@ -3,6 +3,8 @@ import { Link, Navigate } from 'react-router-dom';
 import { useAuth } from '@stemora/auth';
 import {
   Button,
+  PaginationBar,
+  useClientPagination,
   ConfirmButton,
   FormActions,
   Panel,
@@ -180,6 +182,8 @@ function LessonsWorkspace() {
   const { api } = useAuth();
   const feedback = useFeedback();
   const [rows, setRows] = useState<LessonRow[]>([]);
+  const listPage = useClientPagination(rows);
+
   const [stats, setStats] = useState<LessonStats | null>(null);
   const [tenants, setTenants] = useState<TenantSchoolOption[]>([]);
   const [curricula, setCurricula] = useState<CurriculumOption[]>([]);
@@ -686,7 +690,7 @@ function LessonsWorkspace() {
                     </td>
                   </tr>
                 ) : (
-                  rows.map((row) => (
+                  listPage.pageItems.map((row) => (
                     <tr
                       key={row.id}
                       className={
@@ -719,6 +723,13 @@ function LessonsWorkspace() {
               </tbody>
             </table>
           </div>
+          <PaginationBar
+            page={listPage.page}
+            lastPage={listPage.lastPage}
+            total={listPage.total}
+            onPageChange={listPage.setPage}
+            disabled={loading}
+          />
         </Panel>
 
         <aside className="ls-side">

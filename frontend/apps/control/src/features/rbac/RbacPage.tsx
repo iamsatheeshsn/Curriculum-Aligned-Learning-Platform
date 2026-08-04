@@ -718,6 +718,9 @@ const rbacStyles = `
   display: grid;
   gap: 0.35rem;
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }
 .rbac-role-card:hover { border-color: rgba(12, 124, 128, 0.45); }
 .rbac-role-card.is-selected {
@@ -730,13 +733,25 @@ const rbacStyles = `
   justify-content: space-between;
   gap: 0.5rem;
   align-items: center;
+  min-width: 0;
 }
-.rbac-role-card code { font-size: var(--stem-text-sm); color: var(--stem-ink-soft); }
+.rbac-role-card-top > *:first-child {
+  min-width: 0;
+  flex: 1 1 auto;
+  overflow-wrap: anywhere;
+}
+.rbac-role-card code {
+  font-size: var(--stem-text-sm);
+  color: var(--stem-ink-soft);
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
 .rbac-role-card p {
   margin: 0;
   font-size: var(--stem-text-md);
   color: var(--stem-ink-soft);
   line-height: 1.4;
+  overflow-wrap: anywhere;
 }
 .rbac-role-meta {
   display: flex;

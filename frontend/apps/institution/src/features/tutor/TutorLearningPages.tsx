@@ -4,11 +4,13 @@ import { useAuth } from '@stemora/auth';
 import {
   Button,
   FormActions,
+  PaginationBar,
   Panel,
   SelectField,
   StatStrip,
   TextAreaField,
   TextField,
+  useClientPagination,
   useFeedback,
   validateFormFields,
 } from '@stemora/ui';
@@ -37,7 +39,7 @@ function subjectLabel(s: SessionRow) {
 async function fetchMySessions(api: { get: <T>(url: string) => Promise<T> }, status?: string) {
   const profile = await api.get<{ data: { tutor_profile?: { id: number } | null } }>(`${TUTOR_API}/profile`);
   const profileId = profile.data.tutor_profile?.id;
-  const params = new URLSearchParams({ per_page: '50' });
+  const params = new URLSearchParams({ per_page: '10' });
   if (profileId) params.set('tutor_profile_id', String(profileId));
   if (status) params.set('status', status);
   const res = await api.get<{ data: SessionRow[] }>(`/org/tutoring-sessions?${params}`);
@@ -76,6 +78,7 @@ export function TutorLiveSessionsPage() {
 
   const selected = rows.find((r) => r.id === selectedId) ?? null;
   const live = rows.filter((r) => ['scheduled', 'confirmed', 'in_progress'].includes(r.status));
+  const listPage = useClientPagination(rows);
 
   async function openClassroom(id: number) {
     setBusy(`join-${id}`);
@@ -153,7 +156,7 @@ export function TutorLiveSessionsPage() {
                       </td>
                     </tr>
                   ) : (
-                    rows.map((row) => (
+                    listPage.pageItems.map((row) => (
                       <tr
                         key={row.id}
                         className={selectedId === row.id ? 'is-selected' : undefined}
@@ -170,6 +173,13 @@ export function TutorLiveSessionsPage() {
                 </tbody>
               </table>
             </div>
+            <PaginationBar
+              page={listPage.page}
+              lastPage={listPage.lastPage}
+              total={listPage.total}
+              onPageChange={listPage.setPage}
+              disabled={loading}
+            />
           </Panel>
           <aside>
             <Panel title="Session actions">
@@ -253,6 +263,8 @@ export function TutorHomeworkPage() {
     void load();
   }, [load]);
 
+  const listPage = useClientPagination(rows);
+
   async function onSave(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!validateFormFields(e.currentTarget)) return;
@@ -309,7 +321,7 @@ export function TutorHomeworkPage() {
                       </td>
                     </tr>
                   ) : (
-                    rows.map((row) => (
+                    listPage.pageItems.map((row) => (
                       <tr key={row.id}>
                         <td>
                           <strong>{row.title_en}</strong>
@@ -325,6 +337,13 @@ export function TutorHomeworkPage() {
                 </tbody>
               </table>
             </div>
+            <PaginationBar
+              page={listPage.page}
+              lastPage={listPage.lastPage}
+              total={listPage.total}
+              onPageChange={listPage.setPage}
+              disabled={loading}
+            />
           </Panel>
           <aside>
             <Panel title="New homework">
@@ -377,6 +396,8 @@ export function TutorAssessmentsPage() {
     void load();
   }, [load]);
 
+  const listPage = useClientPagination(rows);
+
   return (
     <TutorShell title="Assessments" subtitle="Quizzes and exams for your school">
       <div className="tp-page">
@@ -413,7 +434,7 @@ export function TutorAssessmentsPage() {
                     </td>
                   </tr>
                 ) : (
-                  rows.map((row) => (
+                  listPage.pageItems.map((row) => (
                     <tr key={row.id}>
                       <td>
                         <strong>{row.title_en}</strong>
@@ -429,6 +450,13 @@ export function TutorAssessmentsPage() {
               </tbody>
             </table>
           </div>
+          <PaginationBar
+            page={listPage.page}
+            lastPage={listPage.lastPage}
+            total={listPage.total}
+            onPageChange={listPage.setPage}
+            disabled={loading}
+          />
         </Panel>
       </div>
     </TutorShell>

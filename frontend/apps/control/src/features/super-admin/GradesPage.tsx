@@ -3,6 +3,8 @@ import { Link, Navigate } from 'react-router-dom';
 import { useAuth } from '@stemora/auth';
 import {
   Button,
+  PaginationBar,
+  useClientPagination,
   ConfirmButton,
   FormActions,
   Panel,
@@ -99,6 +101,8 @@ function GradesWorkspace() {
   const { api } = useAuth();
   const feedback = useFeedback();
   const [rows, setRows] = useState<GradeRow[]>([]);
+  const listPage = useClientPagination(rows);
+
   const [stats, setStats] = useState<GradeStats | null>(null);
   const [tenants, setTenants] = useState<TenantSchoolOption[]>([]);
   const [selectedId, setSelectedId] = useState<number | null>(null);
@@ -428,7 +432,7 @@ function GradesWorkspace() {
                     </td>
                   </tr>
                 ) : (
-                  rows.map((row) => (
+                  listPage.pageItems.map((row) => (
                     <tr
                       key={row.id}
                       className={
@@ -460,6 +464,13 @@ function GradesWorkspace() {
               </tbody>
             </table>
           </div>
+          <PaginationBar
+            page={listPage.page}
+            lastPage={listPage.lastPage}
+            total={listPage.total}
+            onPageChange={listPage.setPage}
+            disabled={loading}
+          />
         </Panel>
 
         <aside className="gr-side" aria-live="polite">

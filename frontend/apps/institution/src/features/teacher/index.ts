@@ -1,0 +1,12 @@
+export { TeacherWorkspace } from './TeacherWorkspace';
+export { TeacherLessonPlansPage } from './TeacherLessonPlansPage';
+export { TeacherCourseContentPage } from './TeacherCourseContentPage';
+export { TeacherHomeworkPage, TeacherAssignmentsPage } from './TeacherAssignmentsPages';
+export { TeacherQuizzesPage, TeacherExamsPage } from './TeacherAssessmentsPages';
+export { TeacherAttendancePage } from './TeacherAttendancePage';
+export { TeacherGradeBookPage } from './TeacherGradeBookPage';
+export { TeacherProgressPage } from './TeacherProgressPage';
+export { TeacherResourcesPage } from './TeacherResourcesPage';
+export { TeacherMessagesPage } from './TeacherMessagesPage';
+export { TeacherProfilePage } from './TeacherProfilePage';
+export { TeacherShell, TEACHER_API, useTeacherContext } from './shared';

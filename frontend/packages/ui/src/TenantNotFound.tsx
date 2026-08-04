@@ -215,10 +215,10 @@ export function TenantNotFoundPage({
         ) : null}
 
         <div className="stem-tenant-404-actions">
-          <Button to={demoLoginPath(portal, demoSlug)} variant="primary">
+          <Button to={demoLoginPath(portal, demoSlug)} variant="primary" size="sm">
             Open demo school sign-in
           </Button>
-          <Button to={demoHomePath(portal, demoSlug)} variant="secondary">
+          <Button to={demoHomePath(portal, demoSlug)} variant="secondary" size="sm">
             Go to {demoSlug}
           </Button>
         </div>
@@ -229,7 +229,7 @@ export function TenantNotFoundPage({
               Try portals ·{' '}
               <a href={`http://localhost:5175/${demoSlug}/login`}>Institution</a>
               {' · '}
-              <a href={`http://localhost:5176/${demoSlug}/login`}>Learner</a>
+              <a href={`http://localhost:5178/${demoSlug}/login`}>Learner</a>
             </>
           ) : (
             <>
@@ -238,7 +238,7 @@ export function TenantNotFoundPage({
               {portal === 'institution' ? (
                 <>
                   {' · '}
-                  <a href={`http://localhost:5176/${demoSlug}/login`}>Learner portal</a>
+                  <a href={`http://localhost:5178/${demoSlug}/login`}>Learner portal</a>
                 </>
               ) : (
                 <>

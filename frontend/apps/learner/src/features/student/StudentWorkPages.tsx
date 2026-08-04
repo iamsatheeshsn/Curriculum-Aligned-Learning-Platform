@@ -4,9 +4,11 @@ import { useAuth } from '@stemora/auth';
 import {
   Button,
   FormActions,
+  PaginationBar,
   Panel,
   StatStrip,
   TextAreaField,
+  useClientPagination,
   useFeedback,
   validateFormFields,
 } from '@stemora/ui';
@@ -198,6 +200,7 @@ function HomeworkWorkspace({
   }, [load]);
 
   const selected = rows.find((r) => homeworkOf(r).id === selectedId) ?? null;
+  const listPage = useClientPagination(rows);
 
   useEffect(() => {
     setBodyText(selected?.submission?.body_text ?? '');
@@ -280,7 +283,7 @@ function HomeworkWorkspace({
                       </td>
                     </tr>
                   ) : (
-                    rows.map((row) => {
+                    listPage.pageItems.map((row) => {
                       const hw = homeworkOf(row);
                       return (
                         <tr
@@ -301,6 +304,13 @@ function HomeworkWorkspace({
                 </tbody>
               </table>
             </div>
+            <PaginationBar
+              page={listPage.page}
+              lastPage={listPage.lastPage}
+              total={listPage.total}
+              onPageChange={listPage.setPage}
+              disabled={loading}
+            />
           </Panel>
           <aside className="lp-side">
             <Panel title="Submit work">
@@ -442,6 +452,7 @@ function AssessmentWorkspace({
 
   const selected = rows.find((r) => assessmentOf(r).id === selectedId) ?? null;
   const withAttempts = rows.filter((r) => attemptsOf(r).length > 0).length;
+  const listPage = useClientPagination(rows);
 
   async function startAssessment(id: number) {
     setBusy(true);
@@ -522,7 +533,7 @@ function AssessmentWorkspace({
                       </td>
                     </tr>
                   ) : (
-                    rows.map((row) => {
+                    listPage.pageItems.map((row) => {
                       const a = assessmentOf(row);
                       const attempts = attemptsOf(row);
                       return (
@@ -544,6 +555,13 @@ function AssessmentWorkspace({
                 </tbody>
               </table>
             </div>
+            <PaginationBar
+              page={listPage.page}
+              lastPage={listPage.lastPage}
+              total={listPage.total}
+              onPageChange={listPage.setPage}
+              disabled={loading}
+            />
           </Panel>
           <aside className="lp-side">
             <Panel title="Assessment detail">
@@ -693,6 +711,7 @@ export function StudentResultsPage() {
 
   const graded = results.filter((r) => (r.status || '').toLowerCase() === 'graded').length;
   const learning = summary?.learning ?? [];
+  const listPage = useClientPagination(results);
 
   return (
     <LearnerShell
@@ -757,7 +776,7 @@ export function StudentResultsPage() {
                       </td>
                     </tr>
                   ) : (
-                    results.map((row) => (
+                    listPage.pageItems.map((row) => (
                       <tr key={row.id}>
                         <td>{row.assessment?.title_en || `Attempt ${row.id}`}</td>
                         <td>{row.assessment?.type || '—'}</td>
@@ -775,6 +794,13 @@ export function StudentResultsPage() {
                 </tbody>
               </table>
             </div>
+            <PaginationBar
+              page={listPage.page}
+              lastPage={listPage.lastPage}
+              total={listPage.total}
+              onPageChange={listPage.setPage}
+              disabled={loading}
+            />
           </Panel>
           <aside className="lp-side">
             <Panel title="Lesson progress">
@@ -807,6 +833,8 @@ export function StudentResultsPage() {
 export function StudentCertificatesPage() {
   const { api } = useAuth();
   const [rows, setRows] = useState<CertificateRow[]>([]);
+  const listPage = useClientPagination(rows);
+
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -838,7 +866,6 @@ export function StudentCertificatesPage() {
     const y = new Date().getFullYear();
     return rows.filter((r) => (r.issued_at ? new Date(r.issued_at).getFullYear() === y : false)).length;
   }, [rows]);
-
   return (
     <LearnerShell
       title="Certificates"
@@ -889,7 +916,7 @@ export function StudentCertificatesPage() {
                       </td>
                     </tr>
                   ) : (
-                    rows.map((row) => (
+                    listPage.pageItems.map((row) => (
                       <tr
                         key={row.id}
                         className={selectedId === row.id ? 'is-selected' : undefined}
@@ -907,6 +934,13 @@ export function StudentCertificatesPage() {
                 </tbody>
               </table>
             </div>
+            <PaginationBar
+              page={listPage.page}
+              lastPage={listPage.lastPage}
+              total={listPage.total}
+              onPageChange={listPage.setPage}
+              disabled={loading}
+            />
           </Panel>
           <aside className="lp-side">
             <Panel title="Certificate detail">

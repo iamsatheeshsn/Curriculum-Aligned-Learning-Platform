@@ -189,6 +189,66 @@ small {
   border: 1px solid var(--stem-line);
   border-radius: var(--stem-radius);
   box-shadow: var(--stem-shadow);
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/**
+ * Contain long titles, emails, codes, and flex children inside card-like surfaces
+ * across Control / Institution / Learner / Website portals.
+ */
+[class*='-card'],
+.stem-panel,
+.sw-plan,
+.sw-feature,
+.sw-tutor,
+.sw-contact-form {
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+[class*='-card'] h1,
+[class*='-card'] h2,
+[class*='-card'] h3,
+[class*='-card'] h4,
+[class*='-card'] p,
+[class*='-card'] span,
+[class*='-card'] strong,
+[class*='-card'] em,
+[class*='-card'] code,
+[class*='-card'] a,
+[class*='-card'] li,
+[class*='-card'] label,
+[class*='-card'] dd,
+[class*='-card'] dt,
+.stem-panel-titles h2,
+.stem-panel-titles p,
+.stem-stat-label,
+.stem-stat-value,
+.stem-stat-hint,
+.sw-plan h3,
+.sw-plan p,
+.sw-plan-price,
+.sw-feature h3,
+.sw-feature p,
+.sw-tutor h3,
+.sw-tutor .focus,
+.sw-tutor .langs {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+[class*='-card'] header,
+[class*='-card-top'],
+[class*='-card'] > * {
+  min-width: 0;
+  max-width: 100%;
 }
 
 .stem-chip {
@@ -202,6 +262,84 @@ small {
   font-size: var(--stem-text-xs);
   font-weight: 600;
   border: 1px solid var(--stem-line);
+}
+
+/* Column headings are short labels; let them wrap between words but never
+   split one ("SCHOOLS" was rendering as "SCHOOL" over "S"). */
+th {
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+/* --- Badge normalisation --------------------------------------------------
+   Status pills, chips, and badges are declared per feature across the four
+   apps, so their box models had drifted apart. These rules set the shared
+   geometry only — colours and text-transform stay with each feature. The
+   attribute selector is doubled so it outranks those per-feature rules, and
+   the :not() list drops the layout containers, cards, and buttons that merely
+   carry "chip" or "pill" in their name.
+
+   white-space/word-break matter most here: without them the panel-level
+   `word-break: break-word` splits short labels mid-word ("Active" renders as
+   "Activ" over "e"). */
+[class*='-pill'][class*='-pill']:not(.ps-nav-pill),
+[class*='-badge'][class*='-badge'],
+[class*='-chip'][class*='-chip']:not([class*='chip-']):not([class*='-chips']):not(.as-mix-chip):not(.sub-tenant-chip):not(.tr-filter-chip):not(.stem-demo-chip) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  min-height: 24px;
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow-wrap: normal;
+  word-break: normal;
+  vertical-align: middle;
+}
+
+/* Status labels additionally share one size so they match across portals.
+   `.is-large` is the one deliberate size variant, so it keeps its own. */
+[class*='-pill'][class*='-pill']:not(.ps-nav-pill):not(.is-large),
+[class*='-badge'][class*='-badge']:not(.is-large) {
+  gap: 0.3rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: var(--stem-text-xs);
+  font-weight: 700;
+}
+
+/* Shared button alignment — keep action rows even across portals */
+.stem-btn {
+  box-sizing: border-box;
+  vertical-align: middle;
+  flex: 0 0 auto;
+}
+.stem-btn--sm {
+  min-height: 40px;
+}
+.stem-btn--md {
+  min-height: 44px;
+}
+.stem-btn--xs {
+  min-height: 34px;
+}
+.stem-form-actions,
+.stem-toolbar,
+.stem-panel-action,
+.stem-pager-actions,
+.sw-home-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+.stem-form-actions > .stem-btn,
+.stem-toolbar > .stem-btn,
+.stem-panel-action > .stem-btn,
+.stem-pager-actions > .stem-btn,
+.sw-home-cta > .stem-btn {
+  align-self: center;
 }
 
 @keyframes stem-rise {

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState, type FormEvent } from 'react';
 import { useAuth } from '@stemora/auth';
-import { Button, Panel, StatStrip, Toolbar } from '@stemora/ui';
+import { Button, PaginationBar, Panel, StatStrip, Toolbar, useClientPagination } from '@stemora/ui';
 import { ControlLayout } from '../../layout/ControlLayout';
 import { statusLabel } from '../../types';
 import {
@@ -42,6 +42,8 @@ export function LoginHistoryPage() {
 function LoginHistoryWorkspace() {
   const { api } = useAuth();
   const [rows, setRows] = useState<AuditRow[]>([]);
+  const listPage = useClientPagination(rows);
+
   const [stats, setStats] = useState<LoginStats | null>(null);
   const [selectedKey, setSelectedKey] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -204,7 +206,7 @@ function LoginHistoryWorkspace() {
                     </td>
                   </tr>
                 ) : (
-                  rows.map((row, index) => {
+                  listPage.pageItems.map((row, index) => {
                     const key = rowKey(row, index);
                     return (
                       <tr
@@ -236,6 +238,13 @@ function LoginHistoryWorkspace() {
               </tbody>
             </table>
           </div>
+          <PaginationBar
+            page={listPage.page}
+            lastPage={listPage.lastPage}
+            total={listPage.total}
+            onPageChange={listPage.setPage}
+            disabled={loading}
+          />
         </Panel>
 
         <aside className={`${PREFIX}-side`} aria-live="polite">

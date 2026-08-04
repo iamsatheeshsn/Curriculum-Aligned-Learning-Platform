@@ -71,7 +71,7 @@ export function SubscriptionWorkspace() {
     setPlans(planRes.data);
 
     if (isSuperAdmin) {
-      const params = new URLSearchParams({ per_page: '50' });
+      const params = new URLSearchParams({ per_page: '10' });
       if (tenantSearch.trim()) params.set('search', tenantSearch.trim());
       const list = await api.get<{ data: TenantRow[] }>(`/control/tenants?${params.toString()}`);
       setTenants(list.data);
@@ -98,7 +98,7 @@ export function SubscriptionWorkspace() {
       const [show, inv] = await Promise.all([
         api.get<{ data: TenantDetail }>(`/control/tenants/${tenantId}`),
         api.get<{ data: InvoiceListItem[]; meta: ListMeta }>(
-          `/control/tenants/${tenantId}/invoices?per_page=8&page=${invoicePage}`,
+          `/control/tenants/${tenantId}/invoices?per_page=10&page=${invoicePage}`,
         ),
       ]);
       setTenant(show.data);
@@ -919,6 +919,9 @@ const subStyles = `
   font: inherit;
   color: inherit;
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }
 .sub-plan-card:hover,
 .sub-plan-card.is-selected {
@@ -930,10 +933,27 @@ const subStyles = `
   justify-content: space-between;
   gap: 0.75rem;
   align-items: baseline;
+  min-width: 0;
 }
-.sub-plan-card h3 { margin: 0; font-size: 1.1rem; }
-.sub-plan-card header span { font-weight: 700; color: var(--stem-teal-deep); }
-.sub-plan-card p { margin: 0.45rem 0 0; color: var(--stem-ink-soft); font-size: var(--stem-text-md); }
+.sub-plan-card h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  min-width: 0;
+  flex: 1 1 auto;
+  overflow-wrap: anywhere;
+}
+.sub-plan-card header span {
+  font-weight: 700;
+  color: var(--stem-teal-deep);
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+.sub-plan-card p {
+  margin: 0.45rem 0 0;
+  color: var(--stem-ink-soft);
+  font-size: var(--stem-text-md);
+  overflow-wrap: anywhere;
+}
 .sub-plan-card em {
   display: inline-block;
   margin-top: 0.55rem;

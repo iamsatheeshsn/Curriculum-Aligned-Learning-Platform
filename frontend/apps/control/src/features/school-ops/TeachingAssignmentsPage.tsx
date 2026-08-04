@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '@stemora/auth';
 import {
   Button,
+  PaginationBar,
+  useClientPagination,
   ConfirmButton,
   FormActions,
   Panel,
@@ -64,6 +66,8 @@ function TeachingAssignmentsWorkspace() {
   const feedback = useFeedback();
   const { sections, years, subjects } = useEnrollmentLookups();
   const [rows, setRows] = useState<TeachingAssignmentRow[]>([]);
+  const listPage = useClientPagination(rows);
+
   const [stats, setStats] = useState<TeachingAssignmentStats | null>(null);
   const [teachers, setTeachers] = useState<StaffRow[]>([]);
   const [selectedId, setSelectedId] = useState<number | null>(null);
@@ -251,7 +255,7 @@ function TeachingAssignmentsWorkspace() {
                 {rows.length === 0 ? (
                   <tr><td colSpan={4} className={`${P}empty`}>No teaching assignments yet.</td></tr>
                 ) : (
-                  rows.map((row) => (
+                  listPage.pageItems.map((row) => (
                     <tr
                       key={row.id}
                       className={selectedId === row.id && mode === 'view' ? 'is-selected' : undefined}
@@ -270,6 +274,13 @@ function TeachingAssignmentsWorkspace() {
               </tbody>
             </table>
           </div>
+          <PaginationBar
+            page={listPage.page}
+            lastPage={listPage.lastPage}
+            total={listPage.total}
+            onPageChange={listPage.setPage}
+            disabled={loading}
+          />
         </Panel>
 
         <aside className={`${P}side`}>

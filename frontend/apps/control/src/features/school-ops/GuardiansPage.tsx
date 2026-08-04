@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '@stemora/auth';
-import { Button, Panel, StatStrip } from '@stemora/ui';
+import { Button, PaginationBar, Panel, StatStrip, useClientPagination } from '@stemora/ui';
 import { ControlLayout } from '../../layout/ControlLayout';
 import { schoolOpsPageStyles } from './schoolOpsStyles';
 import {
@@ -34,6 +34,8 @@ export function GuardiansPage() {
 function GuardiansWorkspace() {
   const { api } = useAuth();
   const [rows, setRows] = useState<ParentRow[]>([]);
+  const listPage = useClientPagination(rows);
+
   const [stats, setStats] = useState<ParentStats | null>(null);
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
@@ -123,7 +125,7 @@ function GuardiansWorkspace() {
                 {rows.length === 0 ? (
                   <tr><td colSpan={3} className={`${P}empty`}>No guardians with linked students.</td></tr>
                 ) : (
-                  rows.map((row) => (
+                  listPage.pageItems.map((row) => (
                     <tr
                       key={row.user_id}
                       className={selectedId === row.user_id ? 'is-selected' : undefined}
@@ -141,6 +143,13 @@ function GuardiansWorkspace() {
               </tbody>
             </table>
           </div>
+          <PaginationBar
+            page={listPage.page}
+            lastPage={listPage.lastPage}
+            total={listPage.total}
+            onPageChange={listPage.setPage}
+            disabled={loading}
+          />
         </Panel>
 
         <aside className={`${P}side`}>

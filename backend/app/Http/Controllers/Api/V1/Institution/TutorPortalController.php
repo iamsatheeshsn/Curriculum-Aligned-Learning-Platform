@@ -226,7 +226,7 @@ class TutorPortalController extends Controller
     {
         $this->guardTutor($request);
         $user = $request->user();
-        $page = $this->notifications->listFor($user, (int) $request->integer('per_page', 20));
+        $page = $this->notifications->listFor($user, (int) $request->integer('per_page', 10));
 
         return response()->json([
             'data' => collect($page->items())->map(fn ($n) => [
@@ -309,7 +309,7 @@ class TutorPortalController extends Controller
     {
         $this->guardTutor($request);
         $user = $request->user();
-        $profile = $this->resolveProfile($request);
+        $school = $this->schoolContext->resolveSchool($request->integer('school_id') ?: null);
 
         $data = $request->validate([
             'first_name' => ['sometimes', 'string', 'max:100'],
@@ -322,10 +322,31 @@ class TutorPortalController extends Controller
             'hourly_rate' => ['nullable', 'numeric', 'min:0'],
         ]);
 
-        DB::transaction(function () use ($user, $profile, $data) {
+        $profileFields = collect($data)->only(['bio_en', 'bio_ar', 'hourly_rate'])->all();
+
+        DB::transaction(function () use ($user, $school, $data, $profileFields) {
             $user->fill(collect($data)->only(['first_name', 'last_name', 'phone', 'locale', 'timezone'])->all());
             $user->save();
-            $profile->fill(collect($data)->only(['bio_en', 'bio_ar', 'hourly_rate'])->all());
+
+            $profile = TutorProfile::query()
+                ->where('school_id', $school->id)
+                ->where('user_id', $user->id)
+                ->first();
+
+            // Teachers have no tutor profile until they supply tutoring details; create one lazily
+            // rather than rejecting the whole save.
+            if (! $profile && array_filter($profileFields, fn ($v) => $v !== null && $v !== '') === []) {
+                return;
+            }
+
+            $profile ??= new TutorProfile([
+                'tenant_id' => $school->tenant_id,
+                'school_id' => $school->id,
+                'user_id' => $user->id,
+                'status' => 'active',
+            ]);
+
+            $profile->fill($profileFields);
             $profile->save();
         });
 

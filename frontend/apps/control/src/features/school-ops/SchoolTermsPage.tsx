@@ -3,6 +3,8 @@ import { Link, Navigate } from 'react-router-dom';
 import { useAuth } from '@stemora/auth';
 import {
   Button,
+  PaginationBar,
+  useClientPagination,
   FormActions,
   Panel,
   SelectField,
@@ -103,6 +105,8 @@ function TermsWorkspace() {
   const { api } = useAuth();
   const feedback = useFeedback();
   const [rows, setRows] = useState<TermRow[]>([]);
+  const listPage = useClientPagination(rows);
+
   const [years, setYears] = useState<AcademicYearOption[]>([]);
   const [stats, setStats] = useState<TermStats | null>(null);
   const [selectedId, setSelectedId] = useState<number | null>(null);
@@ -378,7 +382,7 @@ function TermsWorkspace() {
                     </td>
                   </tr>
                 ) : (
-                  rows.map((row) => (
+                  listPage.pageItems.map((row) => (
                     <tr
                       key={row.id}
                       className={
@@ -408,6 +412,13 @@ function TermsWorkspace() {
               </tbody>
             </table>
           </div>
+          <PaginationBar
+            page={listPage.page}
+            lastPage={listPage.lastPage}
+            total={listPage.total}
+            onPageChange={listPage.setPage}
+            disabled={loading}
+          />
         </Panel>
 
         <aside className="st-side" aria-live="polite">

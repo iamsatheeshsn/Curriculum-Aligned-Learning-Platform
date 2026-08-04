@@ -9,7 +9,7 @@ export const SUPER_ADMIN_MENU: NavDef[] = [
     path: '/',
     end: true,
     children: [
-      { id: 'platform-dashboard', label: 'Platform Dashboard', path: '/' },
+      { id: 'platform-dashboard', label: 'Platform Dashboard', path: '/', end: true },
       { id: 'saas-analytics', label: 'SaaS Analytics', path: '/dashboard/saas-analytics' },
       { id: 'revenue-dashboard', label: 'Revenue Dashboard', path: '/dashboard/revenue' },
       { id: 'system-health', label: 'System Health', path: '/dashboard/system-health' },
@@ -20,7 +20,7 @@ export const SUPER_ADMIN_MENU: NavDef[] = [
     label: 'Tenant Management',
     icon: '▦',
     children: [
-      { id: 'schools', label: 'Schools', path: '/tenants' },
+      { id: 'schools', label: 'Schools', path: '/tenants', end: true },
       { id: 'school-groups', label: 'School Groups', path: '/tenants/groups' },
       { id: 'campuses', label: 'Campuses', path: '/tenants/campuses' },
       { id: 'subscription-plans', label: 'Subscription Plans', path: '/subscription' },
@@ -245,7 +245,7 @@ export const SCHOOL_OWNER_MENU: NavDef[] = [
 
 export const CUSTOMER_SUPPORT_MENU: NavDef[] = [
   { id: 'dashboard', label: 'Dashboard', icon: '⌂', path: '/', end: true },
-  { id: 'schools', label: 'Schools', icon: '▦', path: '/tenants' },
+  { id: 'schools', label: 'Schools', icon: '▦', path: '/tenants', end: true },
   { id: 'support-tickets', label: 'Support Tickets', icon: '✎', path: '/support/tickets' },
   { id: 'live-chat', label: 'Live Chat', icon: '💬', path: '/support/chat' },
   { id: 'knowledge-base', label: 'Knowledge Base', icon: '📚', path: '/support/knowledge-base' },

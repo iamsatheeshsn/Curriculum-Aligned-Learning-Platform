@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState, type ReactNode } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useAuth } from '@stemora/auth';
-import { Button, Panel, PortalShell, useFeedback } from '@stemora/ui';
+import { Button, Panel, PortalShell, useFeedback, useResolvedTenant } from '@stemora/ui';
 import { useInstitutionNav } from '../../../nav';
 import { REPORT_MENU, type ReportMeta } from './reportUtils';
 
@@ -53,6 +53,7 @@ export function ReportPageShell({
   const { session, logout } = useAuth();
   const feedback = useFeedback();
   const nav = useInstitutionNav(tenantSlug);
+  const tenant = useResolvedTenant();
 
   async function runExport(kind: 'excel' | 'pdf') {
     try {
@@ -80,6 +81,7 @@ export function ReportPageShell({
     <PortalShell
       portal="institution"
       brandCaption="Institution portal"
+      brandName={tenant?.name || tenantSlug}
       title={title}
       subtitle={subtitle}
       nav={nav}
@@ -137,11 +139,13 @@ export function ReportsHubPage() {
   const { tenantSlug = 'al-noor' } = useParams();
   const { session, logout } = useAuth();
   const nav = useInstitutionNav(tenantSlug);
+  const tenant = useResolvedTenant();
 
   return (
     <PortalShell
       portal="institution"
       brandCaption="Institution portal"
+      brandName={tenant?.name || tenantSlug}
       title="Reports"
       subtitle="Academic, tutoring, and school performance analytics"
       nav={nav}
@@ -251,7 +255,7 @@ const reportStyles = `
 .rpt-hero-aside span { font-size: var(--stem-text-sm); color: var(--stem-ink-soft); }
 .rpt-card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
   gap: 0.85rem;
 }
 .rpt-card {
@@ -264,15 +268,33 @@ const reportStyles = `
   text-decoration: none;
   color: inherit;
   transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }
 .rpt-card:hover {
   border-color: rgba(46, 125, 98, 0.35);
   transform: translateY(-2px);
   box-shadow: 0 10px 24px rgba(20, 35, 28, 0.06);
 }
-.rpt-card strong { font-size: 1rem; color: var(--stem-ink); }
-.rpt-card span { font-size: var(--stem-text-md); color: var(--stem-ink-soft); line-height: 1.45; }
-.rpt-card em { font-style: normal; font-size: var(--stem-text-md); font-weight: 650; color: var(--stem-teal-deep); }
+.rpt-card strong {
+  font-size: 1rem;
+  color: var(--stem-ink);
+  overflow-wrap: anywhere;
+}
+.rpt-card span {
+  font-size: var(--stem-text-md);
+  color: var(--stem-ink-soft);
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+.rpt-card em {
+  font-style: normal;
+  font-size: var(--stem-text-md);
+  font-weight: 650;
+  color: var(--stem-teal-deep);
+  overflow-wrap: anywhere;
+}
 .rpt-muted { margin: 0; color: var(--stem-ink-soft); }
 .rpt-alert {
   padding: 0.85rem 1rem;
@@ -309,7 +331,7 @@ const reportStyles = `
   padding: 0.15rem 0.5rem;
   border-radius: 999px;
   font-size: var(--stem-text-xs);
-  font-weight: 650;
+  font-weight: 700;
   background: var(--stem-mint-soft);
   color: var(--stem-teal-deep);
 }

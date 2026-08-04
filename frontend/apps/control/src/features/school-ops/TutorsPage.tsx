@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '@stemora/auth';
 import {
   Button,
+  PaginationBar,
+  useClientPagination,
   FormActions,
   Panel,
   SelectField,
@@ -52,6 +54,8 @@ function TutorsWorkspace() {
   const feedback = useFeedback();
   const { subjects } = useEnrollmentLookups();
   const [rows, setRows] = useState<TutorRow[]>([]);
+  const listPage = useClientPagination(rows);
+
   const [stats, setStats] = useState<TutorStats | null>(null);
   const [teachers, setTeachers] = useState<StaffRow[]>([]);
   const [selectedId, setSelectedId] = useState<number | null>(null);
@@ -225,7 +229,7 @@ function TutorsWorkspace() {
                 {rows.length === 0 ? (
                   <tr><td colSpan={4} className={`${P}empty`}>No tutor profiles yet.</td></tr>
                 ) : (
-                  rows.map((row) => (
+                  listPage.pageItems.map((row) => (
                     <tr
                       key={row.id}
                       className={selectedId === row.id && mode !== 'create' ? 'is-selected' : undefined}
@@ -244,6 +248,13 @@ function TutorsWorkspace() {
               </tbody>
             </table>
           </div>
+          <PaginationBar
+            page={listPage.page}
+            lastPage={listPage.lastPage}
+            total={listPage.total}
+            onPageChange={listPage.setPage}
+            disabled={loading}
+          />
         </Panel>
 
         <aside className={`${P}side`}>

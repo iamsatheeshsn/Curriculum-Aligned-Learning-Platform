@@ -3,6 +3,8 @@ import { Link, Navigate } from 'react-router-dom';
 import { useAuth } from '@stemora/auth';
 import {
   Button,
+  PaginationBar,
+  useClientPagination,
   ConfirmButton,
   FormActions,
   Panel,
@@ -152,6 +154,8 @@ function InvoicesWorkspace() {
   const { api } = useAuth();
   const feedback = useFeedback();
   const [rows, setRows] = useState<InvoiceRow[]>([]);
+  const listPage = useClientPagination(rows);
+
   const [stats, setStats] = useState<InvoiceStats | null>(null);
   const [tenants, setTenants] = useState<TenantOption[]>([]);
   const [selectedId, setSelectedId] = useState<number | null>(null);
@@ -504,7 +508,7 @@ function InvoicesWorkspace() {
                     </td>
                   </tr>
                 ) : (
-                  rows.map((row) => (
+                  listPage.pageItems.map((row) => (
                     <tr
                       key={row.id}
                       className={selectedId === row.id ? 'is-selected' : undefined}
@@ -537,6 +541,13 @@ function InvoicesWorkspace() {
               </tbody>
             </table>
           </div>
+          <PaginationBar
+            page={listPage.page}
+            lastPage={listPage.lastPage}
+            total={listPage.total}
+            onPageChange={listPage.setPage}
+            disabled={loading}
+          />
         </Panel>
 
         <aside className="bi-side" aria-live="polite">

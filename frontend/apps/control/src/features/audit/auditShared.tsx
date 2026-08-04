@@ -333,11 +333,14 @@ export function auditPageStyles(prefix: string) {
 }
 .${prefix}-filters input,
 .${prefix}-filters select {
-  min-height: 36px;
-  padding: 0.35rem 0.55rem;
-  border-radius: 8px;
+  min-height: 40px;
+  padding: 0.55rem 0.9rem;
+  border-radius: 10px;
   border: 1px solid var(--stem-line);
-  font-size: var(--stem-text-sm);
+  font: inherit;
+  font-size: var(--stem-text-md);
+  line-height: 1.25;
+  box-sizing: border-box;
   background: #fff;
 }
 @media (max-width: 960px) {

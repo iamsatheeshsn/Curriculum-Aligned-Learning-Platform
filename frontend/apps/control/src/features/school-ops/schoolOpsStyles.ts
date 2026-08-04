@@ -49,20 +49,27 @@ export function schoolOpsPageStyles(prefix: string): string {
 .${p}action-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.45rem;
+  gap: 0.5rem;
   justify-content: flex-end;
   align-items: center;
+}
+.${p}action-row > .stem-btn,
+.${p}action-row > a.stem-btn {
+  flex: 0 0 auto;
+  align-self: center;
 }
 .${p}ghost-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
   min-height: 40px;
-  padding: 0 0.85rem;
+  padding: 0.55rem 0.9rem;
   border-radius: 10px;
   border: 1px solid rgba(12, 124, 128, 0.22);
   background: #fff;
   font-size: var(--stem-text-md);
+  line-height: 1.25;
   font-weight: 600;
   color: var(--stem-teal-deep);
   text-decoration: none;

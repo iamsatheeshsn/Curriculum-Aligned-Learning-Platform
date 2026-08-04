@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '@stemora/auth';
 import {
   Button,
+  PaginationBar,
+  useClientPagination,
   ConfirmButton,
   FormActions,
   Panel,
@@ -226,6 +228,8 @@ export function IntegrationsWorkspace({
       return haystack.includes(q);
     });
   }, [rows, search]);
+
+  const listPage = useClientPagination(filteredRows);
 
   const selectedSummary = useMemo(
     () => rows.find((r) => r.code === selectedCode) ?? null,
@@ -505,7 +509,7 @@ export function IntegrationsWorkspace({
                     </td>
                   </tr>
                 ) : (
-                  filteredRows.map((row) => (
+                  listPage.pageItems.map((row) => (
                     <tr
                       key={row.code}
                       className={
@@ -537,6 +541,13 @@ export function IntegrationsWorkspace({
               </tbody>
             </table>
           </div>
+          <PaginationBar
+            page={listPage.page}
+            lastPage={listPage.lastPage}
+            total={listPage.total}
+            onPageChange={listPage.setPage}
+            disabled={loading}
+          />
         </Panel>
 
         <aside className="ig-side" aria-live="polite">

@@ -177,16 +177,22 @@ export const psStyles = `
   border-radius: 12px;
   border: 1px solid var(--stem-line);
   background: #fff;
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }
 .ps-readonly-card span {
   font-size: var(--stem-text-xs);
   text-transform: uppercase;
   letter-spacing: 0.04em;
   color: var(--stem-ink-soft);
+  overflow-wrap: anywhere;
 }
 .ps-readonly-card strong {
   font-size: var(--stem-text-base);
   word-break: break-word;
+  overflow-wrap: anywhere;
+  min-width: 0;
 }
 .ps-status-pill {
   display: inline-flex;

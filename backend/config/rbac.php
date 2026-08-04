@@ -313,7 +313,9 @@ return [
             'platform.support.access', 'platform.audit.view', 'platform.tenants.manage', 'school.users.view',
             'tenant.billing.view', 'reports.academic.view', 'nav.account.password',
         ], array_map(fn ($id) => "nav.control.$id", [
-            'dashboard', 'schools', 'support-tickets', 'live-chat', 'knowledge-base', 'notifications',
+            // No 'notifications': that menu opens the school announcement composer,
+            // which needs a tenant. Support staff sit outside every tenant.
+            'dashboard', 'schools', 'support-tickets', 'live-chat', 'knowledge-base',
         ])),
 
         'auditor' => array_merge([

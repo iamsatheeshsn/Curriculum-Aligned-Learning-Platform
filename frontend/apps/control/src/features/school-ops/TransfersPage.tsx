@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '@stemora/auth';
 import {
   Button,
+  PaginationBar,
+  useClientPagination,
   FormActions,
   Panel,
   SelectField,
@@ -54,6 +56,8 @@ function TransfersWorkspace() {
   const feedback = useFeedback();
   const { grades, sections, years } = useEnrollmentLookups();
   const [rows, setRows] = useState<StudentRow[]>([]);
+  const listPage = useClientPagination(rows);
+
   const [stats, setStats] = useState<StudentStats | null>(null);
   const [activeStudents, setActiveStudents] = useState<StudentRow[]>([]);
   const [selectedId, setSelectedId] = useState<number | null>(null);
@@ -208,7 +212,7 @@ function TransfersWorkspace() {
                 {rows.length === 0 ? (
                   <tr><td colSpan={5} className={`${P}empty`}>No students in transfer status.</td></tr>
                 ) : (
-                  rows.map((row) => (
+                  listPage.pageItems.map((row) => (
                     <tr
                       key={row.user_id}
                       className={selectedId === row.user_id && mode === 'view' ? 'is-selected' : undefined}
@@ -228,6 +232,13 @@ function TransfersWorkspace() {
               </tbody>
             </table>
           </div>
+          <PaginationBar
+            page={listPage.page}
+            lastPage={listPage.lastPage}
+            total={listPage.total}
+            onPageChange={listPage.setPage}
+            disabled={loading}
+          />
         </Panel>
 
         <aside className={`${P}side`}>

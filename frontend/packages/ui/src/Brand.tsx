@@ -1,7 +1,7 @@
 import type { ButtonHTMLAttributes, CSSProperties, ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 
-type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'apricot';
+type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger' | 'apricot';
 export type ButtonSize = 'xs' | 'sm' | 'md';
 
 const styles: Record<ButtonVariant, CSSProperties> = {
@@ -21,6 +21,11 @@ const styles: Record<ButtonVariant, CSSProperties> = {
     color: 'var(--stem-ink)',
     border: '1px solid transparent',
   },
+  danger: {
+    background: '#b42318',
+    color: '#fff',
+    border: '1px solid transparent',
+  },
   apricot: {
     background: 'linear-gradient(135deg, #f0a05c, var(--stem-apricot-deep))',
     color: '#fff',
@@ -32,15 +37,17 @@ const styles: Record<ButtonVariant, CSSProperties> = {
 /** Shared density tokens — use with Button and ConfirmButton so action rows match. */
 export const buttonSizeStyles: Record<ButtonSize, CSSProperties> = {
   md: {
-    padding: '0.78rem 1.3rem',
+    padding: '0.65rem 1.15rem',
     fontSize: 'var(--stem-text-base)',
+    lineHeight: 1.25,
     minHeight: 44,
-    borderRadius: 12,
+    borderRadius: 11,
     gap: 8,
   },
   sm: {
     padding: '0.55rem 0.9rem',
     fontSize: 'var(--stem-text-md)',
+    lineHeight: 1.25,
     minHeight: 40,
     borderRadius: 10,
     gap: 6,
@@ -48,6 +55,7 @@ export const buttonSizeStyles: Record<ButtonSize, CSSProperties> = {
   xs: {
     padding: '0.4rem 0.7rem',
     fontSize: 'var(--stem-text-sm)',
+    lineHeight: 1.25,
     minHeight: 34,
     borderRadius: 8,
     gap: 4,
@@ -56,7 +64,7 @@ export const buttonSizeStyles: Record<ButtonSize, CSSProperties> = {
 
 export function Button({
   variant = 'primary',
-  size = 'md',
+  size = 'sm',
   to,
   children,
   style,
@@ -73,8 +81,13 @@ export function Button({
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
+    verticalAlign: 'middle',
     fontWeight: 600,
+    fontFamily: 'inherit',
     boxSizing: 'border-box',
+    textAlign: 'center',
+    textDecoration: 'none',
+    whiteSpace: 'nowrap',
     cursor: rest.disabled ? 'not-allowed' : 'pointer',
     opacity: rest.disabled ? 0.65 : 1,
     transition: 'transform 0.15s ease, opacity 0.15s ease, box-shadow 0.15s ease',

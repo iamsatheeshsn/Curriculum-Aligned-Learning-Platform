@@ -3,6 +3,8 @@ import { Link, Navigate } from 'react-router-dom';
 import { useAuth } from '@stemora/auth';
 import {
   Button,
+  PaginationBar,
+  useClientPagination,
   ConfirmButton,
   FormActions,
   Panel,
@@ -142,6 +144,8 @@ function LearningOutcomesWorkspace() {
   const { api } = useAuth();
   const feedback = useFeedback();
   const [rows, setRows] = useState<OutcomeRow[]>([]);
+  const listPage = useClientPagination(rows);
+
   const [stats, setStats] = useState<OutcomeStats | null>(null);
   const [tenants, setTenants] = useState<TenantSchoolOption[]>([]);
   const [curricula, setCurricula] = useState<CurriculumOption[]>([]);
@@ -606,7 +610,7 @@ function LearningOutcomesWorkspace() {
                     </td>
                   </tr>
                 ) : (
-                  rows.map((row) => (
+                  listPage.pageItems.map((row) => (
                     <tr
                       key={row.id}
                       className={
@@ -639,6 +643,13 @@ function LearningOutcomesWorkspace() {
               </tbody>
             </table>
           </div>
+          <PaginationBar
+            page={listPage.page}
+            lastPage={listPage.lastPage}
+            total={listPage.total}
+            onPageChange={listPage.setPage}
+            disabled={loading}
+          />
         </Panel>
 
         <aside className="lo-side">

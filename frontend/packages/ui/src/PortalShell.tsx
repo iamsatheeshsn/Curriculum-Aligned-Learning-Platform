@@ -96,6 +96,16 @@ function isPathActive(pathname: string, to: string, end?: boolean): boolean {
   return pathname.startsWith(`${to}/`);
 }
 
+/**
+ * Use exact matching when this path is a prefix of another peer link
+ * (e.g. /tenants vs /tenants/groups), or when the path is `/`.
+ */
+function resolveNavEnd(to: string, end: boolean | undefined, peerTos: string[]): boolean {
+  if (end || to === '/') return true;
+  const prefix = to.endsWith('/') ? to : `${to}/`;
+  return peerTos.some((peer) => peer !== to && peer.startsWith(prefix));
+}
+
 /** Accordion state: at most one menu group open. */
 function onlyGroup(key: string | null): Record<string, boolean> {
   return key ? { [key]: true } : {};
@@ -149,7 +159,12 @@ export function PortalShell({
     let activeKey: string | null = null;
     for (const item of nav) {
       if (!item.children?.length) continue;
-      if (item.children.some((child) => isPathActive(location.pathname, child.to, child.end))) {
+      const peerTos = item.children.map((child) => child.to);
+      if (
+        item.children.some((child) =>
+          isPathActive(location.pathname, child.to, resolveNavEnd(child.to, child.end, peerTos)),
+        )
+      ) {
         activeKey = item.to;
         break;
       }
@@ -240,8 +255,9 @@ export function PortalShell({
     let activeKey: string | null = null;
     for (const item of nav) {
       if (!item.children?.length) continue;
+      const peerTos = item.children.map((child) => child.to);
       const active = item.children.some((child) =>
-        isPathActive(location.pathname, child.to, child.end),
+        isPathActive(location.pathname, child.to, resolveNavEnd(child.to, child.end, peerTos)),
       );
       if (active) {
         activeKey = item.to;
@@ -273,22 +289,32 @@ export function PortalShell({
   const displayName = userName || (userLabel ? userLabel.split('@')[0] : undefined);
 
   const navNodes = useMemo(() => {
+    const topPeerTos = nav.map((item) => item.to);
+
     return nav.map((item) => {
       const icon = item.icon ?? defaultIcons[item.label] ?? item.label.slice(0, 1).toUpperCase();
       const hasChildren = Boolean(item.children?.length);
+      const childPeerTos = item.children?.map((child) => child.to) ?? [];
       const childActive = item.children?.some((child) =>
-        isPathActive(location.pathname, child.to, child.end),
+        isPathActive(
+          location.pathname,
+          child.to,
+          resolveNavEnd(child.to, child.end, childPeerTos),
+        ),
       );
       const expanded = Boolean(openGroups[item.to]);
 
       if (!hasChildren) {
+        const end = resolveNavEnd(item.to, item.end, topPeerTos);
         return (
           <NavLink
             key={item.to}
             to={item.to}
-            end={item.end}
+            end={end}
             title={item.label}
-            className={({ isActive }) => `stem-shell-link ${isActive ? 'is-active' : ''}`}
+            className={() =>
+              `stem-shell-link ${isPathActive(location.pathname, item.to, end) ? 'is-active' : ''}`
+            }
             onClick={() => {
               persistNavScroll();
               setOpenGroups({});
@@ -339,23 +365,30 @@ export function PortalShell({
           </div>
           {expanded && !collapsed ? (
             <div className="stem-shell-subnav" role="group" aria-label={`${item.label} submenu`}>
-              {item.children!.map((child) => (
-                <NavLink
-                  key={child.id ?? `${child.to}:${child.label}`}
-                  to={child.to}
-                  end={child.end}
-                  title={child.label}
-                  className={({ isActive }) => `stem-shell-sublink ${isActive ? 'is-active' : ''}`}
-                  onClick={() => {
-                    persistNavScroll();
-                    setOpenGroups(onlyGroup(item.to));
-                    setMobileOpen(false);
-                  }}
-                >
-                  <span className="stem-shell-subdot" aria-hidden />
-                  <span>{child.label}</span>
-                </NavLink>
-              ))}
+              {item.children!.map((child) => {
+                const end = resolveNavEnd(child.to, child.end, childPeerTos);
+                return (
+                  <NavLink
+                    key={child.id ?? `${child.to}:${child.label}`}
+                    to={child.to}
+                    end={end}
+                    title={child.label}
+                    className={() =>
+                      `stem-shell-sublink ${
+                        isPathActive(location.pathname, child.to, end) ? 'is-active' : ''
+                      }`
+                    }
+                    onClick={() => {
+                      persistNavScroll();
+                      setOpenGroups(onlyGroup(item.to));
+                      setMobileOpen(false);
+                    }}
+                  >
+                    <span className="stem-shell-subdot" aria-hidden />
+                    <span>{child.label}</span>
+                  </NavLink>
+                );
+              })}
             </div>
           ) : null}
         </div>
@@ -979,7 +1012,7 @@ const shellStyles = `
 }
 .stem-shell-header-right {
   display: flex;
-  align-items: stretch;
+  align-items: center;
   gap: 0.55rem;
   flex-shrink: 0;
   max-width: min(100%, 48rem);
@@ -988,21 +1021,28 @@ const shellStyles = `
 }
 .stem-shell-header-actions {
   display: flex;
-  align-items: stretch;
-  gap: 0.55rem;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
-.stem-shell-header-actions > a,
-.stem-shell-header-actions > button {
+/* Non-Button header controls match the shared sm button token */
+.stem-shell-header-actions > a:not(.stem-btn),
+.stem-shell-header-actions > button:not(.stem-btn) {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  min-height: 2.75rem;
-  padding: 0 0.95rem;
-  border-radius: 12px;
+  min-height: 40px;
+  padding: 0.55rem 0.9rem;
+  border-radius: 10px;
   font-size: var(--stem-text-md);
+  line-height: 1.25;
   font-weight: 600;
   white-space: nowrap;
+}
+.stem-shell-header-actions > a.stem-btn,
+.stem-shell-header-actions > button.stem-btn {
+  flex: 0 0 auto;
 }
 .stem-shell-header-user {
   display: flex;
@@ -1057,16 +1097,16 @@ const shellStyles = `
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  min-height: 2.75rem;
-  height: auto;
-  align-self: stretch;
-  padding: 0 1rem;
-  border-radius: 12px;
+  min-height: 40px;
+  height: 40px;
+  align-self: center;
+  padding: 0.55rem 0.9rem;
+  border-radius: 10px;
   border: 1px solid var(--stem-line);
   font: inherit;
   font-size: var(--stem-text-md);
   font-weight: 600;
-  line-height: 1;
+  line-height: 1.25;
   text-decoration: none;
   white-space: nowrap;
   flex-shrink: 0;
@@ -1166,7 +1206,9 @@ const shellStyles = `
 export function StatStrip({
   items,
 }: {
-  items: { label: string; value: string; hint?: string }[];
+  // Counts arrive from the API as numbers; JSX renders them fine, so accept
+  // both rather than making every caller stringify.
+  items: { label: string; value: string | number; hint?: string }[];
 }) {
   return (
     <div className="stem-stat-strip">
@@ -1197,6 +1239,8 @@ const statStyles = `
   border: 1px solid var(--stem-line);
   box-shadow: 0 10px 26px rgba(6, 90, 94, 0.05);
   overflow: hidden;
+  min-width: 0;
+  max-width: 100%;
 }
 .stem-stat-card::before {
   content: '';
@@ -1214,6 +1258,8 @@ const statStyles = `
   font-weight: 700;
   letter-spacing: 0.03em;
   text-transform: uppercase;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 .stem-stat-value {
   font-family: var(--stem-font-display);
@@ -1221,11 +1267,16 @@ const statStyles = `
   font-weight: 700;
   color: var(--stem-ink);
   line-height: 1.1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 .stem-stat-hint {
   margin-top: 0.35rem;
   font-size: var(--stem-text-sm);
   color: var(--stem-ink-soft);
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 `;
 
@@ -1275,16 +1326,25 @@ const panelStyles = `
   border-bottom: 1px solid var(--stem-line);
   background:
     linear-gradient(90deg, var(--portal-accent-soft, var(--stem-mint-soft)) 0%, #fff 42%);
+  min-width: 0;
+}
+.stem-panel-titles {
+  min-width: 0;
+  flex: 1 1 auto;
 }
 .stem-panel-titles h2 {
   margin: 0;
   font-size: var(--stem-text-xl);
   letter-spacing: -0.01em;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 .stem-panel-titles p {
   margin: 0.3rem 0 0;
   color: var(--stem-ink-soft);
   font-size: var(--stem-text-md);
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 .stem-panel-action {
   display: flex;
@@ -1292,8 +1352,14 @@ const panelStyles = `
   gap: 0.5rem;
   align-items: center;
   justify-content: flex-end;
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 100%;
 }
 .stem-panel-body {
   padding: 1.15rem 1.25rem 1.25rem;
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }
 `;

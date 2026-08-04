@@ -3,7 +3,21 @@ import { useAuth } from '@stemora/auth';
 import { TenantResolveGate } from '@stemora/ui';
 import { LoginPage } from './pages/LoginPage';
 import { SchoolDashboard } from './features/school/SchoolDashboard';
-import { TeacherWorkspace } from './features/teacher/TeacherWorkspace';
+import {
+  TeacherAssignmentsPage,
+  TeacherAttendancePage,
+  TeacherCourseContentPage,
+  TeacherExamsPage,
+  TeacherGradeBookPage,
+  TeacherHomeworkPage,
+  TeacherLessonPlansPage,
+  TeacherMessagesPage,
+  TeacherProfilePage,
+  TeacherProgressPage,
+  TeacherQuizzesPage,
+  TeacherResourcesPage,
+  TeacherWorkspace,
+} from './features/teacher';
 import {
   CurriculumCompletionPage,
   LearningOutcomesPage,
@@ -58,10 +72,18 @@ function Authed({ children }: { children: React.ReactNode }) {
   );
 }
 
-function TeacherOrTutorHome() {
+/**
+ * `/homework`, `/student-progress`, and `/profile` appear in both the teacher and the
+ * tutor menu, so the route has to pick the right screen for the signed-in role.
+ */
+function ByRole({ teacher, tutor }: { teacher: React.ReactNode; tutor: React.ReactNode }) {
   const { roles } = useAuth();
-  const isTutor = roles.includes('tutor') && !roles.includes('teacher');
-  return isTutor ? <TutorDashboardPage /> : <TeacherWorkspace />;
+  const isTutorOnly = roles.includes('tutor') && !roles.includes('teacher');
+  return isTutorOnly ? tutor : teacher;
+}
+
+function TeacherOrTutorHome() {
+  return <ByRole teacher={<TeacherWorkspace />} tutor={<TutorDashboardPage />} />;
 }
 
 export function App() {
@@ -86,18 +108,41 @@ export function App() {
             </Authed>
           }
         />
+        {/* Tutor-only screens */}
         <Route path="my-students" element={<Authed><TutorStudentsPage /></Authed>} />
         <Route path="session-schedule" element={<Authed><TutorSchedulePage /></Authed>} />
         <Route path="availability" element={<Authed><TutorAvailabilityPage /></Authed>} />
         <Route path="live-sessions" element={<Authed><TutorLiveSessionsPage /></Authed>} />
         <Route path="classroom/:roomId" element={<Authed><TutorClassroomPage /></Authed>} />
-        <Route path="homework" element={<Authed><TutorHomeworkPage /></Authed>} />
         <Route path="assessments" element={<Authed><TutorAssessmentsPage /></Authed>} />
         <Route path="session-notes" element={<Authed><TutorSessionNotesPage /></Authed>} />
-        <Route path="student-progress" element={<Authed><TutorProgressPage /></Authed>} />
         <Route path="earnings" element={<Authed><TutorEarningsPage /></Authed>} />
         <Route path="notifications" element={<Authed><TutorNotificationsPage /></Authed>} />
-        <Route path="profile" element={<Authed><TutorProfilePage /></Authed>} />
+
+        {/* Teacher portal */}
+        <Route path="lesson-plans" element={<Authed><TeacherLessonPlansPage /></Authed>} />
+        <Route path="course-content" element={<Authed><TeacherCourseContentPage /></Authed>} />
+        <Route path="assignments" element={<Authed><TeacherAssignmentsPage /></Authed>} />
+        <Route path="quizzes" element={<Authed><TeacherQuizzesPage /></Authed>} />
+        <Route path="exams" element={<Authed><TeacherExamsPage /></Authed>} />
+        <Route path="attendance" element={<Authed><TeacherAttendancePage /></Authed>} />
+        <Route path="grade-book" element={<Authed><TeacherGradeBookPage /></Authed>} />
+        <Route path="resources" element={<Authed><TeacherResourcesPage /></Authed>} />
+        <Route path="messages" element={<Authed><TeacherMessagesPage /></Authed>} />
+
+        {/* Shared between the teacher and tutor menus */}
+        <Route
+          path="homework"
+          element={<Authed><ByRole teacher={<TeacherHomeworkPage />} tutor={<TutorHomeworkPage />} /></Authed>}
+        />
+        <Route
+          path="student-progress"
+          element={<Authed><ByRole teacher={<TeacherProgressPage />} tutor={<TutorProgressPage />} /></Authed>}
+        />
+        <Route
+          path="profile"
+          element={<Authed><ByRole teacher={<TeacherProfilePage />} tutor={<TutorProfilePage />} /></Authed>}
+        />
         <Route
           path="change-password"
           element={

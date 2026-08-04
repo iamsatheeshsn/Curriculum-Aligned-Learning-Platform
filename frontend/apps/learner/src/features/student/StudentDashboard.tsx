@@ -160,12 +160,20 @@ export function StudentDashboard() {
         />
 
         <div className="lp-layout">
-          <Panel title="Upcoming tutoring" description="Next sessions you are booked for.">
+          <Panel
+            title="Upcoming tutoring"
+            description="Next sessions you are booked for."
+            action={
+              <Button size="sm" to={`/${tenantSlug}/student/tutoring`} variant="secondary">
+                View more
+              </Button>
+            }
+          >
             {upcoming.length === 0 ? (
               <p className="lp-empty">{loading ? 'Loading…' : 'No upcoming tutoring sessions.'}</p>
             ) : (
               <ul className="lp-list">
-                {upcoming.map((row) => (
+                {upcoming.slice(0, 5).map((row) => (
                   <li key={row.id}>
                     <div>
                       <strong>{subjectLabel(row)}</strong>
@@ -186,12 +194,20 @@ export function StudentDashboard() {
           </Panel>
 
           <aside className="lp-side">
-            <Panel title="Recent progress" description="Latest lesson activity.">
+            <Panel
+              title="Recent progress"
+              description="Latest lesson activity."
+              action={
+                <Button size="sm" to={`/${tenantSlug}/student/lessons`} variant="secondary">
+                  View more
+                </Button>
+              }
+            >
               {recent.length === 0 ? (
                 <p className="lp-empty">{loading ? 'Loading…' : 'No progress recorded yet.'}</p>
               ) : (
                 <ul className="lp-list">
-                  {recent.map((row, idx) => (
+                  {recent.slice(0, 5).map((row, idx) => (
                     <li key={row.id ?? row.interactive_lesson_id ?? idx}>
                       <div>
                         <strong>{row.lesson?.title_en || `Lesson ${row.interactive_lesson_id ?? ''}`}</strong>

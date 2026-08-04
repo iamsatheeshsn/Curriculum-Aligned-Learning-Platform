@@ -4,11 +4,13 @@ import { useAuth } from '@stemora/auth';
 import {
   Button,
   FormActions,
+  PaginationBar,
   Panel,
   SelectField,
   StatStrip,
   TextAreaField,
   TextField,
+  useClientPagination,
   useFeedback,
   validateFormFields,
 } from '@stemora/ui';
@@ -139,6 +141,7 @@ export function StudentTutoringPage() {
   const upcoming = sessions.filter((s) =>
     ['scheduled', 'confirmed', 'in_progress'].includes((s.status || '').toLowerCase()),
   );
+  const listPage = useClientPagination(sessions);
 
   async function joinSession(id: number) {
     setBusy(`join-${id}`);
@@ -225,7 +228,7 @@ export function StudentTutoringPage() {
                       </td>
                     </tr>
                   ) : (
-                    sessions.map((row) => (
+                    listPage.pageItems.map((row) => (
                       <tr
                         key={row.id}
                         className={selectedId === row.id ? 'is-selected' : undefined}
@@ -243,6 +246,13 @@ export function StudentTutoringPage() {
                 </tbody>
               </table>
             </div>
+            <PaginationBar
+              page={listPage.page}
+              lastPage={listPage.lastPage}
+              total={listPage.total}
+              onPageChange={listPage.setPage}
+              disabled={loading}
+            />
           </Panel>
           <aside className="lp-side">
             <Panel title="Session actions">
@@ -904,7 +914,7 @@ export function StudentNotificationsPage() {
     setError(null);
     try {
       const res = await api.get<{ data?: NotificationRow[] } | NotificationRow[]>(
-        `${STUDENT_API}/notifications?per_page=50`,
+        `${STUDENT_API}/notifications?per_page=10`,
       );
       const items = unwrapList<NotificationRow>(
         res && typeof res === 'object' && 'data' in res ? res.data : res,

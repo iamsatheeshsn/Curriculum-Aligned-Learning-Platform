@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState, type FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '@stemora/auth';
-import { Button, Panel, StatStrip, Toolbar } from '@stemora/ui';
+import { Button, PaginationBar, Panel, StatStrip, Toolbar, useClientPagination } from '@stemora/ui';
 import { ControlLayout } from '../../layout/ControlLayout';
 import {
   AuditAccessGuard,
@@ -38,6 +38,8 @@ export function AuditLogsPage() {
 function AuditLogsWorkspace() {
   const { api } = useAuth();
   const [rows, setRows] = useState<AuditRow[]>([]);
+  const listPage = useClientPagination(rows);
+
   const [stats, setStats] = useState<LogStats | null>(null);
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [detail, setDetail] = useState<AuditRow | null>(null);
@@ -251,7 +253,7 @@ function AuditLogsWorkspace() {
                     </td>
                   </tr>
                 ) : (
-                  rows.map((row) =>
+                  listPage.pageItems.map((row) =>
                     row.id == null ? null : (
                       <tr
                         key={row.id}
@@ -287,6 +289,13 @@ function AuditLogsWorkspace() {
               </tbody>
             </table>
           </div>
+          <PaginationBar
+            page={listPage.page}
+            lastPage={listPage.lastPage}
+            total={listPage.total}
+            onPageChange={listPage.setPage}
+            disabled={loading}
+          />
         </Panel>
 
         <aside className={`${PREFIX}-side`} aria-live="polite">

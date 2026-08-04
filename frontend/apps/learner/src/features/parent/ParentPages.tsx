@@ -4,10 +4,12 @@ import { useAuth } from '@stemora/auth';
 import {
   Button,
   FormActions,
+  PaginationBar,
   Panel,
   SelectField,
   StatStrip,
   TextField,
+  useClientPagination,
   useFeedback,
   useResolvedTenant,
   validateFormFields,
@@ -298,6 +300,8 @@ export function ParentAttendancePage() {
   } = useParentChildren();
   const { api } = useAuth();
   const [rows, setRows] = useState<AttendanceRow[]>([]);
+  const listPage = useClientPagination(rows);
+
   const [selectedRow, setSelectedRow] = useState<AttendanceRow | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -328,7 +332,6 @@ export function ParentAttendancePage() {
 
   const present = rows.filter((r) => (r.status || '').toLowerCase() === 'present').length;
   const absent = rows.filter((r) => (r.status || '').toLowerCase() === 'absent').length;
-
   return (
     <LearnerShell
       title="Attendance"
@@ -386,6 +389,7 @@ export function ParentAttendancePage() {
             ) : rows.length === 0 ? (
               <p className="lp-empty">No attendance records for this child yet.</p>
             ) : (
+              <>
               <div className="lp-table-wrap">
                 <table className="lp-table">
                   <thead>
@@ -396,7 +400,7 @@ export function ParentAttendancePage() {
                     </tr>
                   </thead>
                   <tbody>
-                    {rows.map((row) => (
+                    {listPage.pageItems.map((row) => (
                       <tr
                         key={row.id}
                         className={selectedRow?.id === row.id ? 'is-selected' : undefined}
@@ -412,6 +416,14 @@ export function ParentAttendancePage() {
                   </tbody>
                 </table>
               </div>
+              <PaginationBar
+                page={listPage.page}
+                lastPage={listPage.lastPage}
+                total={listPage.total}
+                onPageChange={listPage.setPage}
+                disabled={loading}
+              />
+              </>
             )}
           </Panel>
 
@@ -480,6 +492,8 @@ function ParentWorkListPage({
   } = useParentChildren();
   const { api } = useAuth();
   const [rows, setRows] = useState<HomeworkRow[]>([]);
+  const listPage = useClientPagination(rows);
+
   const [selectedRow, setSelectedRow] = useState<HomeworkRow | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -516,7 +530,6 @@ function ParentWorkListPage({
     const sub = (r.submission?.status || '').toLowerCase();
     return !sub || !['submitted', 'graded'].includes(sub);
   }).length;
-
   const title = mode === 'homework' ? 'Homework' : 'Assignments';
   const eyebrow = mode === 'homework' ? 'Homework' : 'Assignments';
   const lead =
@@ -584,6 +597,7 @@ function ParentWorkListPage({
                   : 'No non-homework assignments for this child right now.'}
               </p>
             ) : (
+              <>
               <div className="lp-table-wrap">
                 <table className="lp-table">
                   <thead>
@@ -595,7 +609,7 @@ function ParentWorkListPage({
                     </tr>
                   </thead>
                   <tbody>
-                    {rows.map((row) => {
+                    {listPage.pageItems.map((row) => {
                       const hw = hwOf(row);
                       return (
                         <tr
@@ -615,6 +629,14 @@ function ParentWorkListPage({
                   </tbody>
                 </table>
               </div>
+              <PaginationBar
+                page={listPage.page}
+                lastPage={listPage.lastPage}
+                total={listPage.total}
+                onPageChange={listPage.setPage}
+                disabled={loading}
+              />
+              </>
             )}
           </Panel>
 
@@ -714,6 +736,8 @@ export function ParentResultsPage() {
   } = useParentChildren();
   const { api } = useAuth();
   const [rows, setRows] = useState<ResultRow[]>([]);
+  const listPage = useClientPagination(rows);
+
   const [selectedRow, setSelectedRow] = useState<ResultRow | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -748,7 +772,6 @@ export function ParentResultsPage() {
     scored.length === 0
       ? null
       : Math.round((scored.reduce((n, r) => n + (Number(r.score) || 0), 0) / scored.length) * 10) / 10;
-
   return (
     <LearnerShell
       title="Results"
@@ -806,6 +829,7 @@ export function ParentResultsPage() {
             ) : rows.length === 0 ? (
               <p className="lp-empty">No assessment results for this child yet.</p>
             ) : (
+              <>
               <div className="lp-table-wrap">
                 <table className="lp-table">
                   <thead>
@@ -818,7 +842,7 @@ export function ParentResultsPage() {
                     </tr>
                   </thead>
                   <tbody>
-                    {rows.map((row) => (
+                    {listPage.pageItems.map((row) => (
                       <tr
                         key={row.id}
                         className={selectedRow?.id === row.id ? 'is-selected' : undefined}
@@ -836,6 +860,14 @@ export function ParentResultsPage() {
                   </tbody>
                 </table>
               </div>
+              <PaginationBar
+                page={listPage.page}
+                lastPage={listPage.lastPage}
+                total={listPage.total}
+                onPageChange={listPage.setPage}
+                disabled={loading}
+              />
+              </>
             )}
           </Panel>
 
@@ -948,6 +980,7 @@ export function ParentProgressPage() {
   const certificates = data?.certificates ?? [];
   const avg = data?.progress?.avg_lesson_progress ?? 0;
   const completed = learning.filter((r) => (r.status || '').toLowerCase() === 'completed').length;
+  const listPage = useClientPagination(learning);
 
   return (
     <LearnerShell
@@ -1007,6 +1040,7 @@ export function ParentProgressPage() {
             ) : learning.length === 0 ? (
               <p className="lp-empty">No lesson progress recorded for this child yet.</p>
             ) : (
+              <>
               <div className="lp-table-wrap">
                 <table className="lp-table">
                   <thead>
@@ -1018,7 +1052,7 @@ export function ParentProgressPage() {
                     </tr>
                   </thead>
                   <tbody>
-                    {learning.map((row, idx) => {
+                    {listPage.pageItems.map((row, idx) => {
                       const pct = Number(row.progress_percent ?? 0);
                       return (
                         <tr key={row.id ?? idx}>
@@ -1039,6 +1073,14 @@ export function ParentProgressPage() {
                   </tbody>
                 </table>
               </div>
+              <PaginationBar
+                page={listPage.page}
+                lastPage={listPage.lastPage}
+                total={listPage.total}
+                onPageChange={listPage.setPage}
+                disabled={loading}
+              />
+              </>
             )}
           </Panel>
 
@@ -1110,6 +1152,8 @@ export function ParentTutoringPage() {
   } = useParentChildren();
   const { api } = useAuth();
   const [rows, setRows] = useState<TutoringRow[]>([]);
+  const listPage = useClientPagination(rows);
+
   const [selectedRow, setSelectedRow] = useState<TutoringRow | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -1140,7 +1184,6 @@ export function ParentTutoringPage() {
 
   const upcoming = rows.filter((r) => (r.status || '').toLowerCase() === 'scheduled').length;
   const completed = rows.filter((r) => (r.status || '').toLowerCase() === 'completed').length;
-
   return (
     <LearnerShell
       title="Tutor sessions"
@@ -1198,6 +1241,7 @@ export function ParentTutoringPage() {
             ) : rows.length === 0 ? (
               <p className="lp-empty">No tutoring sessions for this child yet.</p>
             ) : (
+              <>
               <div className="lp-table-wrap">
                 <table className="lp-table">
                   <thead>
@@ -1209,7 +1253,7 @@ export function ParentTutoringPage() {
                     </tr>
                   </thead>
                   <tbody>
-                    {rows.map((row) => (
+                    {listPage.pageItems.map((row) => (
                       <tr
                         key={row.id}
                         className={selectedRow?.id === row.id ? 'is-selected' : undefined}
@@ -1228,6 +1272,14 @@ export function ParentTutoringPage() {
                   </tbody>
                 </table>
               </div>
+              <PaginationBar
+                page={listPage.page}
+                lastPage={listPage.lastPage}
+                total={listPage.total}
+                onPageChange={listPage.setPage}
+                disabled={loading}
+              />
+              </>
             )}
           </Panel>
 
@@ -1324,6 +1376,8 @@ export function ParentFeesPage() {
 
   const filterMode = searchParams.get('scope') === 'child' ? 'child' : 'all';
   const [rows, setRows] = useState<FeeInvoice[]>([]);
+  const listPage = useClientPagination(rows);
+
   const [selected, setSelected] = useState<FeeInvoice | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -1418,7 +1472,6 @@ export function ParentFeesPage() {
   }
 
   const items = selected?.items ?? [];
-
   return (
     <LearnerShell
       title="Fee payments"
@@ -1496,6 +1549,7 @@ export function ParentFeesPage() {
             ) : rows.length === 0 ? (
               <p className="lp-empty">No fee invoices found for this filter.</p>
             ) : (
+              <>
               <div className="lp-table-wrap">
                 <table className="lp-table">
                   <thead>
@@ -1508,7 +1562,7 @@ export function ParentFeesPage() {
                     </tr>
                   </thead>
                   <tbody>
-                    {rows.map((row) => (
+                    {listPage.pageItems.map((row) => (
                       <tr
                         key={row.id}
                         className={selected?.id === row.id ? 'is-selected' : undefined}
@@ -1526,6 +1580,14 @@ export function ParentFeesPage() {
                   </tbody>
                 </table>
               </div>
+              <PaginationBar
+                page={listPage.page}
+                lastPage={listPage.lastPage}
+                total={listPage.total}
+                onPageChange={listPage.setPage}
+                disabled={loading}
+              />
+              </>
             )}
           </Panel>
 
@@ -1650,6 +1712,8 @@ export function ParentNoticesPage() {
     void load();
   }, [load]);
 
+  const listPage = useClientPagination(rows);
+
   return (
     <LearnerShell
       title="School notices"
@@ -1688,6 +1752,7 @@ export function ParentNoticesPage() {
             ) : rows.length === 0 ? (
               <p className="lp-empty">No school notices have been sent yet.</p>
             ) : (
+              <>
               <div className="lp-table-wrap">
                 <table className="lp-table">
                   <thead>
@@ -1698,7 +1763,7 @@ export function ParentNoticesPage() {
                     </tr>
                   </thead>
                   <tbody>
-                    {rows.map((row) => (
+                    {listPage.pageItems.map((row) => (
                       <tr
                         key={row.id}
                         className={selected?.id === row.id ? 'is-selected' : undefined}
@@ -1712,6 +1777,14 @@ export function ParentNoticesPage() {
                   </tbody>
                 </table>
               </div>
+              <PaginationBar
+                page={listPage.page}
+                lastPage={listPage.lastPage}
+                total={listPage.total}
+                onPageChange={listPage.setPage}
+                disabled={loading}
+              />
+              </>
             )}
           </Panel>
 
@@ -1788,7 +1861,7 @@ export function ParentNotificationsPage() {
       const res = await api.get<{
         data?: NotificationRow[];
         total?: number;
-      }>(`${PARENT_API}/notifications?per_page=50`);
+      }>(`${PARENT_API}/notifications?per_page=10`);
       const list = unwrapList<NotificationRow>(res);
       setRows(list);
       setTotal(typeof res.total === 'number' ? res.total : list.length);

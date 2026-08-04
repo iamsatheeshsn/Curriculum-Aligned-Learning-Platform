@@ -68,7 +68,9 @@ function messageFromValidity(label: string, el: ValidityTarget): string | null {
       : 'Enter a valid value.';
   }
   if (el.validity.tooShort) {
-    return `Must be at least ${el.minLength} characters.`;
+    // minLength only exists on input and textarea, not select.
+    const minLength = el instanceof HTMLSelectElement ? null : el.minLength;
+    return minLength ? `Must be at least ${minLength} characters.` : 'Value is too short.';
   }
   if (el.validity.patternMismatch) return `Enter a valid ${label.toLowerCase()}.`;
   if (!el.validity.valid && el.validationMessage) return el.validationMessage;
@@ -263,12 +265,16 @@ export function SelectField({
 export function FormActions({
   children,
   align = 'start',
+  fieldRow = false,
 }: {
   children: ReactNode;
   align?: 'start' | 'end' | 'stretch';
+  /** Set when the actions sit in a grid row beside labelled fields, so the
+   *  buttons line up with the inputs instead of floating up to the labels. */
+  fieldRow?: boolean;
 }) {
   return (
-    <div className={`stem-form-actions is-${align}`}>
+    <div className={`stem-form-actions is-${align}${fieldRow ? ' is-field-row' : ''}`}>
       {children}
       <style>{fieldStyles}</style>
     </div>
@@ -287,10 +293,12 @@ export function Toolbar({
   as?: 'div' | 'form';
   onSubmit?: (e: FormEvent<HTMLFormElement>) => void;
 }) {
-  const props =
-    Tag === 'form'
-      ? { onSubmit, className: `stem-toolbar is-${align}` }
-      : { className: `stem-toolbar is-${align}` };
+  const props: { className: string; onSubmit?: (e: FormEvent<HTMLFormElement>) => void } = {
+    className: `stem-toolbar is-${align}`,
+  };
+  if (Tag === 'form') {
+    props.onSubmit = onSubmit;
+  }
   return createElement(Tag, props, children, createElement('style', null, fieldStyles));
 }
 
@@ -346,9 +354,11 @@ const fieldStyles = `
   border: 0;
 }
 .stem-ff { display: grid; gap: 0.4rem; width: 100%; min-width: 0; }
+/* Shared so buttons sitting in a field row can match the input height exactly. */
+.stem-ff, .stem-form-actions { --stem-field-h: 45px; }
 .stem-ff-input {
   width: 100%;
-  min-height: 44px;
+  min-height: var(--stem-field-h);
   padding: 0.7rem 0.9rem;
   border-radius: 12px;
   border: 1px solid var(--stem-line);
@@ -394,18 +404,31 @@ const fieldStyles = `
 .stem-form-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.65rem;
+  gap: 0.5rem;
   align-items: center;
   margin-top: 0.15rem;
 }
 .stem-form-actions.is-end { justify-content: flex-end; }
 .stem-form-actions.is-stretch > * { flex: 1 1 auto; }
-.stem-form-actions .stem-btn--md,
-.stem-form-actions button:not(.stem-btn) {
+/* Bottom-align with the sibling inputs and match their height. Button sets its
+   own min-height inline, so this override has to win against that. */
+.stem-form-actions.is-field-row {
+  align-self: end;
+  margin-top: 0;
+  min-height: var(--stem-field-h);
+}
+.stem-form-actions.is-field-row > *,
+.stem-form-actions.is-field-row .stem-btn,
+.stem-form-actions.is-field-row button:not(.stem-btn) {
+  min-height: var(--stem-field-h) !important;
+}
+.stem-form-actions .stem-btn--md {
   min-height: 44px;
   box-sizing: border-box;
 }
-.stem-form-actions .stem-btn--sm {
+.stem-form-actions .stem-btn--sm,
+.stem-form-actions .stem-btn,
+.stem-form-actions button:not(.stem-btn) {
   min-height: 40px;
   box-sizing: border-box;
 }
@@ -422,19 +445,21 @@ const fieldStyles = `
 .stem-toolbar.is-end { justify-content: flex-end; }
 .stem-toolbar.is-start { justify-content: flex-start; }
 .stem-toolbar .stem-ff { width: auto; flex: 1 1 160px; max-width: 240px; }
+/* Match on "not a control-shaped input" rather than listing text types: most
+   call sites render a bare <input> with no type attribute, which an
+   input[type="text"] selector never matches, leaving the field unstyled. */
 .stem-toolbar .stem-ff-input,
-.stem-toolbar input[type="text"],
-.stem-toolbar input[type="search"],
+.stem-toolbar input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not([type="range"]):not([type="color"]):not([type="file"]),
 .stem-toolbar select {
   min-height: 40px;
-  padding: 0.55rem 0.85rem;
+  padding: 0.55rem 0.9rem;
   border-radius: 10px;
   border: 1px solid var(--stem-line);
   background: #fff;
   color: var(--stem-ink);
   font: inherit;
   font-size: var(--stem-text-md);
-  line-height: 1.35;
+  line-height: 1.25;
   box-sizing: border-box;
   outline: none;
   min-width: 140px;
@@ -458,12 +483,13 @@ const fieldStyles = `
   padding-right: 2.25rem;
   cursor: pointer;
 }
-.stem-toolbar .stem-btn--md,
-.stem-toolbar button:not(.stem-btn) {
+.stem-toolbar .stem-btn--md {
   min-height: 44px;
   box-sizing: border-box;
 }
-.stem-toolbar .stem-btn--sm {
+.stem-toolbar .stem-btn--sm,
+.stem-toolbar .stem-btn,
+.stem-toolbar button:not(.stem-btn) {
   min-height: 40px;
   box-sizing: border-box;
 }
@@ -600,9 +626,11 @@ const overlayStyles = `
   box-sizing: border-box;
   font-weight: 600;
   font-size: var(--stem-text-md);
+  line-height: 1.25;
   cursor: pointer;
   border: 1px solid transparent;
   font-family: inherit;
+  white-space: nowrap;
 }
 .stem-modal-btn:disabled { opacity: 0.65; cursor: not-allowed; }
 .stem-modal-btn.ghost {
@@ -649,6 +677,38 @@ export function SuccessModal({
       <p className="stem-modal-body">{message}</p>
       <div className="stem-modal-actions single">
         <button type="button" className="stem-modal-btn primary" onClick={onClose}>
+          {confirmLabel}
+        </button>
+      </div>
+    </Overlay>
+  );
+}
+
+export function ErrorModal({
+  open,
+  title = 'Something went wrong',
+  message,
+  confirmLabel = 'Close',
+  onClose,
+}: {
+  open: boolean;
+  title?: string;
+  message: string;
+  confirmLabel?: string;
+  onClose: () => void;
+}) {
+  const titleId = useId();
+  return (
+    <Overlay open={open} onClose={onClose} labelledBy={titleId}>
+      <div className="stem-modal-icon danger" aria-hidden>
+        !
+      </div>
+      <h2 id={titleId} className="stem-modal-title">
+        {title}
+      </h2>
+      <p className="stem-modal-body">{message}</p>
+      <div className="stem-modal-actions single">
+        <button type="button" className="stem-modal-btn danger" onClick={onClose}>
           {confirmLabel}
         </button>
       </div>
@@ -726,6 +786,7 @@ type SuccessOptions = {
 type FeedbackApi = {
   confirm: (options: ConfirmOptions) => Promise<boolean>;
   success: (options: SuccessOptions) => Promise<void>;
+  error: (options: SuccessOptions) => Promise<void>;
 };
 
 const FeedbackContext = createContext<FeedbackApi | null>(null);
@@ -733,8 +794,10 @@ const FeedbackContext = createContext<FeedbackApi | null>(null);
 export function FeedbackProvider({ children }: { children: ReactNode }) {
   const [confirmState, setConfirmState] = useState<(ConfirmOptions & { open: boolean }) | null>(null);
   const [successState, setSuccessState] = useState<(SuccessOptions & { open: boolean }) | null>(null);
+  const [errorState, setErrorState] = useState<(SuccessOptions & { open: boolean }) | null>(null);
   const confirmResolver = useRef<((value: boolean) => void) | null>(null);
   const successResolver = useRef<(() => void) | null>(null);
+  const errorResolver = useRef<(() => void) | null>(null);
 
   const confirm = useCallback((options: ConfirmOptions) => {
     return new Promise<boolean>((resolve) => {
@@ -750,7 +813,14 @@ export function FeedbackProvider({ children }: { children: ReactNode }) {
     });
   }, []);
 
-  const api = useMemo(() => ({ confirm, success }), [confirm, success]);
+  const error = useCallback((options: SuccessOptions) => {
+    return new Promise<void>((resolve) => {
+      errorResolver.current = resolve;
+      setErrorState({ ...options, open: true });
+    });
+  }, []);
+
+  const api = useMemo(() => ({ confirm, success, error }), [confirm, success, error]);
 
   return createElement(
     FeedbackContext.Provider,
@@ -785,6 +855,17 @@ export function FeedbackProvider({ children }: { children: ReactNode }) {
         successResolver.current = null;
       },
     }),
+    createElement(ErrorModal, {
+      open: Boolean(errorState?.open),
+      title: errorState?.title,
+      message: errorState?.message ?? '',
+      confirmLabel: errorState?.confirmLabel,
+      onClose: () => {
+        setErrorState(null);
+        errorResolver.current?.();
+        errorResolver.current = null;
+      },
+    }),
   );
 }
 
@@ -805,6 +886,9 @@ export function useFeedbackOptional(): FeedbackApi {
       success: async (options) => {
         window.alert(options.message);
       },
+      error: async (options) => {
+        window.alert(`${options.title ?? 'Something went wrong'}\n\n${options.message}`);
+      },
     }
   );
 }
@@ -819,7 +903,7 @@ export function ConfirmButton({
   style,
   className,
   variant = 'secondary',
-  size = 'md',
+  size = 'sm',
 }: {
   children: ReactNode;
   title: string;
@@ -869,10 +953,13 @@ export function ConfirmButton({
         display: 'inline-flex',
         alignItems: 'center',
         justifyContent: 'center',
+        verticalAlign: 'middle',
         fontWeight: 600,
         boxSizing: 'border-box',
         cursor: busy ? 'not-allowed' : 'pointer',
         fontFamily: 'inherit',
+        textAlign: 'center',
+        whiteSpace: 'nowrap',
         opacity: busy ? 0.65 : 1,
         ...buttonSizeStyles[size],
         ...palette[variant],

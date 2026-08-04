@@ -151,6 +151,7 @@ export function SchoolDashboard() {
     <PortalShell
       portal="institution"
       brandCaption="Institution portal"
+      brandName={orgName}
       title="School home"
       subtitle={`${orgName} · ${tenantSlug}`}
       nav={nav}
@@ -214,10 +215,15 @@ export function SchoolDashboard() {
               <Panel
                 title="Needs attention"
                 description="Operational items that keep the school week moving."
+                action={
+                  <Link className="school-inline-link" to={`/${tenantSlug}/reports`}>
+                    View more
+                  </Link>
+                }
               >
                 {data?.attention?.length ? (
                   <ul className="school-attention">
-                    {data.attention.map((item) => (
+                    {data.attention.slice(0, 5).map((item) => (
                       <li key={item.id} className={`is-${item.tone}`}>
                         <strong>{item.title}</strong>
                         <span>{item.body}</span>
@@ -251,10 +257,18 @@ export function SchoolDashboard() {
                 </div>
               </Panel>
 
-              <Panel title="Upcoming tutoring" description="Next live sessions across campuses.">
+              <Panel
+                title="Upcoming tutoring"
+                description="Next live sessions across campuses."
+                action={
+                  <Link className="school-inline-link" to={`/${tenantSlug}/live-sessions`}>
+                    View more
+                  </Link>
+                }
+              >
                 {data?.upcoming_sessions?.length ? (
                   <ul className="school-list">
-                    {data.upcoming_sessions.map((s) => (
+                    {data.upcoming_sessions.slice(0, 5).map((s) => (
                       <li key={s.id}>
                         <div>
                           <strong>{s.subject || 'Tutoring session'}</strong>
@@ -270,17 +284,22 @@ export function SchoolDashboard() {
                 ) : (
                   <p className="school-muted">No upcoming sessions scheduled. Book from the tutoring module.</p>
                 )}
-                <Link className="school-inline-link" to={`/${tenantSlug}/teacher`}>
-                  Manage sessions in teacher workspace →
-                </Link>
               </Panel>
             </div>
 
             <div className="school-grid">
-              <Panel title="Schools & campuses" description={`${data?.stats.campuses ?? 0} campus locations`}>
+              <Panel
+                title="Schools & campuses"
+                description={`${data?.stats.campuses ?? 0} campus locations`}
+                action={
+                  <Link className="school-inline-link" to={`/${tenantSlug}/reports`}>
+                    View more
+                  </Link>
+                }
+              >
                 {data?.schools?.length ? (
                   <ul className="school-list">
-                    {data.schools.map((school) => (
+                    {data.schools.slice(0, 5).map((school) => (
                       <li key={school.id}>
                         <div>
                           <strong>{school.name_en}</strong>
@@ -297,10 +316,18 @@ export function SchoolDashboard() {
                 )}
               </Panel>
 
-              <Panel title="Curriculum pulse" description="Recent curriculum versions for this tenant.">
+              <Panel
+                title="Curriculum pulse"
+                description="Recent curriculum versions for this tenant."
+                action={
+                  <Link className="school-inline-link" to={`/${tenantSlug}/reports`}>
+                    View more
+                  </Link>
+                }
+              >
                 {data?.curricula?.length ? (
                   <ul className="school-list">
-                    {data.curricula.map((c) => (
+                    {data.curricula.slice(0, 5).map((c) => (
                       <li key={c.id}>
                         <div>
                           <strong>{c.name_en}</strong>
@@ -314,9 +341,6 @@ export function SchoolDashboard() {
                 ) : (
                   <p className="school-muted">No curricula published yet.</p>
                 )}
-                <Link className="school-inline-link" to={`/${tenantSlug}/reports`}>
-                  Open curriculum completion report →
-                </Link>
               </Panel>
             </div>
 

@@ -12,7 +12,7 @@ export function ChangePasswordPage() {
   const changePasswordTo = `/${tenantSlug}/change-password`;
   const isTutor = roles.includes('tutor') && !roles.includes('teacher');
   const brandCaption = isTutor ? 'Tutor portal' : 'Institution portal';
-  const brandName = isTutor ? tenant?.name || tenantSlug : undefined;
+  const brandName = tenant?.name || tenantSlug;
 
   async function onSubmit(values: ChangePasswordValues) {
     await api.post('/auth/change-password', values);

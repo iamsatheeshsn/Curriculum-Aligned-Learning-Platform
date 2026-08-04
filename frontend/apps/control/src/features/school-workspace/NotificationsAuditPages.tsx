@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '@stemora/auth';
 import {
   Button,
+  PaginationBar,
+  useClientPagination,
   ConfirmButton,
   FormActions,
   Panel,
@@ -83,7 +85,7 @@ function NotificationsWorkspace() {
 
   const selected = useMemo(() => rows.find((r) => r.id === selectedId) ?? null, [rows, selectedId]);
 
-  async function onSave(e: FormEvent) {
+  async function onSave(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!validateFormFields(e.currentTarget)) return;
     setSaving(true);
@@ -116,6 +118,8 @@ function NotificationsWorkspace() {
       });
     }
   }
+
+  const listPage = useClientPagination(rows);
 
   return (
     <div className={`${P}page`}>
@@ -161,7 +165,6 @@ function NotificationsWorkspace() {
 
       <div className={`${P}layout`}>
         <Panel title="Notification inbox" description="Select a message to review or send.">
-          <Toolbar />
           <div className={`${P}table-wrap`}>
             <table className={`${P}table`}>
               <thead>
@@ -186,7 +189,7 @@ function NotificationsWorkspace() {
                     </td>
                   </tr>
                 ) : (
-                  rows.map((row) => (
+                  listPage.pageItems.map((row) => (
                     <tr
                       key={row.id}
                       className={selectedId === row.id && mode === 'view' ? 'is-selected' : undefined}
@@ -209,6 +212,13 @@ function NotificationsWorkspace() {
               </tbody>
             </table>
           </div>
+          <PaginationBar
+            page={listPage.page}
+            lastPage={listPage.lastPage}
+            total={listPage.total}
+            onPageChange={listPage.setPage}
+            disabled={loading}
+          />
         </Panel>
 
         <aside className={`${P}side`}>
@@ -358,6 +368,7 @@ function AuditWorkspace() {
   }, [api]);
 
   const selected = useMemo(() => rows.find((r) => r.id === selectedId) ?? null, [rows, selectedId]);
+  const listPage = useClientPagination(rows);
 
   return (
     <div className={`${P}page`}>
@@ -444,7 +455,7 @@ function AuditWorkspace() {
                     </td>
                   </tr>
                 ) : (
-                  rows.map((row) => (
+                  listPage.pageItems.map((row) => (
                     <tr
                       key={row.id}
                       className={selectedId === row.id ? 'is-selected' : undefined}
@@ -461,6 +472,13 @@ function AuditWorkspace() {
               </tbody>
             </table>
           </div>
+          <PaginationBar
+            page={listPage.page}
+            lastPage={listPage.lastPage}
+            total={listPage.total}
+            onPageChange={listPage.setPage}
+            disabled={loading}
+          />
         </Panel>
         <aside className={`${P}side`}>
           {selected ? (

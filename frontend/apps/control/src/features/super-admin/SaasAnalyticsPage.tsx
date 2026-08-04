@@ -382,8 +382,8 @@ export function SaasAnalyticsPage() {
                 title="Trials ending soon"
                 description="Trials due within 14 days"
                 action={
-                  <Link to="/tenants" className="saas-inline-link">
-                    Manage tenants
+                  <Link to="/tenants/trials" className="saas-inline-link">
+                    View more
                   </Link>
                 }
               >
@@ -400,7 +400,7 @@ export function SaasAnalyticsPage() {
                         </tr>
                       </thead>
                       <tbody>
-                        {data.trials_ending_soon.map((row) => (
+                        {data.trials_ending_soon.slice(0, 5).map((row) => (
                           <tr key={row.id}>
                             <td>
                               <strong>{row.name}</strong>
@@ -428,7 +428,15 @@ export function SaasAnalyticsPage() {
                 )}
               </Panel>
 
-              <Panel title="Top tenants by schools" description="Largest footprints on the platform">
+              <Panel
+                title="Top tenants by schools"
+                description="Largest footprints on the platform"
+                action={
+                  <Link to="/tenants" className="saas-inline-link">
+                    View more
+                  </Link>
+                }
+              >
                 {data.top_tenants.length === 0 ? (
                   <p className="saas-muted">No tenants yet.</p>
                 ) : (
@@ -442,7 +450,7 @@ export function SaasAnalyticsPage() {
                         </tr>
                       </thead>
                       <tbody>
-                        {data.top_tenants.map((row) => (
+                        {data.top_tenants.slice(0, 5).map((row) => (
                           <tr key={row.id}>
                             <td>
                               <strong>{row.name}</strong>
@@ -464,12 +472,20 @@ export function SaasAnalyticsPage() {
             </div>
 
             <div className="saas-grid-2">
-              <Panel title="Recent signups" description="Newest organisations on the platform">
+              <Panel
+                title="Recent signups"
+                description="Newest organisations on the platform"
+                action={
+                  <Link to="/tenants" className="saas-inline-link">
+                    View more
+                  </Link>
+                }
+              >
                 {data.recent_signups.length === 0 ? (
                   <p className="saas-muted">No recent signups.</p>
                 ) : (
                   <ul className="saas-signup-list">
-                    {data.recent_signups.map((row) => (
+                    {data.recent_signups.slice(0, 5).map((row) => (
                       <li key={row.id}>
                         <div>
                           <strong>{row.name}</strong>

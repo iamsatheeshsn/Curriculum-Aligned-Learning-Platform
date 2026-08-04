@@ -79,7 +79,7 @@ function OrganisationWorkspace() {
     void load();
   }, [load]);
 
-  async function onSave(e: FormEvent) {
+  async function onSave(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!validateFormFields(e.currentTarget)) return;
     setSaving(true);
@@ -299,7 +299,7 @@ function SchoolBrandingWorkspace() {
     void load();
   }, [load]);
 
-  async function onSave(e: FormEvent) {
+  async function onSave(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!validateFormFields(e.currentTarget)) return;
     setSaving(true);

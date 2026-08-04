@@ -15,6 +15,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class BillingController extends Controller
 {
@@ -200,7 +201,16 @@ class BillingController extends Controller
     {
         $tenantId = app(\App\Support\TenantContext::class)->tenantId()
             ?? $request->user()->tenant_id;
-        return Tenant::query()->findOrFail($tenantId);
+
+        // Platform roles carry no tenant of their own. Fail the same way every
+        // other institution endpoint does rather than letting findOrFail leak a
+        // model-binding 404.
+        $tenant = $tenantId ? Tenant::query()->find($tenantId) : null;
+        if (! $tenant) {
+            throw ValidationException::withMessages(['tenant' => ['Tenant context required.']]);
+        }
+
+        return $tenant;
     }
 
     private function authorizeBillingView(Request $request): void

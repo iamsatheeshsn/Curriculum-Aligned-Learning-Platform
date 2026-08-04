@@ -117,7 +117,7 @@ const homeStyles = `
   color: rgba(232,246,243,0.82);
 }
 .sw-home-cta {
-  display: flex; flex-wrap: wrap; gap: 0.75rem;
+  display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center;
   margin-top: 1.6rem;
 }
 .sw-home-paths { padding-block: 3.25rem 5rem; }
