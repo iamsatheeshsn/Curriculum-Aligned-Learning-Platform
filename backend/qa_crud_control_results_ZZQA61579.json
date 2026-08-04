@@ -1,0 +1,914 @@
+{
+    "marker": "ZZQA61579",
+    "context": {
+        "country_id": 5,
+        "free_country_code": "XA",
+        "school_id": 1,
+        "curriculum_id": 1,
+        "subject_id": 9,
+        "grade_id": 9,
+        "chapter_id": 17,
+        "alnoor_tenant_id": 2,
+        "plan_code": "pilot",
+        "auditor_role": {
+            "id": 11,
+            "code": "auditor",
+            "name_en": "Auditor",
+            "name_ar": "\u0645\u062f\u0642\u0642",
+            "portal": "control",
+            "level": 80,
+            "parent_role_id": 1,
+            "parent": {
+                "id": 1,
+                "code": "super_admin",
+                "name_en": "Super Admin"
+            },
+            "description_en": "Read-only audit and compliance reporting",
+            "description_ar": "\u062a\u0642\u0627\u0631\u064a\u0631 \u0627\u0644\u062a\u062f\u0642\u064a\u0642 \u0648\u0627\u0644\u0627\u0645\u062a\u062b\u0627\u0644 \u0644\u0644\u0642\u0631\u0627\u0621\u0629 \u0641\u0642\u0637",
+            "is_system": true,
+            "is_wildcard": false,
+            "permission_codes": [
+                "platform.audit.view",
+                "tenant.billing.view",
+                "school.reports.view",
+                "reports.academic.view",
+                "reports.tutor.view",
+                "reports.finance.view",
+                "reports.export",
+                "audit.logs.view",
+                "nav.account.password",
+                "nav.control.dashboard",
+                "nav.control.activity-logs",
+                "nav.control.login-logs",
+                "nav.control.fee-audit",
+                "nav.control.academic-audit",
+                "nav.control.security-reports"
+            ],
+            "permissions_count": 15
+        },
+        "academic_year_id": 2,
+        "current_ay_id": 1,
+        "ops_grade_id": 1,
+        "ops_class_id": 1,
+        "ops_section_id": 1,
+        "ops_subject_id": 9,
+        "student_user_id": 34,
+        "teacher_user_id": 197,
+        "staff_user_id": 5
+    },
+    "rows": [
+        {
+            "resource": "curricula",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/curricula",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "curricula",
+            "step": "read",
+            "method": "GET",
+            "path": "/control/curricula/3",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "curricula",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/curricula/3",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "curricula",
+            "step": "status",
+            "method": "POST",
+            "path": "/control/curricula/3/publish",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "curricula",
+            "step": "new-version",
+            "method": "POST",
+            "path": "/control/curricula/3/versions",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "curricula",
+            "step": "dup-version",
+            "method": "POST",
+            "path": "/control/curricula/3/versions",
+            "status": 422,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "curricula",
+            "step": "is-latest",
+            "method": "GET",
+            "path": "/control/curricula/3",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "curricula",
+            "step": "delete",
+            "method": "DELETE",
+            "path": "/control/curricula/4",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "curricula",
+            "step": "delete",
+            "method": "DELETE",
+            "path": "/control/curricula/3",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "chapters",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/chapters",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "chapters",
+            "step": "read",
+            "method": "GET",
+            "path": "/control/chapters/25",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "chapters",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/chapters/25",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "chapters",
+            "step": "status",
+            "method": "PUT",
+            "path": "/control/chapters/25",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "chapters",
+            "step": "delete",
+            "method": "DELETE",
+            "path": "/control/chapters/25",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "lessons",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/lessons",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "lessons",
+            "step": "read",
+            "method": "GET",
+            "path": "/control/lessons/49",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "lessons",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/lessons/49",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "lessons",
+            "step": "status",
+            "method": "PUT",
+            "path": "/control/lessons/49",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "lessons",
+            "step": "delete",
+            "method": "DELETE",
+            "path": "/control/lessons/49",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "learning-outcomes",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/learning-outcomes",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "learning-outcomes",
+            "step": "read",
+            "method": "GET",
+            "path": "/control/learning-outcomes/13",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "learning-outcomes",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/learning-outcomes/13",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "learning-outcomes",
+            "step": "status",
+            "method": "PUT",
+            "path": "/control/learning-outcomes/13",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "learning-outcomes",
+            "step": "delete",
+            "method": "DELETE",
+            "path": "/control/learning-outcomes/13",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "integrations",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/integrations/payment",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "integrations",
+            "step": "read",
+            "method": "GET",
+            "path": "/control/integrations/payment/zzqazzqa61579",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "integrations",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/integrations/payment/zzqazzqa61579",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "integrations",
+            "step": "status",
+            "method": "POST",
+            "path": "/control/integrations/payment/zzqazzqa61579/test",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "integrations",
+            "step": "status(default)",
+            "method": "POST",
+            "path": "/control/integrations/payment/zzqazzqa61579/default",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "integrations",
+            "step": "delete",
+            "method": "DELETE",
+            "path": "/control/integrations/payment/zzqazzqa61579",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "rbac/role-permissions",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/rbac/roles/11/permissions",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "rbac/role-permissions",
+            "step": "restore",
+            "method": "PUT",
+            "path": "/control/rbac/roles/11/permissions",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "rbac/role-permissions",
+            "step": "invalid-perm",
+            "method": "PUT",
+            "path": "/control/rbac/roles/11/permissions",
+            "status": 422,
+            "ok": true,
+            "note": "expected 422"
+        },
+        {
+            "resource": "rbac/assignments",
+            "step": "setup(user)",
+            "method": "POST",
+            "path": "/control/platform-users",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "rbac/assignments",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/rbac/assignments",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "rbac/assignments",
+            "step": "delete",
+            "method": "DELETE",
+            "path": "/control/rbac/assignments/205",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "rbac/assignments",
+            "step": "cleanup(user)",
+            "method": "DELETE",
+            "path": "/control/platform-users/202",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/lessons",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/school-workspace/lessons",
+            "status": 422,
+            "ok": false,
+            "note": "The course id field is required. | {\"course_id\":[\"The course id field is required.\"]}"
+        }
+    ],
+    "findings": [
+        {
+            "severity": "CHECK",
+            "resource": "school-workspace/lessons",
+            "method": "POST",
+            "path": "/control/school-workspace/lessons",
+            "payload": {
+                "course_id": null,
+                "title_en": "QA WS Lesson ZZQA61579",
+                "sort_order": 1,
+                "duration_minutes": 45,
+                "status": "active"
+            },
+            "status": 422,
+            "body": "{\"message\":\"The course id field is required.\",\"errors\":{\"course_id\":[\"The course id field is required.\"]}}",
+            "why": "CREATE returned 422 for a payload built from the controller validation rules"
+        }
+    ],
+    "leftovers": [],
+    "created": {
+        "countries": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "curricula": {
+            "id": 3,
+            "created": true,
+            "deleted": false,
+            "record": {
+                "id": 3,
+                "code": "ZZQA-CUR-ZZQA61579",
+                "name_en": "QA Curriculum ZZQA61579",
+                "name_ar": "QA Curriculum ZZQA61579",
+                "version": "1.0",
+                "status": "draft",
+                "is_latest": true,
+                "is_platform": true,
+                "is_editable": true,
+                "country_id": 5,
+                "country": {
+                    "id": 5,
+                    "code": "BH",
+                    "name_en": "Bahrain",
+                    "name_ar": "\u0627\u0644\u0628\u062d\u0631\u064a\u0646"
+                },
+                "school_id": null,
+                "tenant_id": null,
+                "published_at": null,
+                "change_summary_en": "Initial platform version",
+                "change_summary_ar": null,
+                "source_curriculum_id": null,
+                "usage": {
+                    "subjects": 0,
+                    "chapters": 0,
+                    "lessons": 0,
+                    "learning_outcomes": 0,
+                    "versions": 1
+                },
+                "created_at": "2026-07-31T11:23:48+00:00",
+                "updated_at": "2026-07-31T11:23:48+00:00",
+                "version_family": [
+                    {
+                        "id": 3,
+                        "code": "ZZQA-CUR-ZZQA61579",
+                        "version": "1.0",
+                        "status": "draft",
+                        "is_latest": true,
+                        "published_at": null,
+                        "source_curriculum_id": null
+                    }
+                ],
+                "version_logs": [
+                    {
+                        "id": 3,
+                        "action": "create",
+                        "from_version": null,
+                        "to_version": "1.0",
+                        "summary_en": "Initial platform version",
+                        "summary_ar": null,
+                        "created_at": "2026-07-31T11:23:48+00:00"
+                    }
+                ]
+            }
+        },
+        "grades": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "subjects": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "chapters": {
+            "id": 25,
+            "created": true,
+            "deleted": true,
+            "record": {
+                "id": 25,
+                "title_en": "QA Chapter ZZQA61579",
+                "title_ar": "QA Chapter ZZQA61579",
+                "sequence": 99,
+                "status": "draft",
+                "curriculum_id": 1,
+                "subject_id": 9,
+                "grade_id": 9,
+                "tenant_id": 2,
+                "school_id": 1,
+                "tenant": {
+                    "id": 2,
+                    "name": "Al Noor Academy",
+                    "slug": "al-noor",
+                    "status": "active"
+                },
+                "school": {
+                    "id": 1,
+                    "code": "AN-MAIN",
+                    "name_en": "Al Noor Main School",
+                    "status": "active"
+                },
+                "curriculum": {
+                    "id": 1,
+                    "code": "STEM-K12",
+                    "name_en": "Al Noor STEM Curriculum",
+                    "version": "2026.1",
+                    "status": "published"
+                },
+                "subject": {
+                    "id": 9,
+                    "code": "ARB",
+                    "name_en": "Arabic",
+                    "curriculum_id": 1
+                },
+                "grade": {
+                    "id": 9,
+                    "code": "G09",
+                    "name_en": "Grade 9",
+                    "sequence": 9
+                },
+                "usage": {
+                    "lessons": 0
+                },
+                "created_at": "2026-07-31T11:23:49+00:00",
+                "updated_at": "2026-07-31T11:23:49+00:00",
+                "lessons": []
+            }
+        },
+        "lessons": {
+            "id": 49,
+            "created": true,
+            "deleted": true,
+            "record": {
+                "id": 49,
+                "code": null,
+                "title_en": "QA Lesson ZZQA61579",
+                "title_ar": "QA Lesson ZZQA61579",
+                "summary_en": null,
+                "summary_ar": null,
+                "sequence": 99,
+                "estimated_minutes": null,
+                "difficulty": "easy",
+                "status": "draft",
+                "curriculum_id": 1,
+                "chapter_id": 17,
+                "tenant_id": 2,
+                "school_id": 1,
+                "tenant": {
+                    "id": 2,
+                    "name": "Al Noor Academy",
+                    "slug": "al-noor",
+                    "status": "active"
+                },
+                "school": {
+                    "id": 1,
+                    "code": "AN-MAIN",
+                    "name_en": "Al Noor Main School",
+                    "status": "active"
+                },
+                "curriculum": {
+                    "id": 1,
+                    "code": "STEM-K12",
+                    "name_en": "Al Noor STEM Curriculum",
+                    "version": "2026.1",
+                    "status": "published"
+                },
+                "chapter": {
+                    "id": 17,
+                    "title_en": "Arabic Chapter 1",
+                    "title_ar": "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0639\u0631\u0628\u064a\u0629 \u0627\u0644\u0641\u0635\u0644 1",
+                    "sequence": 1,
+                    "status": "published",
+                    "subject": {
+                        "id": 9,
+                        "code": "ARB",
+                        "name_en": "Arabic"
+                    },
+                    "grade": {
+                        "id": 9,
+                        "code": "G09",
+                        "name_en": "Grade 9"
+                    }
+                },
+                "usage": {
+                    "interactive_lessons": 0,
+                    "learning_outcomes": 0
+                },
+                "created_at": "2026-07-31T11:23:50+00:00",
+                "updated_at": "2026-07-31T11:23:50+00:00",
+                "learning_outcomes": [],
+                "learning_outcome_ids": []
+            }
+        },
+        "learning-outcomes": {
+            "id": 13,
+            "created": true,
+            "deleted": true,
+            "record": {
+                "id": 13,
+                "code": "ZZQA-LO-ZZQA61579",
+                "statement_en": "QA outcome ZZQA61579",
+                "statement_ar": "QA outcome ZZQA61579",
+                "status": "active",
+                "curriculum_id": 1,
+                "subject_id": 9,
+                "tenant_id": 2,
+                "school_id": 1,
+                "tenant": {
+                    "id": 2,
+                    "name": "Al Noor Academy",
+                    "slug": "al-noor",
+                    "status": "active"
+                },
+                "school": {
+                    "id": 1,
+                    "code": "AN-MAIN",
+                    "name_en": "Al Noor Main School",
+                    "status": "active"
+                },
+                "curriculum": {
+                    "id": 1,
+                    "code": "STEM-K12",
+                    "name_en": "Al Noor STEM Curriculum",
+                    "version": "2026.1",
+                    "status": "published"
+                },
+                "subject": {
+                    "id": 9,
+                    "code": "ARB",
+                    "name_en": "Arabic",
+                    "curriculum_id": 1
+                },
+                "usage": {
+                    "lessons": 0,
+                    "questions": 0
+                },
+                "created_at": "2026-07-31T11:23:51+00:00",
+                "updated_at": "2026-07-31T11:23:51+00:00",
+                "lessons": []
+            }
+        },
+        "tenant-groups": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "campuses": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "billing/plans": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "billing/coupons": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "billing/taxes": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "platform-users": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "tenants": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "integrations": {
+            "id": "zzqazzqa61579",
+            "created": true,
+            "deleted": false,
+            "record": {
+                "id": 21,
+                "category": "payment",
+                "code": "zzqazzqa61579",
+                "name_en": "QA Integration ZZQA61579",
+                "name_ar": null,
+                "provider": "zzqa",
+                "config": {
+                    "api_key": "********"
+                },
+                "is_active": true,
+                "is_default": false,
+                "status": "disconnected",
+                "notes": null,
+                "last_tested_at": null,
+                "created_at": "2026-07-31T11:23:52+00:00",
+                "updated_at": "2026-07-31T11:23:52+00:00"
+            }
+        },
+        "ops/campuses": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ops/academic-years": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ops/terms": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ops/subjects": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ops/grades": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ops/classes": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ops/sections": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ops/teachers": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ops/students": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ops/parents": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ops/transfers": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ops/tutors": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ops/teaching-assignments": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ws/staff": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ws/staff-attendance": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ws/courses": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ws/lessons": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ws/resources": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ws/assignments": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ws/homework": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ws/questions": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ws/quizzes": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ws/exams": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ws/tutoring-tutors": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ws/bookings": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ws/timetable": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ws/fees": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ws/tutor-payments": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ws/expenses": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ws/notifications": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        }
+    }
+}

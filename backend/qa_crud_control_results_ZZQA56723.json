@@ -1,0 +1,537 @@
+{
+    "marker": "ZZQA56723",
+    "context": {
+        "country_id": 5,
+        "free_country_code": "XA",
+        "school_id": 1,
+        "curriculum_id": 1,
+        "subject_id": 9,
+        "grade_id": 9,
+        "chapter_id": 17,
+        "alnoor_tenant_id": 2,
+        "plan_code": "pilot",
+        "auditor_role": {
+            "id": 11,
+            "code": "auditor",
+            "name_en": "Auditor",
+            "name_ar": "\u0645\u062f\u0642\u0642",
+            "portal": "control",
+            "level": 80,
+            "parent_role_id": 1,
+            "parent": {
+                "id": 1,
+                "code": "super_admin",
+                "name_en": "Super Admin"
+            },
+            "description_en": "Read-only audit and compliance reporting",
+            "description_ar": "\u062a\u0642\u0627\u0631\u064a\u0631 \u0627\u0644\u062a\u062f\u0642\u064a\u0642 \u0648\u0627\u0644\u0627\u0645\u062a\u062b\u0627\u0644 \u0644\u0644\u0642\u0631\u0627\u0621\u0629 \u0641\u0642\u0637",
+            "is_system": true,
+            "is_wildcard": false,
+            "permission_codes": [
+                "platform.audit.view",
+                "tenant.billing.view",
+                "school.reports.view",
+                "reports.academic.view",
+                "reports.tutor.view",
+                "reports.finance.view",
+                "reports.export",
+                "audit.logs.view",
+                "nav.account.password",
+                "nav.control.dashboard",
+                "nav.control.activity-logs",
+                "nav.control.login-logs",
+                "nav.control.fee-audit",
+                "nav.control.academic-audit",
+                "nav.control.security-reports"
+            ],
+            "permissions_count": 15
+        },
+        "academic_year_id": 2,
+        "current_ay_id": 1,
+        "ops_grade_id": 1,
+        "ops_class_id": 1,
+        "ops_section_id": 1,
+        "ops_subject_id": 9,
+        "student_user_id": 34,
+        "teacher_user_id": 197,
+        "staff_user_id": 5
+    },
+    "rows": [
+        {
+            "resource": "school-ops/students",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/school-ops/students",
+            "status": 0,
+            "ok": false,
+            "note": "no adoptable record found for marker ZZQA56723"
+        },
+        {
+            "resource": "school-workspace/staff",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/school-workspace/staff",
+            "status": 0,
+            "ok": true,
+            "note": "adopted existing record id 200"
+        },
+        {
+            "resource": "school-workspace/staff",
+            "step": "read",
+            "method": "GET",
+            "path": "/control/school-workspace/staff",
+            "status": 200,
+            "ok": false,
+            "note": "record not visible after create ({\"data\":[{\"user_id\":5,\"email\":\"admin@alnoor.test\",\"first_name\":\"Hassan\",\"last_name\":\"Admin\",\"role\":\"school_admin\",\"status\":\"active\"},{\"user_id\":200,\"email\":\"zzqa.staff.zzqa56723@qa.local\",\"first_name\":\"QAZZQA56723\",\"last_name\":\"Staff\",\"role\":\"school_admin\",\"status\":\"active\"},{\"user_id\":6,\"email\":\"ca)"
+        },
+        {
+            "resource": "school-workspace/staff",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/school-workspace/staff/200",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/staff",
+            "step": "status",
+            "method": "PUT",
+            "path": "/control/school-workspace/staff/200",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/staff",
+            "step": "delete",
+            "method": "-",
+            "path": "-",
+            "status": 0,
+            "ok": false,
+            "note": "no DELETE route registered"
+        },
+        {
+            "resource": "school-workspace/staff-attendance",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/school-workspace/staff-attendance",
+            "status": 0,
+            "ok": true,
+            "note": "adopted existing record id 1"
+        },
+        {
+            "resource": "school-workspace/staff-attendance",
+            "step": "read",
+            "method": "GET",
+            "path": "/control/school-workspace/staff-attendance",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/staff-attendance",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/school-workspace/staff-attendance/1",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/staff-attendance",
+            "step": "status",
+            "method": "PUT",
+            "path": "/control/school-workspace/staff-attendance/1",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/staff-attendance",
+            "step": "delete",
+            "method": "-",
+            "path": "-",
+            "status": 0,
+            "ok": false,
+            "note": "no DELETE route registered"
+        },
+        {
+            "resource": "school-workspace/tutoring/tutors",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/school-workspace/tutoring/tutors",
+            "status": 0,
+            "ok": true,
+            "note": "adopted existing record id 201"
+        },
+        {
+            "resource": "school-workspace/tutoring/tutors",
+            "step": "read",
+            "method": "GET",
+            "path": "/control/school-workspace/tutoring/tutors",
+            "status": 200,
+            "ok": false,
+            "note": "record not visible after create ({\"data\":[{\"user_id\":22,\"email\":\"tutor@alnoor.test\",\"first_name\":\"Tutor1\",\"last_name\":\"AlNoor\",\"hourly_rate\":\"120.00\",\"status\":\"active\"},{\"user_id\":23,\"email\":\"tutor2@alnoor.test\",\"first_name\":\"Tutor2\",\"last_name\":\"AlNoor\",\"hourly_rate\":\"130.00\",\"status\":\"active\"},{\"user_id\":24,\"email\":\"tutor3@alnoor)"
+        },
+        {
+            "resource": "school-workspace/tutoring/tutors",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/school-workspace/tutoring/tutors/201",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/tutoring/tutors",
+            "step": "status",
+            "method": "PUT",
+            "path": "/control/school-workspace/tutoring/tutors/201",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/tutoring/tutors",
+            "step": "delete",
+            "method": "-",
+            "path": "-",
+            "status": 0,
+            "ok": false,
+            "note": "no DELETE route registered"
+        }
+    ],
+    "findings": [
+        {
+            "severity": "HIGH",
+            "resource": "school-workspace/staff",
+            "method": "GET",
+            "path": "/control/school-workspace/staff",
+            "payload": null,
+            "status": 200,
+            "body": "{\"data\":[{\"user_id\":5,\"email\":\"admin@alnoor.test\",\"first_name\":\"Hassan\",\"last_name\":\"Admin\",\"role\":\"school_admin\",\"status\":\"active\"},{\"user_id\":200,\"email\":\"zzqa.staff.zzqa56723@qa.local\",\"first_name\":\"QAZZQA56723\",\"last_name\":\"Staff\",\"role\":\"school_admin\",\"status\":\"active\"},{\"user_id\":6,\"email\":\"campus@alnoor.test\",\"first_name\":\"Layla\",\"last_name\":\"Campus\",\"role\":\"campus_admin\",\"status\":\"active\"},{\"user_id\":7,\"email\":\"principal@alnoor.test\",\"first_name\":\"Faisal\",\"last_name\":\"Principal\",\"role\":\"principal\",\"status\":\"active\"},{\"user_id\":8,\"email\":\"coordinator@alnoor.test\",\"first_name\":\"Maha\",\"last_name\":\"Coordinator\",\"role\":\"academic_coordinator\",\"status\":\"active\"},{\"user_id\":9,\"email\":\"finance@alnoor.test\",\"first_name\":\"Yousef\",\"last_name\":\"Finance\",\"role\":\"finance_manager\",\"status\":\"active\"}],\"meta\":{\"stats\":{\"total\":6,\"active\":6}}}",
+            "why": "Record created (id 200) is not returned by the read endpoint"
+        },
+        {
+            "severity": "HIGH",
+            "resource": "school-workspace/tutoring/tutors",
+            "method": "GET",
+            "path": "/control/school-workspace/tutoring/tutors",
+            "payload": null,
+            "status": 200,
+            "body": "{\"data\":[{\"user_id\":22,\"email\":\"tutor@alnoor.test\",\"first_name\":\"Tutor1\",\"last_name\":\"AlNoor\",\"hourly_rate\":\"120.00\",\"status\":\"active\"},{\"user_id\":23,\"email\":\"tutor2@alnoor.test\",\"first_name\":\"Tutor2\",\"last_name\":\"AlNoor\",\"hourly_rate\":\"130.00\",\"status\":\"active\"},{\"user_id\":24,\"email\":\"tutor3@alnoor.test\",\"first_name\":\"Tutor3\",\"last_name\":\"AlNoor\",\"hourly_rate\":\"140.00\",\"status\":\"active\"},{\"user_id\":25,\"email\":\"tutor4@alnoor.test\",\"first_name\":\"Tutor4\",\"last_name\":\"AlNoor\",\"hourly_rate\":\"150.00\",\"status\":\"active\"},{\"user_id\":26,\"email\":\"tutor5@alnoor.test\",\"first_name\":\"Tutor5\",\"last_name\":\"AlNoor\",\"hourly_rate\":\"160.00\",\"status\":\"active\"},{\"user_id\":27,\"email\":\"tutor6@alnoor.test\",\"first_name\":\"Tutor6\",\"last_name\":\"AlNoor\",\"hourly_rate\":\"170.00\",\"status\":\"active\"},{\"user_id\":28,\"email\":\"tutor7@alnoor.test\",\"first_name\":\"Tutor7\",\"last_name\":\"AlNoor\",\"hourly_rate\":\"180.00\",\"status\":\"activ",
+            "why": "Record created (id 201) is not returned by the read endpoint"
+        }
+    ],
+    "leftovers": [
+        {
+            "what": "school-workspace/staff",
+            "id": 200,
+            "why": "no DELETE endpoint is registered for this resource"
+        },
+        {
+            "what": "school-workspace/staff-attendance",
+            "id": 1,
+            "why": "no DELETE endpoint is registered for this resource"
+        },
+        {
+            "what": "school-workspace/tutoring/tutors",
+            "id": 201,
+            "why": "no DELETE endpoint is registered for this resource"
+        }
+    ],
+    "created": {
+        "countries": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "curricula": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "grades": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "subjects": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "chapters": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "lessons": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "learning-outcomes": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "tenant-groups": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "campuses": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "billing/plans": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "billing/coupons": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "billing/taxes": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "platform-users": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "tenants": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "integrations": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ops/campuses": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ops/academic-years": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ops/terms": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ops/subjects": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ops/grades": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ops/classes": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ops/sections": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ops/teachers": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ops/students": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ops/parents": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ops/transfers": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ops/tutors": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ops/teaching-assignments": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ws/staff": {
+            "id": 200,
+            "created": true,
+            "deleted": false,
+            "record": {
+                "user_id": 200,
+                "email": "zzqa.staff.zzqa56723@qa.local",
+                "first_name": "QAZZQA56723",
+                "last_name": "Staff",
+                "role": "school_admin",
+                "status": "active"
+            }
+        },
+        "ws/staff-attendance": {
+            "id": 1,
+            "created": true,
+            "deleted": false,
+            "record": {
+                "id": 1,
+                "user_id": 200,
+                "user_name": "QAZZQA56723Upd Staff",
+                "attendance_date": "2026-07-31",
+                "status": "late",
+                "notes": "QA ZZQA56723 Upd"
+            }
+        },
+        "ws/courses": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ws/lessons": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ws/resources": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ws/assignments": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ws/homework": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ws/questions": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ws/quizzes": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ws/exams": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ws/tutoring-tutors": {
+            "id": 201,
+            "created": true,
+            "deleted": false,
+            "record": {
+                "user_id": 201,
+                "email": "zzqa.wstutor.zzqa56723@qa.local",
+                "first_name": "QAZZQA56723",
+                "last_name": "WsTutor",
+                "hourly_rate": "50.00",
+                "status": "active"
+            }
+        },
+        "ws/bookings": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ws/timetable": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ws/fees": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ws/tutor-payments": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ws/expenses": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        },
+        "ws/notifications": {
+            "id": null,
+            "created": false,
+            "deleted": false,
+            "record": null
+        }
+    }
+}

@@ -1,0 +1,2383 @@
+{
+    "marker": "ZZQA56723",
+    "context": {
+        "country_id": 5,
+        "free_country_code": "XA",
+        "school_id": 9,
+        "curriculum_id": null,
+        "subject_id": null,
+        "grade_id": null,
+        "chapter_id": null,
+        "alnoor_tenant_id": null,
+        "plan_code": "pilot",
+        "auditor_role": {
+            "id": 11,
+            "code": "auditor",
+            "name_en": "Auditor",
+            "name_ar": "\u0645\u062f\u0642\u0642",
+            "portal": "control",
+            "level": 80,
+            "parent_role_id": 1,
+            "parent": {
+                "id": 1,
+                "code": "super_admin",
+                "name_en": "Super Admin"
+            },
+            "description_en": "Read-only audit and compliance reporting",
+            "description_ar": "\u062a\u0642\u0627\u0631\u064a\u0631 \u0627\u0644\u062a\u062f\u0642\u064a\u0642 \u0648\u0627\u0644\u0627\u0645\u062a\u062b\u0627\u0644 \u0644\u0644\u0642\u0631\u0627\u0621\u0629 \u0641\u0642\u0637",
+            "is_system": true,
+            "is_wildcard": false,
+            "permission_codes": [
+                "platform.audit.view",
+                "tenant.billing.view",
+                "school.reports.view",
+                "reports.academic.view",
+                "reports.tutor.view",
+                "reports.finance.view",
+                "reports.export",
+                "audit.logs.view",
+                "nav.account.password",
+                "nav.control.dashboard",
+                "nav.control.activity-logs",
+                "nav.control.login-logs",
+                "nav.control.fee-audit",
+                "nav.control.academic-audit",
+                "nav.control.security-reports"
+            ],
+            "permissions_count": 15
+        },
+        "academic_year_id": 1,
+        "current_ay_id": 1,
+        "ops_grade_id": 1,
+        "ops_class_id": 1,
+        "ops_section_id": 1,
+        "ops_subject_id": 9,
+        "student_user_id": 34,
+        "teacher_user_id": 10,
+        "staff_user_id": 5
+    },
+    "rows": [
+        {
+            "resource": "countries",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/countries",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "countries",
+            "step": "read",
+            "method": "GET",
+            "path": "/control/countries/13",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "countries",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/countries/13",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "countries",
+            "step": "status",
+            "method": "PUT",
+            "path": "/control/countries/13",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "countries",
+            "step": "delete",
+            "method": "DELETE",
+            "path": "/control/countries/13",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "curricula",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/curricula",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "curricula",
+            "step": "read",
+            "method": "GET",
+            "path": "/control/curricula/2",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "curricula",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/curricula/2",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "curricula",
+            "step": "status",
+            "method": "POST",
+            "path": "/control/curricula/2/publish",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "curricula",
+            "step": "delete",
+            "method": "DELETE",
+            "path": "/control/curricula/2",
+            "status": 422,
+            "ok": false,
+            "note": "Published curricula cannot be deleted. Supersede them with a new version instead. | {\"curriculum\":[\"Published curricula cannot be deleted. Supersede them with a new version instead.\"]}"
+        },
+        {
+            "resource": "grades",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/grades",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "grades",
+            "step": "read",
+            "method": "GET",
+            "path": "/control/grades/13",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "grades",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/grades/13",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "grades",
+            "step": "delete",
+            "method": "DELETE",
+            "path": "/control/grades/13",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "subjects",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/subjects",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "subjects",
+            "step": "read",
+            "method": "GET",
+            "path": "/control/subjects/13",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "subjects",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/subjects/13",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "subjects",
+            "step": "status",
+            "method": "PUT",
+            "path": "/control/subjects/13",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "subjects",
+            "step": "delete",
+            "method": "DELETE",
+            "path": "/control/subjects/13",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "chapters",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/chapters",
+            "status": 422,
+            "ok": false,
+            "note": "The curriculum id field is required. (and 2 more errors) | {\"curriculum_id\":[\"The curriculum id field is required.\"],\"subject_id\":[\"The subject id field is required.\"],\"grade_id\":[\"The grade id field is required.\"]}"
+        },
+        {
+            "resource": "lessons",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/lessons",
+            "status": 422,
+            "ok": false,
+            "note": "The curriculum id field is required. (and 1 more error) | {\"curriculum_id\":[\"The curriculum id field is required.\"],\"chapter_id\":[\"The chapter id field is required.\"]}"
+        },
+        {
+            "resource": "learning-outcomes",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/learning-outcomes",
+            "status": 422,
+            "ok": false,
+            "note": "The curriculum id field is required. | {\"curriculum_id\":[\"The curriculum id field is required.\"]}"
+        },
+        {
+            "resource": "tenant-groups",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/tenant-groups",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "tenant-groups",
+            "step": "read",
+            "method": "GET",
+            "path": "/control/tenant-groups/1",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "tenant-groups",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/tenant-groups/1",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "tenant-groups",
+            "step": "status",
+            "method": "PUT",
+            "path": "/control/tenant-groups/1",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "tenant-groups",
+            "step": "delete",
+            "method": "DELETE",
+            "path": "/control/tenant-groups/1",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "campuses",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/campuses",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "campuses",
+            "step": "read",
+            "method": "GET",
+            "path": "/control/campuses/24",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "campuses",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/campuses/24",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "campuses",
+            "step": "status",
+            "method": "PUT",
+            "path": "/control/campuses/24",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "campuses",
+            "step": "delete",
+            "method": "DELETE",
+            "path": "/control/campuses/24",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "billing/plans",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/billing/plans",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "billing/plans",
+            "step": "read",
+            "method": "GET",
+            "path": "/control/billing/plans/13",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "billing/plans",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/billing/plans/13",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "billing/plans",
+            "step": "status",
+            "method": "PUT",
+            "path": "/control/billing/plans/13",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "billing/plans",
+            "step": "delete",
+            "method": "DELETE",
+            "path": "/control/billing/plans/13",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "billing/coupons",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/billing/coupons",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "billing/coupons",
+            "step": "read",
+            "method": "GET",
+            "path": "/control/billing/coupons/13",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "billing/coupons",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/billing/coupons/13",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "billing/coupons",
+            "step": "status",
+            "method": "PUT",
+            "path": "/control/billing/coupons/13",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "billing/coupons",
+            "step": "delete",
+            "method": "DELETE",
+            "path": "/control/billing/coupons/13",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "billing/taxes",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/billing/taxes",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "billing/taxes",
+            "step": "read",
+            "method": "GET",
+            "path": "/control/billing/taxes/1",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "billing/taxes",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/billing/taxes/1",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "billing/taxes",
+            "step": "status",
+            "method": "PUT",
+            "path": "/control/billing/taxes/1",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "billing/taxes",
+            "step": "delete",
+            "method": "DELETE",
+            "path": "/control/billing/taxes/1",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "platform-users",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/platform-users",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "platform-users",
+            "step": "read",
+            "method": "GET",
+            "path": "/control/platform-users/194",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "platform-users",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/platform-users/194",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "platform-users",
+            "step": "status",
+            "method": "PUT",
+            "path": "/control/platform-users/194",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "platform-users",
+            "step": "delete",
+            "method": "DELETE",
+            "path": "/control/platform-users/194",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "tenants",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/tenants",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "tenants",
+            "step": "read",
+            "method": "GET",
+            "path": "/control/tenants/15",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "tenants",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/tenants/15",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "tenants",
+            "step": "status",
+            "method": "PATCH",
+            "path": "/control/tenants/15/status",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "tenants",
+            "step": "delete",
+            "method": "-",
+            "path": "-",
+            "status": 0,
+            "ok": false,
+            "note": "no DELETE route registered"
+        },
+        {
+            "resource": "tenants/branding",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/tenants/15/branding",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "tenants/billing-contact",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/tenants/15/billing-contact",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "trials",
+            "step": "start",
+            "method": "POST",
+            "path": "/control/trials/15/start",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "trials",
+            "step": "extend",
+            "method": "POST",
+            "path": "/control/trials/15/extend",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "trials",
+            "step": "convert",
+            "method": "POST",
+            "path": "/control/trials/15/convert",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "subscription/change-plan",
+            "step": "update",
+            "method": "POST",
+            "path": "/control/subscription/change-plan",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "tenants/invoices",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/tenants/15/invoices",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "billing/invoices",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/billing/invoices/generate",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "billing/invoices",
+            "step": "status(send)",
+            "method": "POST",
+            "path": "/control/billing/invoices/14/send",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "billing/invoices",
+            "step": "status(pay)",
+            "method": "POST",
+            "path": "/control/billing/invoices/14/pay",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "subscriptions",
+            "step": "status(cancel)",
+            "method": "POST",
+            "path": "/control/subscriptions/14/cancel",
+            "status": 422,
+            "ok": false,
+            "note": "Only active subscriptions can be cancelled. | {\"subscription\":[\"Only active subscriptions can be cancelled.\"]}"
+        },
+        {
+            "resource": "integrations(payment)",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/integrations/payment",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "integrations(payment)",
+            "step": "read",
+            "method": "GET",
+            "path": "/control/integrations/payment/zzqazzqa56723",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "integrations(payment)",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/integrations/payment/zzqazzqa56723",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "integrations(payment)",
+            "step": "status",
+            "method": "POST",
+            "path": "/control/integrations/payment/zzqazzqa56723/test",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "integrations(payment)",
+            "step": "delete",
+            "method": "DELETE",
+            "path": "/control/integrations/payment/zzqazzqa56723",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "integrations(payment)",
+            "step": "status(default)",
+            "method": "POST",
+            "path": "/control/integrations/payment/zzqazzqa56723/default",
+            "status": 404,
+            "ok": false,
+            "note": "No query results for model [App\\Domain\\Platform\\Models\\PlatformIntegration]."
+        },
+        {
+            "resource": "settings/global",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/settings/global",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "settings/global",
+            "step": "restore",
+            "method": "PUT",
+            "path": "/control/settings/global",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "settings/backup",
+            "step": "run",
+            "method": "POST",
+            "path": "/control/settings/backup/run",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "settings/{group}",
+            "step": "invalid-group",
+            "method": "PUT",
+            "path": "/control/settings/not-a-group",
+            "status": 422,
+            "ok": true,
+            "note": "expected 422/404"
+        },
+        {
+            "resource": "rbac/role-permissions",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/rbac/roles/11/permissions",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "rbac/role-permissions",
+            "step": "restore",
+            "method": "PUT",
+            "path": "/control/rbac/roles/11/permissions",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "rbac/role-permissions",
+            "step": "invalid-perm",
+            "method": "PUT",
+            "path": "/control/rbac/roles/11/permissions",
+            "status": 422,
+            "ok": true,
+            "note": "expected 422"
+        },
+        {
+            "resource": "rbac/assignments",
+            "step": "setup(user)",
+            "method": "POST",
+            "path": "/control/platform-users",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/campuses",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/school-ops/campuses",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/campuses",
+            "step": "read",
+            "method": "GET",
+            "path": "/control/school-ops/campuses",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/campuses",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/school-ops/campuses/25",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/campuses",
+            "step": "status",
+            "method": "PUT",
+            "path": "/control/school-ops/campuses/25",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/campuses",
+            "step": "delete",
+            "method": "DELETE",
+            "path": "/control/school-ops/campuses/25",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/academic-years",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/school-ops/academic-years",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/academic-years",
+            "step": "read",
+            "method": "GET",
+            "path": "/control/school-ops/academic-years",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/academic-years",
+            "step": "status",
+            "method": "POST",
+            "path": "/control/school-ops/academic-years/2/current",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/academic-years",
+            "step": "delete",
+            "method": "-",
+            "path": "-",
+            "status": 0,
+            "ok": false,
+            "note": "no DELETE route registered"
+        },
+        {
+            "resource": "school-ops/academic-years",
+            "step": "restore-current",
+            "method": "POST",
+            "path": "/control/school-ops/academic-years/1/current",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/terms",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/school-ops/terms",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/terms",
+            "step": "read",
+            "method": "GET",
+            "path": "/control/school-ops/terms",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/terms",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/school-ops/terms/4",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/terms",
+            "step": "status",
+            "method": "PUT",
+            "path": "/control/school-ops/terms/4",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/terms",
+            "step": "delete",
+            "method": "-",
+            "path": "-",
+            "status": 0,
+            "ok": false,
+            "note": "no DELETE route registered"
+        },
+        {
+            "resource": "school-ops/subjects",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/school-ops/subjects",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/subjects",
+            "step": "read",
+            "method": "GET",
+            "path": "/control/school-ops/subjects",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/subjects",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/school-ops/subjects/14",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/subjects",
+            "step": "status",
+            "method": "PUT",
+            "path": "/control/school-ops/subjects/14",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/subjects",
+            "step": "delete",
+            "method": "DELETE",
+            "path": "/control/school-ops/subjects/14",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/grades",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/school-ops/grades",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/grades",
+            "step": "read",
+            "method": "GET",
+            "path": "/control/school-ops/grades",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/grades",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/school-ops/grades/14",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/grades",
+            "step": "delete",
+            "method": "DELETE",
+            "path": "/control/school-ops/grades/14",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/classes",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/school-ops/classes",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/classes",
+            "step": "read",
+            "method": "GET",
+            "path": "/control/school-ops/classes",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/classes",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/school-ops/classes/13",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/classes",
+            "step": "status",
+            "method": "PUT",
+            "path": "/control/school-ops/classes/13",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/classes",
+            "step": "delete",
+            "method": "DELETE",
+            "path": "/control/school-ops/classes/13",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/sections",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/school-ops/sections",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/sections",
+            "step": "read",
+            "method": "GET",
+            "path": "/control/school-ops/sections",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/sections",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/school-ops/sections/13",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/sections",
+            "step": "status",
+            "method": "PUT",
+            "path": "/control/school-ops/sections/13",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/sections",
+            "step": "delete",
+            "method": "DELETE",
+            "path": "/control/school-ops/sections/13",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/teachers",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/school-ops/teachers",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/students",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/school-ops/students",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/parents",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/school-ops/parents",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/transfers",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/school-ops/transfers",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/tutors",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/school-ops/tutors",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/tutors",
+            "step": "read",
+            "method": "GET",
+            "path": "/control/school-ops/tutors",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/tutors",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/school-ops/tutors/14",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/tutors",
+            "step": "status",
+            "method": "PUT",
+            "path": "/control/school-ops/tutors/14",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/tutors",
+            "step": "delete",
+            "method": "-",
+            "path": "-",
+            "status": 0,
+            "ok": false,
+            "note": "no DELETE route registered"
+        },
+        {
+            "resource": "school-ops/teaching-assignments",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/school-ops/teaching-assignments",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/teaching-assignments",
+            "step": "read",
+            "method": "GET",
+            "path": "/control/school-ops/teaching-assignments",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/teaching-assignments",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/school-ops/teaching-assignments/24",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/teaching-assignments",
+            "step": "status",
+            "method": "PUT",
+            "path": "/control/school-ops/teaching-assignments/24",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/teaching-assignments",
+            "step": "delete",
+            "method": "DELETE",
+            "path": "/control/school-ops/teaching-assignments/24",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/school",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/school-ops/school",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-ops/school",
+            "step": "restore",
+            "method": "PUT",
+            "path": "/control/school-ops/school",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/staff",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/school-workspace/staff",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/staff-attendance",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/school-workspace/staff-attendance",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/staff-attendance",
+            "step": "read",
+            "method": "GET",
+            "path": "/control/school-workspace/staff-attendance",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/staff-attendance",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/school-workspace/staff-attendance/1",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/staff-attendance",
+            "step": "status",
+            "method": "PUT",
+            "path": "/control/school-workspace/staff-attendance/1",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/staff-attendance",
+            "step": "delete",
+            "method": "-",
+            "path": "-",
+            "status": 0,
+            "ok": false,
+            "note": "no DELETE route registered"
+        },
+        {
+            "resource": "school-workspace/courses",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/school-workspace/courses",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/courses",
+            "step": "read",
+            "method": "GET",
+            "path": "/control/school-workspace/courses",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/courses",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/school-workspace/courses/13",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/courses",
+            "step": "status",
+            "method": "PUT",
+            "path": "/control/school-workspace/courses/13",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/courses",
+            "step": "delete",
+            "method": "-",
+            "path": "-",
+            "status": 0,
+            "ok": false,
+            "note": "no DELETE route registered"
+        },
+        {
+            "resource": "school-workspace/lessons",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/school-workspace/lessons",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/lessons",
+            "step": "read",
+            "method": "GET",
+            "path": "/control/school-workspace/lessons",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/lessons",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/school-workspace/lessons/1",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/lessons",
+            "step": "status",
+            "method": "PUT",
+            "path": "/control/school-workspace/lessons/1",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/lessons",
+            "step": "delete",
+            "method": "DELETE",
+            "path": "/control/school-workspace/lessons/1",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/courses",
+            "step": "delete",
+            "method": "DELETE",
+            "path": "/control/school-workspace/courses/13",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/resources",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/school-workspace/resources",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/resources",
+            "step": "read",
+            "method": "GET",
+            "path": "/control/school-workspace/resources",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/resources",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/school-workspace/resources/1",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/resources",
+            "step": "status",
+            "method": "PUT",
+            "path": "/control/school-workspace/resources/1",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/resources",
+            "step": "delete",
+            "method": "DELETE",
+            "path": "/control/school-workspace/resources/1",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/assignments",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/school-workspace/assignments",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/assignments",
+            "step": "read",
+            "method": "GET",
+            "path": "/control/school-workspace/assignments",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/assignments",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/school-workspace/assignments/254",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/assignments",
+            "step": "status",
+            "method": "PUT",
+            "path": "/control/school-workspace/assignments/254",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/assignments",
+            "step": "delete",
+            "method": "DELETE",
+            "path": "/control/school-workspace/assignments/254",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/homework",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/school-workspace/homework",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/homework",
+            "step": "read",
+            "method": "GET",
+            "path": "/control/school-workspace/homework",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/homework",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/school-workspace/homework/255",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/homework",
+            "step": "status",
+            "method": "PUT",
+            "path": "/control/school-workspace/homework/255",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/homework",
+            "step": "delete",
+            "method": "DELETE",
+            "path": "/control/school-workspace/homework/255",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/questions",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/school-workspace/questions",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/questions",
+            "step": "read",
+            "method": "GET",
+            "path": "/control/school-workspace/questions",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/questions",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/school-workspace/questions/1",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/questions",
+            "step": "status",
+            "method": "PUT",
+            "path": "/control/school-workspace/questions/1",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/questions",
+            "step": "delete",
+            "method": "DELETE",
+            "path": "/control/school-workspace/questions/1",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/quizzes",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/school-workspace/quizzes",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/quizzes",
+            "step": "read",
+            "method": "GET",
+            "path": "/control/school-workspace/quizzes",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/quizzes",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/school-workspace/quizzes/172",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/quizzes",
+            "step": "status",
+            "method": "PUT",
+            "path": "/control/school-workspace/quizzes/172",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/quizzes",
+            "step": "delete",
+            "method": "DELETE",
+            "path": "/control/school-workspace/quizzes/172",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/exams",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/school-workspace/exams",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/exams",
+            "step": "read",
+            "method": "GET",
+            "path": "/control/school-workspace/exams",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/exams",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/school-workspace/exams/173",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/exams",
+            "step": "status",
+            "method": "PUT",
+            "path": "/control/school-workspace/exams/173",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/exams",
+            "step": "delete",
+            "method": "DELETE",
+            "path": "/control/school-workspace/exams/173",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/tutoring/tutors",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/school-workspace/tutoring/tutors",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/tutoring/bookings",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/school-workspace/tutoring/bookings",
+            "status": 500,
+            "ok": false,
+            "note": "SQLSTATE[HY000]: General error: 1364 Field 'language' doesn't have a default value (Connection: mysql, Host: 127.0.0.1, Port: 3306, Database: learning_platform, SQL: insert into `tutoring_sessions` (`tenant_id`, `school_id`, `tutor_profile_id`, `subject_id`, `starts_at`, `ends_at`, `status`, `meetin"
+        },
+        {
+            "resource": "school-workspace/tutoring/timetable",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/school-workspace/tutoring/timetable",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/tutoring/timetable",
+            "step": "read",
+            "method": "GET",
+            "path": "/control/school-workspace/tutoring/timetable",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/tutoring/timetable",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/school-workspace/tutoring/timetable/1",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/tutoring/timetable",
+            "step": "status",
+            "method": "PUT",
+            "path": "/control/school-workspace/tutoring/timetable/1",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/tutoring/timetable",
+            "step": "delete",
+            "method": "DELETE",
+            "path": "/control/school-workspace/tutoring/timetable/1",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/finance/fees",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/school-workspace/finance/fees",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/finance/fees",
+            "step": "read",
+            "method": "GET",
+            "path": "/control/school-workspace/finance/fees",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/finance/fees",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/school-workspace/finance/fees/13",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/finance/fees",
+            "step": "status",
+            "method": "PUT",
+            "path": "/control/school-workspace/finance/fees/13",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/finance/fees",
+            "step": "delete",
+            "method": "-",
+            "path": "-",
+            "status": 0,
+            "ok": false,
+            "note": "no DELETE route registered"
+        },
+        {
+            "resource": "school-workspace/finance/tutor-payments",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/school-workspace/finance/tutor-payments",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/finance/tutor-payments",
+            "step": "read",
+            "method": "GET",
+            "path": "/control/school-workspace/finance/tutor-payments",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/finance/tutor-payments",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/school-workspace/finance/tutor-payments/1",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/finance/tutor-payments",
+            "step": "status",
+            "method": "PUT",
+            "path": "/control/school-workspace/finance/tutor-payments/1",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/finance/tutor-payments",
+            "step": "delete",
+            "method": "-",
+            "path": "-",
+            "status": 0,
+            "ok": false,
+            "note": "no DELETE route registered"
+        },
+        {
+            "resource": "school-workspace/finance/expenses",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/school-workspace/finance/expenses",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/finance/expenses",
+            "step": "read",
+            "method": "GET",
+            "path": "/control/school-workspace/finance/expenses",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/finance/expenses",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/school-workspace/finance/expenses/1",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/finance/expenses",
+            "step": "status",
+            "method": "PUT",
+            "path": "/control/school-workspace/finance/expenses/1",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/finance/expenses",
+            "step": "delete",
+            "method": "DELETE",
+            "path": "/control/school-workspace/finance/expenses/1",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/notifications",
+            "step": "create",
+            "method": "POST",
+            "path": "/control/school-workspace/notifications",
+            "status": 201,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/notifications",
+            "step": "read",
+            "method": "GET",
+            "path": "/control/school-workspace/notifications",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/notifications",
+            "step": "status",
+            "method": "POST",
+            "path": "/control/school-workspace/notifications/13/send",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/notifications",
+            "step": "delete",
+            "method": "-",
+            "path": "-",
+            "status": 0,
+            "ok": false,
+            "note": "no DELETE route registered"
+        },
+        {
+            "resource": "school-workspace/settings/organisation",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/school-workspace/settings/organisation",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/settings/organisation",
+            "step": "restore",
+            "method": "PUT",
+            "path": "/control/school-workspace/settings/organisation",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/settings/branding",
+            "step": "update",
+            "method": "PUT",
+            "path": "/control/school-workspace/settings/branding",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "school-workspace/settings/branding",
+            "step": "restore",
+            "method": "PUT",
+            "path": "/control/school-workspace/settings/branding",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "AUTHZ countries",
+            "step": "owner-denied",
+            "method": "POST",
+            "path": "/control/countries",
+            "status": 201,
+            "ok": false,
+            "note": "expected 401/403, got 201 Country created."
+        },
+        {
+            "resource": "AUTHZ billing/plans",
+            "step": "owner-denied",
+            "method": "POST",
+            "path": "/control/billing/plans",
+            "status": 403,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "AUTHZ platform-users",
+            "step": "owner-denied",
+            "method": "POST",
+            "path": "/control/platform-users",
+            "status": 403,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "AUTHZ tenant-groups",
+            "step": "owner-denied",
+            "method": "POST",
+            "path": "/control/tenant-groups",
+            "status": 403,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "AUTHZ integrations",
+            "step": "owner-denied",
+            "method": "POST",
+            "path": "/control/integrations/payment",
+            "status": 403,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "AUTHZ settings",
+            "step": "owner-denied",
+            "method": "PUT",
+            "path": "/control/settings/global",
+            "status": 403,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "VALIDATION countries",
+            "step": "empty-payload",
+            "method": "POST",
+            "path": "/control/countries",
+            "status": 422,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "VALIDATION billing/plans",
+            "step": "empty-payload",
+            "method": "POST",
+            "path": "/control/billing/plans",
+            "status": 422,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "VALIDATION school-ops/classes",
+            "step": "empty-payload",
+            "method": "POST",
+            "path": "/control/school-ops/classes",
+            "status": 422,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "VALIDATION school-workspace/courses",
+            "step": "empty-payload",
+            "method": "POST",
+            "path": "/control/school-workspace/courses",
+            "status": 422,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "NOTFOUND countries",
+            "step": "missing-id",
+            "method": "PUT",
+            "path": "/control/countries/99999999",
+            "status": 404,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "NOTFOUND billing/plans",
+            "step": "missing-id",
+            "method": "DELETE",
+            "path": "/control/billing/plans/99999999",
+            "status": 404,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "NOTFOUND school-ops/classes",
+            "step": "missing-id",
+            "method": "PUT",
+            "path": "/control/school-ops/classes/99999999",
+            "status": 404,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "NOTFOUND school-workspace/courses",
+            "step": "missing-id",
+            "method": "DELETE",
+            "path": "/control/school-workspace/courses/99999999",
+            "status": 404,
+            "ok": true,
+            "note": ""
+        },
+        {
+            "resource": "tenants",
+            "step": "delete",
+            "method": "DELETE",
+            "path": "/control/tenants/15",
+            "status": 200,
+            "ok": true,
+            "note": ""
+        }
+    ],
+    "findings": [
+        {
+            "severity": "CHECK",
+            "resource": "chapters",
+            "method": "POST",
+            "path": "/control/chapters",
+            "payload": {
+                "school_id": 9,
+                "curriculum_id": null,
+                "subject_id": null,
+                "grade_id": null,
+                "title_en": "QA Chapter ZZQA56723",
+                "sequence": 99,
+                "status": "draft"
+            },
+            "status": 422,
+            "body": "{\"message\":\"The curriculum id field is required. (and 2 more errors)\",\"errors\":{\"curriculum_id\":[\"The curriculum id field is required.\"],\"subject_id\":[\"The subject id field is required.\"],\"grade_id\":[\"The grade id field is required.\"]}}",
+            "why": "CREATE rejected with 422 - verify whether the payload is genuinely invalid"
+        },
+        {
+            "severity": "CHECK",
+            "resource": "lessons",
+            "method": "POST",
+            "path": "/control/lessons",
+            "payload": {
+                "school_id": 9,
+                "curriculum_id": null,
+                "chapter_id": null,
+                "title_en": "QA Lesson ZZQA56723",
+                "sequence": 99,
+                "difficulty": "easy",
+                "status": "draft"
+            },
+            "status": 422,
+            "body": "{\"message\":\"The curriculum id field is required. (and 1 more error)\",\"errors\":{\"curriculum_id\":[\"The curriculum id field is required.\"],\"chapter_id\":[\"The chapter id field is required.\"]}}",
+            "why": "CREATE rejected with 422 - verify whether the payload is genuinely invalid"
+        },
+        {
+            "severity": "CHECK",
+            "resource": "learning-outcomes",
+            "method": "POST",
+            "path": "/control/learning-outcomes",
+            "payload": {
+                "school_id": 9,
+                "curriculum_id": null,
+                "subject_id": null,
+                "code": "ZZQA-LO-ZZQA56723",
+                "statement_en": "QA outcome ZZQA56723",
+                "status": "active"
+            },
+            "status": 422,
+            "body": "{\"message\":\"The curriculum id field is required.\",\"errors\":{\"curriculum_id\":[\"The curriculum id field is required.\"]}}",
+            "why": "CREATE rejected with 422 - verify whether the payload is genuinely invalid"
+        },
+        {
+            "severity": "MED",
+            "resource": "subscriptions",
+            "method": "POST",
+            "path": "/control/subscriptions/14/cancel",
+            "payload": null,
+            "status": 422,
+            "body": "{\"message\":\"Only active subscriptions can be cancelled.\",\"errors\":{\"subscription\":[\"Only active subscriptions can be cancelled.\"]}}",
+            "why": "status(cancel) returned unexpected 422"
+        },
+        {
+            "severity": "MED",
+            "resource": "school-ops/teachers",
+            "method": "POST",
+            "path": "/control/school-ops/teachers",
+            "payload": {
+                "email": "zzqa.teacher.ZZQA56723@qa.local",
+                "password": "ZzQa!2345678",
+                "first_name": "QAZZQA56723",
+                "last_name": "Teacher"
+            },
+            "status": 201,
+            "body": "{\"message\":\"Teacher created.\",\"data\":{\"user_id\":197,\"email\":\"zzqa.teacher.zzqa56723@qa.local\",\"first_name\":\"QAZZQA56723\",\"last_name\":\"Teacher\",\"status\":\"active\"}}",
+            "why": "CREATE succeeded but response contains no id at data.id"
+        },
+        {
+            "severity": "MED",
+            "resource": "school-ops/students",
+            "method": "POST",
+            "path": "/control/school-ops/students",
+            "payload": {
+                "email": "zzqa.student.ZZQA56723@qa.local",
+                "password": "ZzQa!2345678",
+                "first_name": "QAZZQA56723",
+                "last_name": "Student",
+                "academic_year_id": 1,
+                "class_section_id": 1,
+                "grade_id": 1,
+                "status": "active"
+            },
+            "status": 201,
+            "body": "{\"message\":\"Student enrollment created.\",\"data\":{\"user_id\":198,\"enrollment_id\":149,\"status\":\"active\",\"enrolled_on\":\"2026-07-31\",\"email\":\"zzqa.student.zzqa56723@qa.local\",\"first_name\":\"QAZZQA56723\",\"last_name\":\"Student\",\"grade\":{\"id\":1,\"code\":\"G01\",\"name_en\":\"Grade 1\"},\"class_section\":{\"id\":1,\"name\":\"A\"},\"academic_year\":{\"id\":1,\"name\":\"2025-2026\"},\"phone\":null,\"user_status\":\"active\"}}",
+            "why": "CREATE succeeded but response contains no id at data.id"
+        },
+        {
+            "severity": "MED",
+            "resource": "school-ops/parents",
+            "method": "POST",
+            "path": "/control/school-ops/parents",
+            "payload": {
+                "email": "zzqa.parent.ZZQA56723@qa.local",
+                "password": "ZzQa!2345678",
+                "first_name": "QAZZQA56723",
+                "last_name": "Parent",
+                "student_user_id": 198,
+                "relationship": "father",
+                "is_primary": true
+            },
+            "status": 201,
+            "body": "{\"message\":\"Parent created.\",\"data\":{\"user_id\":199,\"email\":\"zzqa.parent.zzqa56723@qa.local\",\"first_name\":\"QAZZQA56723\",\"last_name\":\"Parent\",\"status\":\"active\",\"phone\":null}}",
+            "why": "CREATE succeeded but response contains no id at data.id"
+        },
+        {
+            "severity": "MED",
+            "resource": "school-ops/transfers",
+            "method": "POST",
+            "path": "/control/school-ops/transfers",
+            "payload": {
+                "student_user_id": 198,
+                "class_section_id": 1,
+                "grade_id": 1,
+                "academic_year_id": 1
+            },
+            "status": 201,
+            "body": "{\"message\":\"Transfer recorded.\",\"data\":{\"user_id\":198,\"enrollment_id\":149,\"status\":\"transfer\",\"enrolled_on\":\"2026-07-31\",\"email\":\"zzqa.student.zzqa56723@qa.local\",\"first_name\":\"QAZZQA56723\",\"last_name\":\"Student\",\"grade\":{\"id\":1,\"code\":\"G01\",\"name_en\":\"Grade 1\"},\"class_section\":{\"id\":1,\"name\":\"A\"},\"academic_year\":{\"id\":1,\"name\":\"2025-2026\"},\"phone\":null,\"user_status\":\"active\"}}",
+            "why": "CREATE succeeded but response contains no id at data.id"
+        },
+        {
+            "severity": "MED",
+            "resource": "school-workspace/staff",
+            "method": "POST",
+            "path": "/control/school-workspace/staff",
+            "payload": {
+                "email": "zzqa.staff.ZZQA56723@qa.local",
+                "password": "ZzQa!2345678",
+                "first_name": "QAZZQA56723",
+                "last_name": "Staff",
+                "status": "active"
+            },
+            "status": 201,
+            "body": "{\"message\":\"Employee created.\",\"data\":{\"user_id\":200,\"email\":\"zzqa.staff.zzqa56723@qa.local\",\"first_name\":\"QAZZQA56723\",\"last_name\":\"Staff\",\"role\":\"school_admin\",\"status\":\"active\"}}",
+            "why": "CREATE succeeded but response contains no id at data.id"
+        },
+        {
+            "severity": "MED",
+            "resource": "school-workspace/tutoring/tutors",
+            "method": "POST",
+            "path": "/control/school-workspace/tutoring/tutors",
+            "payload": {
+                "email": "zzqa.wstutor.ZZQA56723@qa.local",
+                "password": "ZzQa!2345678",
+                "first_name": "QAZZQA56723",
+                "last_name": "WsTutor",
+                "hourly_rate": 50,
+                "status": "active"
+            },
+            "status": 201,
+            "body": "{\"message\":\"Tutor created.\",\"data\":{\"user_id\":201,\"email\":\"zzqa.wstutor.zzqa56723@qa.local\",\"first_name\":\"QAZZQA56723\",\"last_name\":\"WsTutor\",\"hourly_rate\":50,\"status\":\"active\"}}",
+            "why": "CREATE succeeded but response contains no id at data.id"
+        },
+        {
+            "severity": "HIGH",
+            "resource": "school-workspace/tutoring/bookings",
+            "method": "POST",
+            "path": "/control/school-workspace/tutoring/bookings",
+            "payload": {
+                "tutor_user_id": 201,
+                "student_user_id": 198,
+                "starts_at": "2026-08-03 13:15:02",
+                "ends_at": "2026-08-03 14:15:02",
+                "subject_id": 9,
+                "status": "scheduled"
+            },
+            "status": 500,
+            "body": "{     \"message\": \"SQLSTATE[HY000]: General error: 1364 Field 'language' doesn't have a default value (Connection: mysql, Host: 127.0.0.1, Port: 3306, Database: learning_platform, SQL: insert into `tutoring_sessions` (`tenant_id`, `school_id`, `tutor_profile_id`, `subject_id`, `starts_at`, `ends_at`, `status`, `meeting_external_id`, `created_by`, `updated_by`, `updated_at`, `created_at`) values (2, 1, 15, 9, 2026-08-03 13:15:02, 2026-08-03 14:15:02, scheduled, student:198, 4, 4, 2026-07-31 11:15:02, 2026-07-31 11:15:02))\",     \"exception\": \"Illuminate\\\\Database\\\\QueryException\",     \"file\": \"C:\\\\xampp\\\\htdocs\\\\learning_platform\\\\backend\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Database\\\\Connection.php\",     \"line\": 838,     \"trace\": [         {             \"file\": \"C:\\\\xampp\\\\htdocs\\\\learning_platform\\\\backend\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Database\\\\Connection.php\",  ",
+            "why": "CREATE returned 500 for a payload built from the controller validation rules"
+        },
+        {
+            "severity": "HIGH",
+            "resource": "AUTHZ countries",
+            "method": "POST",
+            "path": "/control/countries",
+            "payload": {
+                "code": "ZY",
+                "name_en": "Should Fail"
+            },
+            "status": 201,
+            "body": "{\"message\":\"Country created.\",\"data\":{\"id\":14,\"code\":\"ZY\",\"name_en\":\"Should Fail\",\"name_ar\":\"Should Fail\",\"default_locale\":\"en\",\"default_timezone\":\"UTC\",\"is_active\":true,\"status\":\"active\",\"usage\":{\"curricula\":0,\"schools\":0,\"tenants\":0},\"created_at\":\"2026-07-31T11:15:06+00:00\",\"updated_at\":\"2026-07-31T11:15:06+00:00\",\"curricula\":[]}}",
+            "why": "school_owner (tenant-scoped) was allowed to write a platform-scoped resource"
+        },
+        {
+            "severity": "MED",
+            "resource": "NOTFOUND countries",
+            "method": "PUT",
+            "path": "/control/countries/99999999",
+            "payload": {
+                "name_en": "x"
+            },
+            "status": 404,
+            "body": "{     \"message\": \"No query results for model [App\\\\Domain\\\\Organization\\\\Models\\\\Country] 99999999\",     \"exception\": \"Symfony\\\\Component\\\\HttpKernel\\\\Exception\\\\NotFoundHttpException\",     \"file\": \"C:\\\\xampp\\\\htdocs\\\\learning_platform\\\\backend\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Exceptions\\\\Handler.php\",     \"line\": 668,     \"trace\": [         {             \"file\": \"C:\\\\xampp\\\\htdocs\\\\learning_platform\\\\backend\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Exceptions\\\\Handler.php\",             \"line\": 616,             \"function\": \"prepareException\",             \"class\": \"Illuminate\\\\Foundation\\\\Exceptions\\\\Handler\",             \"type\": \"->\"         },         {             \"file\": \"C:\\\\xampp\\\\htdocs\\\\learning_platform\\\\backend\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Pipeline.php\",             \"line\": 51,             \"function\": \"render\", ",
+            "why": "Error response leaks internal detail (App\\\\Domain)"
+        },
+        {
+            "severity": "MED",
+            "resource": "NOTFOUND billing/plans",
+            "method": "DELETE",
+            "path": "/control/billing/plans/99999999",
+            "payload": null,
+            "status": 404,
+            "body": "{     \"message\": \"No query results for model [App\\\\Domain\\\\Billing\\\\Models\\\\SubscriptionPlan] 99999999\",     \"exception\": \"Symfony\\\\Component\\\\HttpKernel\\\\Exception\\\\NotFoundHttpException\",     \"file\": \"C:\\\\xampp\\\\htdocs\\\\learning_platform\\\\backend\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Exceptions\\\\Handler.php\",     \"line\": 668,     \"trace\": [         {             \"file\": \"C:\\\\xampp\\\\htdocs\\\\learning_platform\\\\backend\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Exceptions\\\\Handler.php\",             \"line\": 616,             \"function\": \"prepareException\",             \"class\": \"Illuminate\\\\Foundation\\\\Exceptions\\\\Handler\",             \"type\": \"->\"         },         {             \"file\": \"C:\\\\xampp\\\\htdocs\\\\learning_platform\\\\backend\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Pipeline.php\",             \"line\": 51,             \"function\": \"rende",
+            "why": "Error response leaks internal detail (App\\\\Domain)"
+        },
+        {
+            "severity": "MED",
+            "resource": "NOTFOUND school-ops/classes",
+            "method": "PUT",
+            "path": "/control/school-ops/classes/99999999",
+            "payload": {
+                "name_en": "x"
+            },
+            "status": 404,
+            "body": "{     \"message\": \"No query results for model [App\\\\Domain\\\\Academics\\\\Models\\\\SchoolClass] 99999999\",     \"exception\": \"Symfony\\\\Component\\\\HttpKernel\\\\Exception\\\\NotFoundHttpException\",     \"file\": \"C:\\\\xampp\\\\htdocs\\\\learning_platform\\\\backend\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Exceptions\\\\Handler.php\",     \"line\": 668,     \"trace\": [         {             \"file\": \"C:\\\\xampp\\\\htdocs\\\\learning_platform\\\\backend\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Exceptions\\\\Handler.php\",             \"line\": 616,             \"function\": \"prepareException\",             \"class\": \"Illuminate\\\\Foundation\\\\Exceptions\\\\Handler\",             \"type\": \"->\"         },         {             \"file\": \"C:\\\\xampp\\\\htdocs\\\\learning_platform\\\\backend\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Pipeline.php\",             \"line\": 51,             \"function\": \"render\",",
+            "why": "Error response leaks internal detail (App\\\\Domain)"
+        },
+        {
+            "severity": "MED",
+            "resource": "NOTFOUND school-workspace/courses",
+            "method": "DELETE",
+            "path": "/control/school-workspace/courses/99999999",
+            "payload": null,
+            "status": 404,
+            "body": "{     \"message\": \"No query results for model [App\\\\Domain\\\\Learning\\\\Models\\\\SchoolCourse].\",     \"exception\": \"Symfony\\\\Component\\\\HttpKernel\\\\Exception\\\\NotFoundHttpException\",     \"file\": \"C:\\\\xampp\\\\htdocs\\\\learning_platform\\\\backend\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Exceptions\\\\Handler.php\",     \"line\": 668,     \"trace\": [         {             \"file\": \"C:\\\\xampp\\\\htdocs\\\\learning_platform\\\\backend\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Exceptions\\\\Handler.php\",             \"line\": 616,             \"function\": \"prepareException\",             \"class\": \"Illuminate\\\\Foundation\\\\Exceptions\\\\Handler\",             \"type\": \"->\"         },         {             \"file\": \"C:\\\\xampp\\\\htdocs\\\\learning_platform\\\\backend\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Pipeline.php\",             \"line\": 51,             \"function\": \"render\",        ",
+            "why": "Error response leaks internal detail (App\\\\Domain)"
+        }
+    ],
+    "leftovers": [
+        {
+            "what": "curricula",
+            "id": 2,
+            "why": "DELETE blocked with 422: Published curricula cannot be deleted. Supersede them with a new version instead. | {\"curriculum\":[\"Published curricula cannot be deleted. Supersede them with a"
+        },
+        {
+            "what": "tenants",
+            "id": 15,
+            "why": "no DELETE endpoint exists for this resource"
+        },
+        {
+            "what": "billing/invoices",
+            "id": 13,
+            "why": "no DELETE endpoint (invoice belongs to the QA tenant 15)"
+        },
+        {
+            "what": "billing/invoices",
+            "id": 14,
+            "why": "no DELETE endpoint (invoice belongs to the QA tenant 15)"
+        },
+        {
+            "what": "school-ops/academic-years",
+            "id": 2,
+            "why": "no DELETE endpoint exists for this resource"
+        },
+        {
+            "what": "school-ops/terms",
+            "id": 4,
+            "why": "no DELETE endpoint exists for this resource"
+        },
+        {
+            "what": "school-ops/tutors",
+            "id": 14,
+            "why": "no DELETE endpoint exists for this resource"
+        },
+        {
+            "what": "school-workspace/staff-attendance",
+            "id": 1,
+            "why": "no DELETE endpoint exists for this resource"
+        },
+        {
+            "what": "school-workspace/courses",
+            "id": 13,
+            "why": "no DELETE endpoint exists for this resource"
+        },
+        {
+            "what": "school-workspace/finance/fees",
+            "id": 13,
+            "why": "no DELETE endpoint exists for this resource"
+        },
+        {
+            "what": "school-workspace/finance/tutor-payments",
+            "id": 1,
+            "why": "no DELETE endpoint exists for this resource"
+        },
+        {
+            "what": "school-workspace/notifications",
+            "id": 13,
+            "why": "no DELETE endpoint exists for this resource"
+        },
+        {
+            "what": "countries (created by unauthorised owner)",
+            "id": 14,
+            "why": "created during authorisation probe"
+        }
+    ]
+}

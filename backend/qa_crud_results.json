@@ -1,0 +1,1625 @@
+{
+    "marker": "ZZQA3592",
+    "results": {
+        "teacher.lesson_plans": [
+            {
+                "step": "CREATE",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/lesson-plans",
+                "status": 201,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "READ list",
+                "method": "GET",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/lesson-plans?search=ZZQA3592",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "READ round-trip",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "title/objectives/duration match"
+            },
+            {
+                "step": "UPDATE",
+                "method": "PUT",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/lesson-plans/203",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "UPDATE persisted",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "title+duration changed"
+            },
+            {
+                "step": "STATUS change (draft->published)",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "status=published"
+            },
+            {
+                "step": "DUPLICATE",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/lesson-plans/203/duplicate",
+                "status": 201,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "SCOPING other teacher UPDATE",
+                "method": "PUT",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/lesson-plans/203",
+                "status": 404,
+                "ok": true,
+                "detail": "No query results for model [App\\Domain\\Learning\\Models\\LessonPlan] 203"
+            },
+            {
+                "step": "SCOPING other teacher DELETE",
+                "method": "DELETE",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/lesson-plans/203",
+                "status": 404,
+                "ok": true,
+                "detail": "No query results for model [App\\Domain\\Learning\\Models\\LessonPlan] 203"
+            },
+            {
+                "step": "DELETE (copy)",
+                "method": "DELETE",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/lesson-plans/204",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "DELETE",
+                "method": "DELETE",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/lesson-plans/203",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "DELETE verified gone",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "remaining rows with marker: 0"
+            }
+        ],
+        "teacher.resources": [
+            {
+                "step": "CREATE",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/resources",
+                "status": 201,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "READ list",
+                "method": "GET",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/resources?search=ZZQA3592",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "READ round-trip",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "title/url match"
+            },
+            {
+                "step": "UPDATE",
+                "method": "PUT",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/resources/29",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "UPDATE persisted",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "title+type changed"
+            },
+            {
+                "step": "VALIDATION no url/path",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/resources",
+                "status": 422,
+                "ok": true,
+                "detail": "Provide either a link or a file path for the resource."
+            },
+            {
+                "step": "DELETE",
+                "method": "DELETE",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/resources/29",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "DELETE verified gone",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "remaining: 0"
+            }
+        ],
+        "teacher.messages": [
+            {
+                "step": "READ recipients",
+                "method": "GET",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/messages/recipients",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "CREATE",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/messages",
+                "status": 201,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "READ list",
+                "method": "GET",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/messages?box=inbox&search=ZZQA3592",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "READ round-trip",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "subject/category match"
+            },
+            {
+                "step": "STATUS mark read",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/messages/18/read",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "STATUS persisted",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "read_at=\"2026-07-31T11:22:30+00:00\""
+            },
+            {
+                "step": "STATUS mark-all read",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/messages/read-all",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "DELETE",
+                "method": "DELETE",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/messages/18",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "DELETE verified gone",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            }
+        ],
+        "teacher.homework": [
+            {
+                "step": "CREATE",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/assignments",
+                "status": 201,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "READ list",
+                "method": "GET",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/assignments?kind=homework&search=ZZQA3592",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "READ round-trip",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "title/max_score match"
+            },
+            {
+                "step": "UPDATE",
+                "method": "PUT",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/assignments/263",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "UPDATE persisted",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "title+max_score changed"
+            },
+            {
+                "step": "DELETE",
+                "method": "DELETE",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/assignments/263",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "DELETE verified gone",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "remaining: 0"
+            }
+        ],
+        "learner.homework_submission": [
+            {
+                "step": "CREATE submit",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/learner/homework/263/submit",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "READ back (teacher)",
+                "method": "GET",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/assignments/263/submissions",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "READ round-trip",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "body matches"
+            },
+            {
+                "step": "UPDATE resubmit",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/learner/homework/263/submit",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "UPDATE persisted",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "body=\"ZZQA3592 my answer v2\""
+            },
+            {
+                "step": "STATUS grade",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/assignments/263/submissions/2402/grade",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "STATUS persisted",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "score=18 status=\"graded\""
+            },
+            {
+                "step": "DELETE cascade (parent removed)",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "HTTP 404"
+            }
+        ],
+        "teacher.workspace_homework": [
+            {
+                "step": "CREATE",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/homework",
+                "status": 201,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "READ back",
+                "method": "GET",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/assignments?kind=homework&search=ZZQA3592",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "READ round-trip",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "status=draft"
+            },
+            {
+                "step": "GUARD submit to draft blocked",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/learner/homework/264/submit",
+                "status": 404,
+                "ok": true,
+                "detail": "No query results for model [App\\Domain\\Learning\\Models\\HomeworkAssignment] 264"
+            },
+            {
+                "step": "DELETE",
+                "method": "DELETE",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/assignments/264",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "DELETE verified gone",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            }
+        ],
+        "teacher.assignments": [
+            {
+                "step": "CREATE",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/assignments",
+                "status": 201,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "READ list",
+                "method": "GET",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/assignments?kind=assignment&search=ZZQA3592",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "READ round-trip",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "status=draft"
+            },
+            {
+                "step": "STATUS draft->published",
+                "method": "PUT",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/assignments/265",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "STATUS persisted",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "\"published\""
+            },
+            {
+                "step": "DELETE",
+                "method": "DELETE",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/assignments/265",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "DELETE verified gone",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            }
+        ],
+        "teacher.quizzes": [
+            {
+                "step": "CREATE",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/assessments",
+                "status": 201,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "READ list",
+                "method": "GET",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/assessments?type=quiz&search=ZZQA3592",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "READ round-trip",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "title/attempts/limit match"
+            },
+            {
+                "step": "UPDATE",
+                "method": "PUT",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/assessments/180",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "UPDATE persisted",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "ok"
+            },
+            {
+                "step": "STATUS publish",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/assessments/180/publish",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "STATUS = published",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "status=published"
+            },
+            {
+                "step": "STATUS unpublish (toggle)",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/assessments/180/publish",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "STATUS toggled back to draft",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "status=draft"
+            },
+            {
+                "step": "STATUS republish",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/assessments/180/publish",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "DELETE",
+                "method": "DELETE",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/assessments/180",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "DELETE verified gone",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "remaining: 0"
+            }
+        ],
+        "learner.quiz_attempt": [
+            {
+                "step": "CREATE start attempt",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/learner/assessments/180/start",
+                "status": 201,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "STATUS submit attempt",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/learner/attempts/708/submit",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "READ results",
+                "method": "GET",
+                "url": "http://127.0.0.1:8000/api/v1/learner/results",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "SCOPING other user attempt",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/learner/attempts/708/submit",
+                "status": 403,
+                "ok": true,
+                "detail": "Missing permission: assessments.attempt"
+            }
+        ],
+        "teacher.exams": [
+            {
+                "step": "CREATE",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/assessments",
+                "status": 201,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "READ list",
+                "method": "GET",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/assessments?type=exam&search=ZZQA3592",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "READ round-trip",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "ok"
+            },
+            {
+                "step": "UPDATE",
+                "method": "PUT",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/assessments/181",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "UPDATE persisted",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "5400"
+            },
+            {
+                "step": "STATUS publish",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/assessments/181/publish",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "DELETE",
+                "method": "DELETE",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/assessments/181",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "DELETE verified gone",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "VALIDATION until<from",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/assessments",
+                "status": 422,
+                "ok": true,
+                "detail": "The available until field must be a date after available from. {\"available_until\":[\"The available until field must be a date after available from.\"]}"
+            }
+        ],
+        "teacher.attendance": [
+            {
+                "step": "READ roster",
+                "method": "GET",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/attendance?class_section_id=1&date=2019-09-03",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "baseline date is empty",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "pre-existing marks on 2019-09-03: 0"
+            },
+            {
+                "step": "CREATE marks",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/attendance",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "READ round-trip",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "all marks persisted with correct status"
+            },
+            {
+                "step": "UPDATE (re-mark)",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/attendance",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "UPDATE persisted",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "status=excused"
+            },
+            {
+                "step": "VALIDATION bad status",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/attendance",
+                "status": 422,
+                "ok": true,
+                "detail": "The selected entries.0.status is invalid. {\"entries.0.status\":[\"The selected entries.0.status is invalid.\"]}"
+            },
+            {
+                "step": "DELETE",
+                "method": "CHECK",
+                "url": "",
+                "status": 0,
+                "ok": false,
+                "detail": "no DELETE endpoint exists for attendance marks — cleaned up via DB"
+            }
+        ],
+        "teacher.profile": [
+            {
+                "step": "READ",
+                "method": "GET",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/profile",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "UPDATE",
+                "method": "PUT",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/profile",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "UPDATE persisted",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "phone=\"+9715ZZQA3592\""
+            },
+            {
+                "step": "RESTORE original",
+                "method": "PUT",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/profile",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "RESTORE verified",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "phone=\"+966500112233\""
+            }
+        ],
+        "teacher.readonly": [
+            {
+                "step": "grade book",
+                "method": "GET",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/grade-book?class_section_id=1",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "class progress",
+                "method": "GET",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/class-progress?class_section_id=1",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "course content",
+                "method": "GET",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/course-content",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "workspace",
+                "method": "GET",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/workspace",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "AUTH anonymous write rejected",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/lesson-plans",
+                "status": 401,
+                "ok": true,
+                "detail": "Unauthenticated."
+            }
+        ],
+        "scoping": [
+            {
+                "step": "foreign-class assignment read",
+                "method": "GET",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/assignments/253/submissions",
+                "status": 200,
+                "ok": false,
+                "detail": "{\"data\":[{\"id\":2398,\"student_user_id\":45,\"student\":\"Student12 AlNoor\",\"submitted_at\":\"2026-07-22T08:12:44+00:00\",\"is_late\":false,\"score\":null,\"feedback\":null,\"s"
+            },
+            {
+                "step": "foreign-class assignment UPDATE",
+                "method": "PUT",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/assignments/266",
+                "status": 200,
+                "ok": false,
+                "detail": "Saved."
+            },
+            {
+                "step": "foreign-class assignment DELETE",
+                "method": "DELETE",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/assignments/266",
+                "status": 200,
+                "ok": false,
+                "detail": "Deleted."
+            },
+            {
+                "step": "attendance for unassigned section",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/attendance",
+                "status": 200,
+                "ok": false,
+                "detail": "Attendance saved."
+            }
+        ],
+        "tutor.profile": [
+            {
+                "step": "READ",
+                "method": "GET",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/profile",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "UPDATE",
+                "method": "PUT",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/profile",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "UPDATE persisted",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "phone/bio"
+            },
+            {
+                "step": "RESTORE original",
+                "method": "PUT",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/profile",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "RESTORE verified",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            }
+        ],
+        "tutor.availability": [
+            {
+                "step": "CREATE (workspace route)",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/availability",
+                "status": 201,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "READ back",
+                "method": "GET",
+                "url": "http://127.0.0.1:8000/api/v1/org/tutors/2/availability",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "READ round-trip",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "weekday=6"
+            },
+            {
+                "step": "CREATE exception",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/org/tutors/2/availability/exceptions",
+                "status": 201,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "VALIDATION end<start",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/availability",
+                "status": 422,
+                "ok": true,
+                "detail": "The end time field must be a date after start time. {\"end_time\":[\"The end time field must be a date after start time.\"]}"
+            },
+            {
+                "step": "DELETE",
+                "method": "CHECK",
+                "url": "",
+                "status": 0,
+                "ok": false,
+                "detail": "no DELETE endpoint for availability slots/exceptions — cleaned up via DB"
+            }
+        ],
+        "tutor.sessions": [
+            {
+                "step": "CREATE (book)",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/org/tutoring-sessions",
+                "status": 403,
+                "ok": true,
+                "detail": "Missing permission: tutoring.book"
+            },
+            {
+                "step": "CREATE (book as admin)",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/org/tutoring-sessions",
+                "status": 201,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "READ back",
+                "method": "GET",
+                "url": "http://127.0.0.1:8000/api/v1/org/tutoring-sessions/17",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "READ round-trip",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "tutor/language match"
+            },
+            {
+                "step": "STATUS notes",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/org/tutoring-sessions/17/notes",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "STATUS mark attendance",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/org/tutoring-sessions/17/attendance",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "STATUS cancel",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/org/tutoring-sessions/17/cancel",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "STATUS persisted",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "status=cancelled"
+            },
+            {
+                "step": "DELETE",
+                "method": "CHECK",
+                "url": "",
+                "status": 0,
+                "ok": false,
+                "detail": "no DELETE endpoint for tutoring sessions — cleaned up via DB"
+            }
+        ],
+        "tutor.session_notes": [
+            {
+                "step": "CREATE via portal",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/session-notes",
+                "status": 201,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "READ back",
+                "method": "GET",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/session-notes",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "READ round-trip",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "note listed"
+            },
+            {
+                "step": "UPDATE (upsert)",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/session-notes",
+                "status": 201,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "UPDATE persisted",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "DELETE",
+                "method": "CHECK",
+                "url": "",
+                "status": 0,
+                "ok": false,
+                "detail": "no DELETE endpoint for session notes — cleaned up via DB"
+            }
+        ],
+        "learner.session_rating": [
+            {
+                "step": "CREATE rate",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/learner/tutoring/sessions/17/rate",
+                "status": 422,
+                "ok": true,
+                "detail": "Only completed sessions can be rated. {\"session\":[\"Only completed sessions can be rated.\"]}"
+            },
+            {
+                "step": "READ my sessions",
+                "method": "GET",
+                "url": "http://127.0.0.1:8000/api/v1/learner/tutoring/sessions",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            }
+        ],
+        "tutor.readonly": [
+            {
+                "step": "students",
+                "method": "GET",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/students",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "earnings",
+                "method": "GET",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/earnings",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "notifications",
+                "method": "GET",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/notifications",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "STATUS mark read (idempotent)",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "skipped — no already-read notification available"
+            },
+            {
+                "step": "student-progress (missing param)",
+                "method": "GET",
+                "url": "http://127.0.0.1:8000/api/v1/org/teacher/student-progress",
+                "status": 422,
+                "ok": true,
+                "detail": "student_user_id is required."
+            }
+        ],
+        "student.profile": [
+            {
+                "step": "READ dashboard",
+                "method": "GET",
+                "url": "http://127.0.0.1:8000/api/v1/learner/student/dashboard",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "UPDATE",
+                "method": "PUT",
+                "url": "http://127.0.0.1:8000/api/v1/learner/student/profile",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "UPDATE persisted",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "phone=\"+9717ZZQA3592\""
+            },
+            {
+                "step": "RESTORE original",
+                "method": "PUT",
+                "url": "http://127.0.0.1:8000/api/v1/learner/student/profile",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "RESTORE verified",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "phone=\"+966543636515\""
+            }
+        ],
+        "student.messages": [
+            {
+                "step": "CREATE",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/learner/student/messages",
+                "status": 201,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "READ list",
+                "method": "GET",
+                "url": "http://127.0.0.1:8000/api/v1/learner/student/messages",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "READ round-trip",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "subject matches"
+            },
+            {
+                "step": "STATUS mark read",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/learner/student/messages/19/read",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "STATUS persisted",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "read_at=\"2026-07-31T11:22:42.000000Z\""
+            },
+            {
+                "step": "UPDATE",
+                "method": "CHECK",
+                "url": "",
+                "status": 0,
+                "ok": false,
+                "detail": "no update endpoint (by design)"
+            },
+            {
+                "step": "DELETE",
+                "method": "CHECK",
+                "url": "",
+                "status": 0,
+                "ok": false,
+                "detail": "no DELETE endpoint for learner messages — cleaned up via DB"
+            },
+            {
+                "step": "VALIDATION empty subject",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/learner/student/messages",
+                "status": 422,
+                "ok": true,
+                "detail": "The subject field is required. (and 1 more error) {\"subject\":[\"The subject field is required.\"],\"body\":[\"The body field is required.\"]}"
+            }
+        ],
+        "parent.profile": [
+            {
+                "step": "READ dashboard",
+                "method": "GET",
+                "url": "http://127.0.0.1:8000/api/v1/learner/parent/dashboard",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "UPDATE",
+                "method": "PUT",
+                "url": "http://127.0.0.1:8000/api/v1/learner/parent/profile",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "UPDATE persisted",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "phone=\"+9718ZZQA3592\""
+            },
+            {
+                "step": "RESTORE original",
+                "method": "PUT",
+                "url": "http://127.0.0.1:8000/api/v1/learner/parent/profile",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "RESTORE verified",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            }
+        ],
+        "parent.messages": [
+            {
+                "step": "CREATE",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/learner/parent/messages",
+                "status": 201,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "READ list",
+                "method": "GET",
+                "url": "http://127.0.0.1:8000/api/v1/learner/parent/messages",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "READ round-trip",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "subject matches"
+            },
+            {
+                "step": "STATUS mark read",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/learner/parent/messages/20/read",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "STATUS persisted",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "DELETE",
+                "method": "CHECK",
+                "url": "",
+                "status": 0,
+                "ok": false,
+                "detail": "no DELETE endpoint for learner messages — cleaned up via DB"
+            },
+            {
+                "step": "SCOPING other user message",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/learner/student/messages/20/read",
+                "status": 404,
+                "ok": true,
+                "detail": "No query results for model [App\\Domain\\Learning\\Models\\LearnerMessage] 20"
+            }
+        ],
+        "billing.invoices": [
+            {
+                "step": "RBAC teacher blocked",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/org/billing/invoices",
+                "status": 403,
+                "ok": true,
+                "detail": "Missing permission: tenant.billing.manage"
+            },
+            {
+                "step": "CREATE",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/org/billing/invoices",
+                "status": 201,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "READ list",
+                "method": "GET",
+                "url": "http://127.0.0.1:8000/api/v1/org/billing/invoices?per_page=50",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "READ round-trip",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "total=100"
+            },
+            {
+                "step": "STATUS send",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/org/billing/invoices/18/send",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "STATUS pay",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/org/billing/invoices/18/payments",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "STATUS persisted",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "status=paid"
+            },
+            {
+                "step": "DELETE",
+                "method": "CHECK",
+                "url": "",
+                "status": 0,
+                "ok": false,
+                "detail": "no DELETE endpoint for invoices — cleaned up via DB"
+            }
+        ],
+        "billing.student_invoices": [
+            {
+                "step": "CREATE",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/org/billing/student-invoices",
+                "status": 201,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "READ list",
+                "method": "GET",
+                "url": "http://127.0.0.1:8000/api/v1/org/billing/student-invoices?per_page=50",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "READ round-trip",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "total=75"
+            },
+            {
+                "step": "UPDATE",
+                "method": "CHECK",
+                "url": "",
+                "status": 0,
+                "ok": false,
+                "detail": "no update endpoint (by design)"
+            },
+            {
+                "step": "DELETE",
+                "method": "CHECK",
+                "url": "",
+                "status": 0,
+                "ok": false,
+                "detail": "no DELETE endpoint — cleaned up via DB"
+            }
+        ],
+        "billing.tutor_payments": [
+            {
+                "step": "CREATE",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/org/billing/tutor-payments",
+                "status": 201,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "READ list",
+                "method": "GET",
+                "url": "http://127.0.0.1:8000/api/v1/org/billing/tutor-payments?per_page=50",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "READ round-trip",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "amount ok"
+            },
+            {
+                "step": "STATUS mark paid",
+                "method": "POST",
+                "url": "http://127.0.0.1:8000/api/v1/org/billing/tutor-payments/5/mark-paid",
+                "status": 200,
+                "ok": true,
+                "detail": ""
+            },
+            {
+                "step": "STATUS persisted",
+                "method": "CHECK",
+                "url": "",
+                "status": 200,
+                "ok": true,
+                "detail": "status=paid"
+            },
+            {
+                "step": "DELETE",
+                "method": "CHECK",
+                "url": "",
+                "status": 0,
+                "ok": false,
+                "detail": "no DELETE endpoint — cleaned up via DB"
+            }
+        ]
+    },
+    "defects": [
+        {
+            "severity": "MEDIUM",
+            "resource": "teacher.resources",
+            "summary": "Error response leaks internal details (\"Illuminate\\\")",
+            "method": "POST",
+            "url": "http://127.0.0.1:8000/api/v1/org/teacher/resources",
+            "payload": {
+                "type": "pdf",
+                "title_en": "ZZQA3592 invalid"
+            },
+            "status": 422,
+            "response": "{\n    \"message\": \"Provide either a link or a file path for the resource.\",\n    \"exception\": \"Symfony\\\\Component\\\\HttpKernel\\\\Exception\\\\HttpException\",\n    \"file\": \"C:\\\\xampp\\\\htdocs\\\\learning_platform\\\\backend\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Application.php\",\n    \"line\": 1440,\n    \"trace\": [\n        {\n            \"file\": \"C:\\\\xampp\\\\htdocs\\\\learning_platform\\\\backend\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\helpers.php\",\n            \"line\": 67,\n            \"function\": \"abort\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\xampp\\\\htdocs\\\\learning_platform\\\\backend\\\\app\\\\Http\\\\Controllers\\\\Api\\\\V1\\\\Institution\\\\TeacherPortalController.php\",\n            \"line\": 462,\n            \"function\": \"abort\"\n        },\n        {\n            \"file\": \"C:\\\\xampp\\\\htdocs\\\\learni"
+        },
+        {
+            "severity": "MEDIUM",
+            "resource": "teacher.workspace_homework",
+            "summary": "Error response leaks internal details (\"Illuminate\\\")",
+            "method": "POST",
+            "url": "http://127.0.0.1:8000/api/v1/learner/homework/264/submit",
+            "payload": null,
+            "status": 404,
+            "response": "{\n    \"message\": \"No query results for model [App\\\\Domain\\\\Learning\\\\Models\\\\HomeworkAssignment] 264\",\n    \"exception\": \"Symfony\\\\Component\\\\HttpKernel\\\\Exception\\\\NotFoundHttpException\",\n    \"file\": \"C:\\\\xampp\\\\htdocs\\\\learning_platform\\\\backend\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Exceptions\\\\Handler.php\",\n    \"line\": 668,\n    \"trace\": [\n        {\n            \"file\": \"C:\\\\xampp\\\\htdocs\\\\learning_platform\\\\backend\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Exceptions\\\\Handler.php\",\n            \"line\": 616,\n            \"function\": \"prepareException\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Exceptions\\\\Handler\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\xampp\\\\htdocs\\\\learning_platform\\\\backend\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Pipeline.php\",\n            \"line\": 51,\n            \"function\": \"render\""
+        },
+        {
+            "severity": "LOW",
+            "resource": "scoping",
+            "summary": "A teacher can read submissions for an assignment attached to a class section they are not assigned to (controller scopes by school_id only)",
+            "method": "GET",
+            "url": "http://127.0.0.1:8000/api/v1/org/teacher/assignments/253/submissions",
+            "payload": null,
+            "status": 200,
+            "response": "{\"data\":[{\"id\":2398,\"student_user_id\":45,\"student\":\"Student12 AlNoor\",\"submitted_at\":\"2026-07-22T08:12:44+00:00\",\"is_late\":false,\"score\":null,\"feedback\":null,\"status\":\"submitted\",\"body_text\":\"Project submission for Essay: A Turning Point in History.\"}],\"meta\":{\"assignment\":{\"id\":253,\"title_en\":\"Essay: A Turning Point in History\",\"max_score\":20,\"is_scored\":true},\"stats\":{\"total\":1,\"graded\":0,\"late\":0}}}"
+        },
+        {
+            "severity": "MEDIUM",
+            "resource": "scoping",
+            "summary": "A teacher can update an assignment belonging to a class section they are not assigned to (updateAssignment scopes by school_id only)",
+            "method": "PUT",
+            "url": "http://127.0.0.1:8000/api/v1/org/teacher/assignments/266",
+            "payload": {
+                "title_en": "ZZQA3592 Foreign Section Assignment (hijacked)",
+                "class_section_id": 5,
+                "status": "draft",
+                "assignment_kind": "assignment"
+            },
+            "status": 200,
+            "response": "{\"message\":\"Saved.\",\"data\":{\"id\":266}}"
+        },
+        {
+            "severity": "MEDIUM",
+            "resource": "scoping",
+            "summary": "A teacher can delete an assignment belonging to a class section they are not assigned to (destroyAssignment scopes by school_id only)",
+            "method": "DELETE",
+            "url": "http://127.0.0.1:8000/api/v1/org/teacher/assignments/266",
+            "payload": null,
+            "status": 200,
+            "response": "{\"message\":\"Deleted.\"}"
+        },
+        {
+            "severity": "MEDIUM",
+            "resource": "scoping",
+            "summary": "A teacher can write attendance for a class section they are not assigned to, and for a student not enrolled in it (storeAttendance validates existence only)",
+            "method": "POST",
+            "url": "http://127.0.0.1:8000/api/v1/org/teacher/attendance",
+            "payload": {
+                "class_section_id": 5,
+                "attendance_date": "2019-09-05",
+                "entries": [
+                    {
+                        "student_user_id": 34,
+                        "status": "present",
+                        "notes": "ZZQA3592 scope probe"
+                    }
+                ]
+            },
+            "status": 200,
+            "response": "{\"message\":\"Attendance saved.\",\"data\":{\"count\":1,\"date\":\"2019-09-05\"}}"
+        },
+        {
+            "severity": "MEDIUM",
+            "resource": "tutor.sessions",
+            "summary": "Error response leaks internal details (\"Illuminate\\\")",
+            "method": "POST",
+            "url": "http://127.0.0.1:8000/api/v1/org/tutoring-sessions",
+            "payload": {
+                "tutor_profile_id": 2,
+                "subject_id": 2,
+                "language": "en",
+                "session_type": "one_to_one",
+                "starts_at": "2026-09-14T19:07:00Z",
+                "duration_minutes": 60,
+                "student_user_ids": [
+                    34
+                ]
+            },
+            "status": 403,
+            "response": "{\n    \"message\": \"Missing permission: tutoring.book\",\n    \"exception\": \"Symfony\\\\Component\\\\HttpKernel\\\\Exception\\\\HttpException\",\n    \"file\": \"C:\\\\xampp\\\\htdocs\\\\learning_platform\\\\backend\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Application.php\",\n    \"line\": 1440,\n    \"trace\": [\n        {\n            \"file\": \"C:\\\\xampp\\\\htdocs\\\\learning_platform\\\\backend\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\helpers.php\",\n            \"line\": 67,\n            \"function\": \"abort\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\xampp\\\\htdocs\\\\learning_platform\\\\backend\\\\app\\\\Domain\\\\Identity\\\\Services\\\\RbacService.php\",\n            \"line\": 108,\n            \"function\": \"abort\"\n        },\n        {\n            \"file\": \"C:\\\\xampp\\\\htdocs\\\\learning_platform\\\\backend\\\\app\\\\Http\\\\Controllers\\\\"
+        },
+        {
+            "severity": "MEDIUM",
+            "resource": "tutor.readonly",
+            "summary": "Error response leaks internal details (\"Illuminate\\\")",
+            "method": "GET",
+            "url": "http://127.0.0.1:8000/api/v1/org/teacher/student-progress",
+            "payload": null,
+            "status": 422,
+            "response": "{\n    \"message\": \"student_user_id is required.\",\n    \"exception\": \"Symfony\\\\Component\\\\HttpKernel\\\\Exception\\\\HttpException\",\n    \"file\": \"C:\\\\xampp\\\\htdocs\\\\learning_platform\\\\backend\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Application.php\",\n    \"line\": 1440,\n    \"trace\": [\n        {\n            \"file\": \"C:\\\\xampp\\\\htdocs\\\\learning_platform\\\\backend\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\helpers.php\",\n            \"line\": 67,\n            \"function\": \"abort\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\xampp\\\\htdocs\\\\learning_platform\\\\backend\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\helpers.php\",\n            \"line\": 104,\n            \"function\": \"abort\"\n        },\n        {\n            \"file\": \"C:\\\\xampp\\\\htdocs\\\\learning_platform\\\\backend\\\\app\\\\Http"
+        }
+    ],
+    "notes": [
+        "teacher.attendance: marks for section 1 on 2019-09-03 have no API delete route; removed in DB cleanup."
+    ],
+    "leftovers": [],
+    "totals": {
+        "pass": 166,
+        "fail": 15
+    }
+}

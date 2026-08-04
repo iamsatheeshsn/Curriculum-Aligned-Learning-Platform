@@ -49,7 +49,3 @@ agent-transcripts/
 # Temp scripts
 backend/tmp_*.php
 **/tmp_*.php
-
-# Local credential dumps
-demo-credentials.docx
-*.credentials.docx

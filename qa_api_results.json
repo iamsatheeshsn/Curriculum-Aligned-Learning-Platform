@@ -1,0 +1,1457 @@
+{
+    "logins": {
+        "super_admin": {
+            "status": 200,
+            "ok": true,
+            "roles": [
+                "super_admin"
+            ],
+            "message": "Authenticated."
+        },
+        "customer_support": {
+            "status": 200,
+            "ok": true,
+            "roles": [
+                "customer_support"
+            ],
+            "message": "Authenticated."
+        },
+        "auditor": {
+            "status": 200,
+            "ok": true,
+            "roles": [
+                "auditor"
+            ],
+            "message": "Authenticated."
+        },
+        "school_owner": {
+            "status": 200,
+            "ok": true,
+            "roles": [
+                "school_owner"
+            ],
+            "message": "Authenticated."
+        },
+        "school_owner_inst": {
+            "status": 200,
+            "ok": true,
+            "roles": [
+                "school_owner"
+            ],
+            "message": "Authenticated."
+        },
+        "school_admin": {
+            "status": 200,
+            "ok": true,
+            "roles": [
+                "school_admin"
+            ],
+            "message": "Authenticated."
+        },
+        "campus_admin": {
+            "status": 200,
+            "ok": true,
+            "roles": [
+                "campus_admin"
+            ],
+            "message": "Authenticated."
+        },
+        "principal": {
+            "status": 200,
+            "ok": true,
+            "roles": [
+                "principal"
+            ],
+            "message": "Authenticated."
+        },
+        "academic_coordinator": {
+            "status": 200,
+            "ok": true,
+            "roles": [
+                "academic_coordinator"
+            ],
+            "message": "Authenticated."
+        },
+        "finance_manager": {
+            "status": 200,
+            "ok": true,
+            "roles": [
+                "finance_manager"
+            ],
+            "message": "Authenticated."
+        },
+        "teacher": {
+            "status": 200,
+            "ok": true,
+            "roles": [
+                "teacher"
+            ],
+            "message": "Authenticated."
+        },
+        "tutor": {
+            "status": 200,
+            "ok": true,
+            "roles": [
+                "teacher",
+                "tutor"
+            ],
+            "message": "Authenticated."
+        },
+        "student": {
+            "status": 200,
+            "ok": true,
+            "roles": [
+                "student"
+            ],
+            "message": "Authenticated."
+        },
+        "parent": {
+            "status": 200,
+            "ok": true,
+            "roles": [
+                "parent"
+            ],
+            "message": "Authenticated."
+        }
+    },
+    "counts": {
+        "200": 777,
+        "422": 208,
+        "501": 14,
+        "403": 1269
+    },
+    "failures": [
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/control\/school-ops\/academic-years",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/control\/school-ops\/admissions",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/control\/school-ops\/alumni",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/control\/school-ops\/campuses",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/control\/school-ops\/classes",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/control\/school-ops\/grades",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/control\/school-ops\/guardians",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/control\/school-ops\/parents",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/control\/school-ops\/school",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/control\/school-ops\/sections",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/control\/school-ops\/students",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/control\/school-ops\/subjects",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/control\/school-ops\/teachers",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/control\/school-ops\/teaching-assignments",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/control\/school-ops\/terms",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/control\/school-ops\/transfers",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/control\/school-ops\/tutors",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/control\/school-workspace\/assignments",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/control\/school-workspace\/audit-logs",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/control\/school-workspace\/courses",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/control\/school-workspace\/exams",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/control\/school-workspace\/finance\/expenses",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/control\/school-workspace\/finance\/fees",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/control\/school-workspace\/finance\/reports",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/control\/school-workspace\/finance\/tutor-payments",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/control\/school-workspace\/homework",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/control\/school-workspace\/lessons",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/control\/school-workspace\/notifications",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/control\/school-workspace\/questions",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/control\/school-workspace\/quizzes",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/control\/school-workspace\/reports\/academic",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/control\/school-workspace\/reports\/attendance",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/control\/school-workspace\/reports\/performance",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/control\/school-workspace\/reports\/revenue",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/control\/school-workspace\/resources",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/control\/school-workspace\/results",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/control\/school-workspace\/settings\/branding",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/control\/school-workspace\/settings\/organisation",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/control\/school-workspace\/staff",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/control\/school-workspace\/staff-attendance",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/control\/school-workspace\/tutoring\/bookings",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/control\/school-workspace\/tutoring\/timetable",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/control\/school-workspace\/tutoring\/tutors",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/control\/subscription\/current",
+            "status": 422,
+            "message": "No tenant context. Pass tenant_id for Super Admin."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/learner\/assessments",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/learner\/homework",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/learner\/lessons",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/learner\/parent\/dashboard",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/learner\/parent\/fees",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/learner\/parent\/messages",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/learner\/parent\/notices",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/learner\/progress",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/learner\/student\/assessments",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/learner\/student\/courses",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/learner\/student\/dashboard",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/learner\/student\/homework",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/learner\/student\/lessons",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/learner\/student\/messages",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/learner\/student\/progress",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/learner\/tutoring\/sessions",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/learner\/tutors",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/mobile\/sync",
+            "status": 501,
+            "message": "Delta sync is planned for offline mobile. Poll resource endpoints in V1."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/academic-years",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/activities",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/assessments",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/billing\/invoices",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/billing\/student-invoices",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/billing\/tutor-payments",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/calendar-events",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/campuses",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/certificates",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/classes",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/curricula",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/curriculum\/grade-levels",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/grades",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/grading\/queue",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/homework",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/interactive-lessons",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/progress",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/question-bank",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/reports\/curriculum-completion",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/reports\/learning-outcomes",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/reports\/meta",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/reports\/school",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/reports\/student",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/reports\/teacher",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/reports\/tutor-performance",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/resources",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/sections",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/simulations",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/subjects",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/teacher\/assessments",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/teacher\/assignments",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/teacher\/attendance",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/teacher\/class-progress",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/teacher\/context",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/teacher\/course-content",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/teacher\/earnings",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/teacher\/grade-book",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/teacher\/lesson-plans",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/teacher\/messages",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/teacher\/messages\/recipients",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/teacher\/profile",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/teacher\/resources",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/teacher\/session-notes",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/teacher\/student-progress",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/teacher\/students",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/teacher\/workspace",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/timetables",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/tutoring-sessions",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "super_admin",
+            "uri": "api\/v1\/org\/tutors",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/control\/school-ops\/academic-years",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/control\/school-ops\/admissions",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/control\/school-ops\/alumni",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/control\/school-ops\/campuses",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/control\/school-ops\/classes",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/control\/school-ops\/grades",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/control\/school-ops\/guardians",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/control\/school-ops\/parents",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/control\/school-ops\/school",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/control\/school-ops\/sections",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/control\/school-ops\/students",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/control\/school-ops\/subjects",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/control\/school-ops\/teachers",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/control\/school-ops\/teaching-assignments",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/control\/school-ops\/terms",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/control\/school-ops\/transfers",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/control\/school-ops\/tutors",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/control\/school-workspace\/assignments",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/control\/school-workspace\/audit-logs",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/control\/school-workspace\/courses",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/control\/school-workspace\/exams",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/control\/school-workspace\/finance\/expenses",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/control\/school-workspace\/finance\/fees",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/control\/school-workspace\/finance\/reports",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/control\/school-workspace\/finance\/tutor-payments",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/control\/school-workspace\/homework",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/control\/school-workspace\/lessons",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/control\/school-workspace\/notifications",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/control\/school-workspace\/questions",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/control\/school-workspace\/quizzes",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/control\/school-workspace\/reports\/academic",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/control\/school-workspace\/reports\/attendance",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/control\/school-workspace\/reports\/performance",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/control\/school-workspace\/reports\/revenue",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/control\/school-workspace\/resources",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/control\/school-workspace\/results",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/control\/school-workspace\/settings\/branding",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/control\/school-workspace\/settings\/organisation",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/control\/school-workspace\/staff",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/control\/school-workspace\/staff-attendance",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/control\/school-workspace\/tutoring\/bookings",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/control\/school-workspace\/tutoring\/timetable",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/control\/school-workspace\/tutoring\/tutors",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/control\/subscription\/current",
+            "status": 422,
+            "message": "No tenant context. Pass tenant_id for Super Admin."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/mobile\/sync",
+            "status": 501,
+            "message": "Delta sync is planned for offline mobile. Poll resource endpoints in V1."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/org\/billing\/invoices",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/org\/billing\/student-invoices",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/org\/billing\/tutor-payments",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/org\/reports\/curriculum-completion",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/org\/reports\/learning-outcomes",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/org\/reports\/meta",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/org\/reports\/school",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/org\/reports\/student",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/org\/reports\/teacher",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/org\/reports\/tutor-performance",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "customer_support",
+            "uri": "api\/v1\/org\/teacher\/workspace",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "auditor",
+            "uri": "api\/v1\/control\/subscription\/current",
+            "status": 422,
+            "message": "No tenant context. Pass tenant_id for Super Admin."
+        },
+        {
+            "role": "auditor",
+            "uri": "api\/v1\/mobile\/sync",
+            "status": 501,
+            "message": "Delta sync is planned for offline mobile. Poll resource endpoints in V1."
+        },
+        {
+            "role": "auditor",
+            "uri": "api\/v1\/org\/billing\/invoices",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "auditor",
+            "uri": "api\/v1\/org\/billing\/student-invoices",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "auditor",
+            "uri": "api\/v1\/org\/billing\/tutor-payments",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "auditor",
+            "uri": "api\/v1\/org\/reports\/curriculum-completion",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "auditor",
+            "uri": "api\/v1\/org\/reports\/learning-outcomes",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "auditor",
+            "uri": "api\/v1\/org\/reports\/meta",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "auditor",
+            "uri": "api\/v1\/org\/reports\/school",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "auditor",
+            "uri": "api\/v1\/org\/reports\/student",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "auditor",
+            "uri": "api\/v1\/org\/reports\/teacher",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "auditor",
+            "uri": "api\/v1\/org\/reports\/tutor-performance",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "auditor",
+            "uri": "api\/v1\/org\/teacher\/workspace",
+            "status": 422,
+            "message": "Tenant context required."
+        },
+        {
+            "role": "school_owner",
+            "uri": "api\/v1\/mobile\/sync",
+            "status": 501,
+            "message": "Delta sync is planned for offline mobile. Poll resource endpoints in V1."
+        },
+        {
+            "role": "school_owner",
+            "uri": "api\/v1\/org\/reports\/student",
+            "status": 422,
+            "message": "The student user id field is required."
+        },
+        {
+            "role": "school_owner",
+            "uri": "api\/v1\/org\/teacher\/earnings",
+            "status": 422,
+            "message": "No tutor profile is linked to your account."
+        },
+        {
+            "role": "school_owner",
+            "uri": "api\/v1\/org\/teacher\/session-notes",
+            "status": 422,
+            "message": "No tutor profile is linked to your account."
+        },
+        {
+            "role": "school_owner",
+            "uri": "api\/v1\/org\/teacher\/student-progress",
+            "status": 422,
+            "message": "No tutor profile is linked to your account."
+        },
+        {
+            "role": "school_owner",
+            "uri": "api\/v1\/org\/teacher\/students",
+            "status": 422,
+            "message": "No tutor profile is linked to your account."
+        },
+        {
+            "role": "school_owner_inst",
+            "uri": "api\/v1\/mobile\/sync",
+            "status": 501,
+            "message": "Delta sync is planned for offline mobile. Poll resource endpoints in V1."
+        },
+        {
+            "role": "school_owner_inst",
+            "uri": "api\/v1\/org\/reports\/student",
+            "status": 422,
+            "message": "The student user id field is required."
+        },
+        {
+            "role": "school_owner_inst",
+            "uri": "api\/v1\/org\/teacher\/earnings",
+            "status": 422,
+            "message": "No tutor profile is linked to your account."
+        },
+        {
+            "role": "school_owner_inst",
+            "uri": "api\/v1\/org\/teacher\/session-notes",
+            "status": 422,
+            "message": "No tutor profile is linked to your account."
+        },
+        {
+            "role": "school_owner_inst",
+            "uri": "api\/v1\/org\/teacher\/student-progress",
+            "status": 422,
+            "message": "No tutor profile is linked to your account."
+        },
+        {
+            "role": "school_owner_inst",
+            "uri": "api\/v1\/org\/teacher\/students",
+            "status": 422,
+            "message": "No tutor profile is linked to your account."
+        },
+        {
+            "role": "school_admin",
+            "uri": "api\/v1\/mobile\/sync",
+            "status": 501,
+            "message": "Delta sync is planned for offline mobile. Poll resource endpoints in V1."
+        },
+        {
+            "role": "school_admin",
+            "uri": "api\/v1\/org\/reports\/student",
+            "status": 422,
+            "message": "The student user id field is required."
+        },
+        {
+            "role": "school_admin",
+            "uri": "api\/v1\/org\/teacher\/earnings",
+            "status": 422,
+            "message": "No tutor profile is linked to your account."
+        },
+        {
+            "role": "school_admin",
+            "uri": "api\/v1\/org\/teacher\/session-notes",
+            "status": 422,
+            "message": "No tutor profile is linked to your account."
+        },
+        {
+            "role": "school_admin",
+            "uri": "api\/v1\/org\/teacher\/student-progress",
+            "status": 422,
+            "message": "No tutor profile is linked to your account."
+        },
+        {
+            "role": "school_admin",
+            "uri": "api\/v1\/org\/teacher\/students",
+            "status": 422,
+            "message": "No tutor profile is linked to your account."
+        },
+        {
+            "role": "campus_admin",
+            "uri": "api\/v1\/mobile\/sync",
+            "status": 501,
+            "message": "Delta sync is planned for offline mobile. Poll resource endpoints in V1."
+        },
+        {
+            "role": "campus_admin",
+            "uri": "api\/v1\/org\/reports\/student",
+            "status": 422,
+            "message": "The student user id field is required."
+        },
+        {
+            "role": "campus_admin",
+            "uri": "api\/v1\/org\/teacher\/earnings",
+            "status": 422,
+            "message": "No tutor profile is linked to your account."
+        },
+        {
+            "role": "campus_admin",
+            "uri": "api\/v1\/org\/teacher\/session-notes",
+            "status": 422,
+            "message": "No tutor profile is linked to your account."
+        },
+        {
+            "role": "campus_admin",
+            "uri": "api\/v1\/org\/teacher\/student-progress",
+            "status": 422,
+            "message": "No tutor profile is linked to your account."
+        },
+        {
+            "role": "campus_admin",
+            "uri": "api\/v1\/org\/teacher\/students",
+            "status": 422,
+            "message": "No tutor profile is linked to your account."
+        },
+        {
+            "role": "principal",
+            "uri": "api\/v1\/mobile\/sync",
+            "status": 501,
+            "message": "Delta sync is planned for offline mobile. Poll resource endpoints in V1."
+        },
+        {
+            "role": "principal",
+            "uri": "api\/v1\/org\/reports\/student",
+            "status": 422,
+            "message": "The student user id field is required."
+        },
+        {
+            "role": "principal",
+            "uri": "api\/v1\/org\/teacher\/earnings",
+            "status": 422,
+            "message": "No tutor profile is linked to your account."
+        },
+        {
+            "role": "principal",
+            "uri": "api\/v1\/org\/teacher\/session-notes",
+            "status": 422,
+            "message": "No tutor profile is linked to your account."
+        },
+        {
+            "role": "principal",
+            "uri": "api\/v1\/org\/teacher\/student-progress",
+            "status": 422,
+            "message": "No tutor profile is linked to your account."
+        },
+        {
+            "role": "principal",
+            "uri": "api\/v1\/org\/teacher\/students",
+            "status": 422,
+            "message": "No tutor profile is linked to your account."
+        },
+        {
+            "role": "academic_coordinator",
+            "uri": "api\/v1\/mobile\/sync",
+            "status": 501,
+            "message": "Delta sync is planned for offline mobile. Poll resource endpoints in V1."
+        },
+        {
+            "role": "academic_coordinator",
+            "uri": "api\/v1\/org\/reports\/student",
+            "status": 422,
+            "message": "The student user id field is required."
+        },
+        {
+            "role": "finance_manager",
+            "uri": "api\/v1\/mobile\/sync",
+            "status": 501,
+            "message": "Delta sync is planned for offline mobile. Poll resource endpoints in V1."
+        },
+        {
+            "role": "finance_manager",
+            "uri": "api\/v1\/org\/reports\/student",
+            "status": 422,
+            "message": "The student user id field is required."
+        },
+        {
+            "role": "teacher",
+            "uri": "api\/v1\/mobile\/sync",
+            "status": 501,
+            "message": "Delta sync is planned for offline mobile. Poll resource endpoints in V1."
+        },
+        {
+            "role": "teacher",
+            "uri": "api\/v1\/org\/reports\/student",
+            "status": 422,
+            "message": "The student user id field is required."
+        },
+        {
+            "role": "teacher",
+            "uri": "api\/v1\/org\/teacher\/student-progress",
+            "status": 422,
+            "message": "student_user_id is required."
+        },
+        {
+            "role": "tutor",
+            "uri": "api\/v1\/mobile\/sync",
+            "status": 501,
+            "message": "Delta sync is planned for offline mobile. Poll resource endpoints in V1."
+        },
+        {
+            "role": "tutor",
+            "uri": "api\/v1\/org\/reports\/student",
+            "status": 422,
+            "message": "The student user id field is required."
+        },
+        {
+            "role": "tutor",
+            "uri": "api\/v1\/org\/teacher\/student-progress",
+            "status": 422,
+            "message": "student_user_id is required."
+        },
+        {
+            "role": "student",
+            "uri": "api\/v1\/mobile\/sync",
+            "status": 501,
+            "message": "Delta sync is planned for offline mobile. Poll resource endpoints in V1."
+        },
+        {
+            "role": "parent",
+            "uri": "api\/v1\/mobile\/sync",
+            "status": 501,
+            "message": "Delta sync is planned for offline mobile. Poll resource endpoints in V1."
+        }
+    ]
+}
